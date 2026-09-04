@@ -1,467 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shaun John Thomas — Engineering Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --paper: #0F2540;
-    --paper-deep: #0A1B30;
-    --line: #3E5C82;
-    --line-faint: rgba(163, 191, 224, 0.16);
-    --ink: #E7EEF6;
-    --ink-dim: #9FB4CC;
-    --ink-dimmer: #6D84A2;
-    --accent: #D2601F;
-    --accent-soft: rgba(210, 96, 31, 0.14);
-    --white-line: #C9DBEE;
-    --radius: 2px;
-    --content-width: 880px;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaun John Thomas | Engineering Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Base Variables & Technical Theme */
+        :root {
+            --bg-color: #0d1117;
+            --grid-color: rgba(88, 166, 255, 0.07);
+            --accent-primary: #58a6ff;
+            --accent-secondary: #3fb950;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --card-bg: rgba(22, 27, 34, 0.85);
+            --border-color: #30363d;
+        }
 
-  * { box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-  html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  body {
-    margin: 0;
-    background-color: var(--paper);
-    background-image:
-      linear-gradient(var(--line-faint) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line-faint) 1px, transparent 1px);
-    background-size: 28px 28px;
-    color: var(--ink);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+        h1, h2, h3, .mono {
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+        }
 
-  a { color: var(--white-line); }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(13, 17, 23, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
 
-  ::selection { background: var(--accent); color: #10151B; }
+        .logo {
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
 
-  .wrap {
-    max-width: var(--content-width);
-    margin: 0 auto;
-    padding: 48px 24px 96px;
-  }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
 
-  h1, h2, h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Share Tech Mono', monospace;
+            transition: color 0.3s ease;
+        }
 
-  .tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--ink-dimmer);
-  }
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
 
-  /* ---- Title block, styled like an engineering drawing title block ---- */
-  .titleblock {
-    border: 1px solid var(--line);
-    position: relative;
-  }
-  .titleblock::before, .titleblock::after,
-  .tick-tl, .tick-br { content: ''; }
+        /* Sections General */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 10%;
+            position: relative;
+        }
 
-  .corner {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border: 1px solid var(--white-line);
-  }
-  .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-  .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+        }
 
-  .titleblock-main {
-    padding: 32px 28px 24px;
-    border-bottom: 1px solid var(--line);
-  }
+        /* About Section */
+        #about h1 {
+            font-size: 4rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
 
-  .titleblock-main .tag { margin-bottom: 10px; }
+        #about h2 {
+            font-size: 1.5rem;
+            color: var(--accent-secondary);
+            margin-bottom: 2rem;
+        }
 
-  .titleblock h1 {
-    font-size: clamp(32px, 6vw, 46px);
-    line-height: 1.05;
-  }
+        #about p {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
 
-  .titleblock .role {
-    margin-top: 10px;
-    font-size: 17px;
-    color: var(--ink-dim);
-    max-width: 46ch;
-  }
+        /* Contact Info Block */
+        .contact-info {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
 
-  .meta-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 560px) {
-    .meta-strip { grid-template-columns: 1fr; }
-  }
-  .meta-cell {
-    padding: 14px 20px;
-    border-right: 1px solid var(--line);
-  }
-  .meta-cell:last-child { border-right: none; }
-  @media (max-width: 560px) {
-    .meta-cell { border-right: none; border-bottom: 1px solid var(--line); }
-    .meta-cell:last-child { border-bottom: none; }
-  }
-  .meta-cell .tag { display: block; margin-bottom: 4px; }
-  .meta-cell .val { font-size: 14px; color: var(--ink); }
-  .meta-cell a { text-decoration: none; }
-  .meta-cell a:hover { text-decoration: underline; }
+        .contact-item {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-secondary);
+            font-size: 0.95rem;
+            background: rgba(22, 27, 34, 0.85);
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
 
-  /* ---- Sheet index / nav ---- */
-  .index {
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 28px;
-  }
-  .index a {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--ink-dim);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-  }
-  .index a:hover { color: var(--white-line); border-bottom-color: var(--white-line); }
+        .contact-item span, .contact-item a {
+            color: var(--text-main);
+            margin-left: 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-  /* ---- Intro ---- */
-  .intro {
-    margin-top: 56px;
-    max-width: 62ch;
-    font-size: 16px;
-    color: var(--ink-dim);
-  }
-  .intro p { margin: 0 0 14px; }
+        .contact-item a:hover {
+            color: var(--accent-primary);
+        }
 
-  /* ---- Section heading ---- */
-  .section-head {
-    margin-top: 72px;
-    margin-bottom: 22px;
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 12px;
-  }
-  .section-head h2 { font-size: 22px; }
-  .section-head .tag { flex: 1; text-align: right; }
+        /* Project Cards */
+        .project-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
 
-  /* ---- Project sheet ---- */
-  .sheet {
-    position: relative;
-    border: 1px solid var(--line);
-    margin-bottom: 40px;
-  }
+        .project-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), transparent);
+        }
 
-  .sheet-head {
-    padding: 22px 24px 18px;
-    border-bottom: 1px solid var(--line);
-  }
-  .sheet-head .tag { margin-bottom: 8px; }
-  .sheet-head h3 { font-size: 22px; margin-bottom: 6px; }
-  .sheet-head .org {
-    font-size: 14px;
-    color: var(--ink-dim);
-    font-style: italic;
-  }
+        /* Bento Box Image Gallery Layout */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr; 
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
 
-  .specs {
-    display: flex;
-    flex-wrap: wrap;
-    border-bottom: 1px solid var(--line);
-  }
-  .spec {
-    padding: 12px 20px;
-    border-right: 1px solid var(--line);
-    flex: 1 1 140px;
-  }
-  .spec:last-child { border-right: none; }
-  .spec .tag { display: block; margin-bottom: 4px; }
-  .spec .val {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    color: var(--white-line);
-  }
+        /* Duo override for sections with only 2 images */
+        .image-gallery.duo .gallery-item.vert {
+            grid-row: 1; 
+        }
 
-  .sheet-body {
-    padding: 24px;
-  }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: rgba(0,0,0,0.5);
+        }
 
-  .sheet-body ul {
-    margin: 0 0 26px;
-    padding-left: 18px;
-    color: var(--ink-dim);
-    font-size: 15px;
-  }
-  .sheet-body li { margin-bottom: 8px; }
-  .sheet-body li::marker { color: var(--accent); }
+        .gallery-item.horiz {
+            grid-column: 1;
+            aspect-ratio: 16/9;
+        }
 
-  /* ---- Photo placeholders ---- */
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-  }
-  .photo-slot {
-    aspect-ratio: 4 / 3;
-    border: 1px dashed var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 16px;
-    background: rgba(255,255,255,0.015);
-  }
-  .photo-slot img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .photo-slot .placeholder-text {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11.5px;
-    color: var(--ink-dimmer);
-    line-height: 1.5;
-  }
-  .photo-slot .placeholder-text .num {
-    display: block;
-    color: var(--accent);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    margin-bottom: 6px;
-  }
+        .gallery-item.vert {
+            grid-column: 2;
+            grid-row: 1 / span 2; 
+            height: 100%; 
+        }
 
-  /* ---- Skills spec table ---- */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border: 1px solid var(--line);
-  }
-  @media (max-width: 560px) {
-    .skills-grid { grid-template-columns: 1fr; }
-  }
-  .skill-cell {
-    padding: 16px 20px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .skill-cell:nth-child(2n) { border-right: none; }
-  @media (max-width: 560px) {
-    .skill-cell { border-right: none; }
-  }
-  .skill-cell:nth-last-child(-n+2) { border-bottom: none; }
-  .skill-cell .tag { display: block; margin-bottom: 6px; }
-  .skill-cell .items { font-size: 14.5px; color: var(--ink); }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+            cursor: pointer; 
+        }
 
-  /* ---- Footer ---- */
-  footer {
-    margin-top: 80px;
-    padding-top: 24px;
-    border-top: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--ink-dimmer);
-  }
+        .gallery-item:hover img {
+            transform: scale(1.05); 
+        }
 
-  .accent-rule {
-    height: 2px;
-    width: 44px;
-    background: var(--accent);
-    margin: 18px 0 0;
-  }
-</style>
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.9);
+            color: var(--accent-primary);
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            font-family: 'Share Tech Mono', monospace;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            pointer-events: none; 
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Lightbox Modal */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 0 30px rgba(88, 166, 255, 0.15);
+            border-radius: 4px;
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--text-muted);
+            font-size: 40px;
+            font-weight: bold;
+            transition: color 0.3s;
+            cursor: pointer;
+            font-family: 'Share Tech Mono', monospace;
+            z-index: 2001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+        }
+
+        .skill-category h3 {
+            color: var(--accent-secondary);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list li::before {
+            content: '>';
+            color: var(--accent-primary);
+            margin-right: 10px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            #about h1 { font-size: 2.5rem; }
+            section { padding: 5rem 5%; }
+            .project-container { padding: 1.5rem; }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .image-gallery, .image-gallery.duo {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item.horiz {
+                grid-column: 1;
+                aspect-ratio: 16/9;
+            }
+            .gallery-item.vert, .image-gallery.duo .gallery-item.vert {
+                grid-column: 1;
+                grid-row: auto;
+                aspect-ratio: 9/16;
+                height: auto;
+            }
+
+            .gallery-caption { transform: translateY(0); }
+            .close { top: 15px; right: 20px; }
+        }
+    </style>
 </head>
 <body>
-<div class="wrap">
 
-  <div class="titleblock">
-    <div class="corner tl"></div>
-    <div class="corner br"></div>
-    <div class="titleblock-main">
-      <span class="tag">ENGINEERING PORTFOLIO — SHEET 00 / TITLE</span>
-      <h1>Shaun John Thomas</h1>
-      <div class="accent-rule"></div>
-      <p class="role">Aero-Mechanical engineering student working across CFD, structural design and flight-test hardware — from digital model to the launch pad.</p>
-    </div>
-    <div class="meta-strip">
-      <div class="meta-cell">
-        <span class="tag">Location</span>
-        <span class="val">Glasgow, Scotland</span>
-      </div>
-      <div class="meta-cell">
-        <span class="tag">Email</span>
-        <span class="val"><a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a></span>
-      </div>
-      <div class="meta-cell">
-        <span class="tag">Currently</span>
-        <span class="val">BEng Aero-Mechanical Engineering, University of Strathclyde</span>
-      </div>
-    </div>
-  </div>
-
-  <nav class="index">
-    <a href="#uav">Sheet 01 — Blended Wing Body UAV</a>
-    <a href="#strathais">Sheet 02 — 30,000 ft Rocket Airframe</a>
-    <a href="#ignition">Sheet 03 — Team Ignition</a>
-    <a href="#skills">Sheet 04 — Skills &amp; Tools</a>
-  </nav>
-
-  <div class="intro">
-    <p>Three projects, one thread: taking an aerodynamic or structural idea from first sketch through simulation to something that actually flies. Each sheet below covers the problem, what I did about it, and — once I've dropped the photos in — what it looked like on the bench and at the pad.</p>
-  </div>
-
-  <!-- ================= PROJECT 1 ================= -->
-  <div class="section-head">
-    <h2>Projects</h2>
-    <span class="tag">3 sheets</span>
-  </div>
-
-  <div class="sheet" id="uav">
-    <div class="sheet-head">
-      <span class="tag">SHEET 01 · INDIVIDUAL PROJECT</span>
-      <h3>Blended Wing Body UAV</h3>
-      <div class="org">Personal project — University of Strathclyde</div>
-    </div>
-    <div class="specs">
-      <div class="spec"><span class="tag">Timeline</span><span class="val">Aug 2026 — present</span></div>
-      <div class="spec"><span class="tag">Airfoil</span><span class="val">Clark Y → MH-series reflexed</span></div>
-      <div class="spec"><span class="tag">Tools</span><span class="val">XFLR5 · SolidWorks · ANSYS</span></div>
-    </div>
-    <div class="sheet-body">
-      <ul>
-        <li>Evaluated initial BWB geometries in XFLR5 using a Clark Y airfoil, found inherent pitch-stability limitations, and pivoted to an MH-series reflexed profile to achieve natural aerodynamic trim.</li>
-        <li>Redesigned macro-geometry in SolidWorks — wing twist, sweep, chord length — to reconcile payload volume against target lift/drag ratio.</li>
-        <li>Validating the MH-series configuration through CFD sweeps in ANSYS, targeting reduced induced drag and a positive static margin ahead of fabrication.</li>
-        <li>Building out a 3D-printing, CNC and composite-layup pipeline to take the digital model to a flight-test article.</li>
-      </ul>
-      <div class="photo-grid">
-        <div class="photo-slot"><div class="placeholder-text"><span class="num">01</span>CAD model / wing geometry</div></div>
-        <div class="photo-slot"><div class="placeholder-text"><span class="num">02</span>CFD pressure or streamline plot</div></div>
-        <div class="photo-slot"><div class="placeholder-text"><span class="num">03</span>Prototype / build progress</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= PROJECT 2 ================= -->
-  <div class="sheet" id="strathais">
-    <div class="sheet-head">
-      <span class="tag">SHEET 02 · AIRFRAME DESIGN ENGINEER</span>
-      <h3>30,000 ft, Mach 1+ Rocket Airframe</h3>
-      <div class="org">StrathAIS, Student Rocketry Team — University of Strathclyde</div>
-    </div>
-    <div class="specs">
-      <div class="spec"><span class="tag">Timeline</span><span class="val">Sep 2025 — present</span></div>
-      <div class="spec"><span class="tag">Target</span><span class="val">30,000 ft · Mach 1+</span></div>
-      <div class="spec"><span class="tag">Milestone</span><span class="val">PDR / CDR — IREC 2026</span></div>
-    </div>
-    <div class="sheet-body">
-      <ul>
-        <li>Engineering and manufacturing bulkhead and supporting structures, presenting design and verification evidence through PDR and CDR reviews for IREC 2026.</li>
-        <li>Running FEA simulations to shape critical design choices and maximise strength-to-weight ratio.</li>
-        <li>Recommending and implementing manufacturing changes to minimise error and material waste, drawing on lessons from previous builds.</li>
-      </ul>
-      <div class="photo-grid">
-        <div class="photo-slot">
-          <img src="Assets/nevis.jpg" alt="Nevis rocket build">
+    <nav>
+        <div class="logo">S.J.THOMAS // SYS.OP</div>
+        <div class="nav-links">
+            <a href="#about">01. ABOUT</a>
+            <a href="#blended-wing">02. BLENDED WING</a>
+            <a href="#strath-ais">03. STRATH AIS</a>
+            <a href="#team-ignition">04. TEAM IGNITION</a>
+            <a href="#skills">05. SKILLS</a>
         </div>
-        <div class="photo-slot">
-          <img src="Assets/fiberglass_layups.jpg" alt="Fiberglass layups manufacturing">
-        </div>
-        <div class="photo-slot">
-          <img src="Assets/opotimization.png" alt="Structure optimization">
-        </div>
-      </div>
-    </div>
-  </div>
+    </nav>
 
-  <!-- ================= PROJECT 3 ================= -->
-  <div class="sheet" id="ignition">
-    <div class="sheet-head">
-      <span class="tag">SHEET 03 · AIRFRAME LEAD</span>
-      <h3>Team Ignition — 10,000 ft Model Rocket</h3>
-      <div class="org">Student Rocketry Team — Vellore Institute of Technology</div>
-    </div>
-    <div class="specs">
-      <div class="spec"><span class="tag">Timeline</span><span class="val">Aug 2023 — Jun 2025</span></div>
-      <div class="spec"><span class="tag">Target</span><span class="val">10,000 ft</span></div>
-      <div class="spec"><span class="tag">Team</span><span class="val">Led 4 engineers</span></div>
-    </div>
-    <div class="sheet-body">
-      <ul>
-        <li>Directed a team of 4 to design and build the airframe, collaborating across sub-systems to reach workable design compromises.</li>
-        <li>Manufactured supporting structures with power tools and CNC machines; reinforced fins and nose cone with fiberglass to withstand high temperatures and flight loads.</li>
-        <li>Validated design choices with a full testing suite — CFD, FEA, pressure and vibration analysis — with guidance from external manufacturers on industry practice.</li>
-      </ul>
-      <div class="photo-grid">
-        <div class="photo-slot">
-          <img src="Assets/GroupPhoto.jpg" alt="Team Ignition Group Photo">
+    <section id="about">
+        <div class="hero-content">
+            <p class="mono" style="color: var(--accent-primary); margin-bottom: 1rem;">> INITIALIZING PROFILE...</p>
+            <h1>Shaun John Thomas</h1>
+            <h2>Aero-Mechanical Engineering</h2>
+            <p>Final-year Aero-Mechanical Engineer at the University of Strathclyde, with strong aerodynamic fundamentals and hands-on experience in CFD and stability analysis. Currently applying this to the design, manufacture, and upcoming flight test of a Blended Wing Body UAV.</p>
+            <p>Proficient across the full simulation-to-hardware pipeline, from vortex-lattice and FEA modelling through to composite and 3D-printed fabrication, with proven cross-functional collaboration in multidisciplinary student engineering teams.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    > LOC: <span>Glasgow, Scotland</span>
+                </div>
+                <div class="contact-item">
+                    > EML: <a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    > PHN: <a href="tel:+447737971193">+44 7737 971193</a>
+                </div>
+            </div>
+
         </div>
-        <div class="photo-slot">
-          <img src="Assets/Pioneer.jpg" alt="Finished Pioneer Airframe">
+    </section>
+
+    <section id="blended-wing">
+        <h2 class="section-title">Blended Wing UAV</h2>
+        <div class="project-container">
+            <h3 style="margin-bottom: 1rem;">Project Overview</h3>
+            <p style="margin-bottom: 1rem;">Individual dissertation project carrying out a parametric study quantifying the effect of winglet cant angle on Dutch roll damping in a rudderless Blended Wing Body UAV, benchmarking results against MIL-F-8785C and CS-23 handling qualities criteria.</p>
+            <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                <li>Extracting stability derivatives via vortex-lattice modelling (XFLR5, AVL) and building a Python state-space eigenvalue model to predict lateral-directional dynamics across wingtip configurations.</li>
+                <li>Validating methodology and derivative outputs against published VLM stability studies on tailless configurations before committing to manufacturing.</li>
+                <li>Iterative structural CAD design of a 4 kg MTOW airframe with interchangeable winglet mounts.</li>
+                <li>Preparing to manufacture a 3D-printed, composite-reinforced airframe and winglets of varying cant angles for flight-test validation.</li>
+            </ul>
+
+            <div class="image-gallery duo">
+                <div class="gallery-item horiz">
+                    <img src="Assets/XFLR5Image.png" alt="XFLR5 Aerodynamic Analysis">
+                    <div class="gallery-caption">XFLR5 AERODYNAMIC STREAMLINES</div>
+                </div>
+                <div class="gallery-item vert">
+                    <img src="Assets/TopVIEW.png" alt="SolidWorks BWB Model">
+                    <div class="gallery-caption">SOLIDWORKS CAD GEOMETRY</div>
+                </div>
+            </div>
         </div>
-        <div class="photo-slot">
-          <img src="Assets/PyroTestIgnition.gif" alt="Pyro test ignition">
+    </section>
+
+    <section id="strath-ais">
+        <h2 class="section-title">Strath AIS</h2>
+        <div class="project-container">
+            <h3 style="margin-bottom: 1rem;">Airframe Design Engineer</h3>
+            <p style="margin-bottom: 1rem;">Engineering and manufacturing bulkhead and supporting structures for a 30,000 ft, Mach 1+ rocket with StrathAIS, presenting design and verification evidence through PDR and CDR reviews for IREC 2026.</p>
+            <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                <li>Running FEA simulations to shape critical design choices and maximize strength-to-weight ratio.</li>
+                <li>Recommending and implementing changes in manufacturing decisions to minimize error and material waste, drawing on lessons from previous failures.</li>
+                <li>Collaborative engineering within a multidisciplinary student aerospace team.</li>
+            </ul>
+            
+            <div class="image-gallery">
+                <div class="gallery-item horiz">
+                    <img src="Assets/Fiberglass Layups.jpg" alt="Fiberglass Layup Process">
+                    <div class="gallery-caption">FIBERGLASS COMPOSITE LAYUP</div>
+                </div>
+                <div class="gallery-item vert">
+                    <img src="Assets/Nevis.jpg" alt="Nevis Rocket Airframe">
+                    <div class="gallery-caption">NEVIS ROCKET AIRFRAME</div>
+                </div>
+                <div class="gallery-item horiz">
+                    <img src="Assets/Optimization.png" alt="FEA Structural Optimization">
+                    <div class="gallery-caption">FEA STRUCTURAL OPTIMIZATION</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- ================= SKILLS ================= -->
-  <div class="section-head" id="skills">
-    <h2>Skills &amp; tools</h2>
-    <span class="tag">Sheet 04</span>
-  </div>
+    <section id="team-ignition">
+        <h2 class="section-title">Team Ignition</h2>
+        <div class="project-container">
+            <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
+            <p style="margin-bottom: 1rem;">Directed a team of 4 to design and build the airframe of a model rocket to reach an altitude of 10,000 feet, collaborating closely with other departments at VIT Chennai to reach innovative design compromises across the project.</p>
+            <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                <li>Manufactured supporting structures using power tools and CNC machines, reinforcing fins and nose cones with fibreglass sheets to withstand high temperatures and harsh conditions.</li>
+                <li>Validated design choices using a testing suite including CFD, FEA, pressure, and vibration analysis.</li>
+                <li>Drew on technical guidance from external manufacturers on industry standards and practices.</li>
+            </ul>
 
-  <div class="skills-grid">
-    <div class="skill-cell">
-      <span class="tag">CAD</span>
-      <div class="items">SolidWorks, OnShape</div>
-    </div>
-    <div class="skill-cell">
-      <span class="tag">Simulation</span>
-      <div class="items">ANSYS (CFD &amp; FEA), XFLR5, OpenFOAM</div>
-    </div>
-    <div class="skill-cell">
-      <span class="tag">Manufacturing</span>
-      <div class="items">3D printing, composites, GD&amp;T</div>
-    </div>
-    <div class="skill-cell">
-      <span class="tag">Machining</span>
-      <div class="items">CNC machining, power tools</div>
-    </div>
-    <div class="skill-cell">
-      <span class="tag">Numerical analysis</span>
-      <div class="items">MATLAB &amp; Simulink, Python</div>
-    </div>
-    <div class="skill-cell">
-      <span class="tag">Certification</span>
-      <div class="items">Certified SolidWorks Design Associate (CSWA)</div>
-    </div>
-  </div>
+            <div class="image-gallery">
+                <div class="gallery-item horiz">
+                    <img src="Assets/GroupPhoto.jpg" alt="Team Ignition Roster">
+                    <div class="gallery-caption">TEAM IGNITION CREW</div>
+                </div>
+                <div class="gallery-item vert">
+                    <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle">
+                    <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
+                </div>
+                <div class="gallery-item horiz">
+                    <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test">
+                    <div class="gallery-caption">PYRO IGNITION TESTING</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <span>Shaun John Thomas — Glasgow, Scotland</span>
-    <span>Last updated Sep 2026</span>
-  </footer>
+    <section id="skills">
+        <h2 class="section-title">Technical Specifications</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>CAD & Modeling</h3>
+                <ul class="skill-list">
+                    <li>SolidWorks</li>
+                    <li>OnShape</li>
+                    <li>GD&T</li>
+                    <li>Certified SolidWorks Design Associate (CSWA)</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Analysis & Simulation</h3>
+                <ul class="skill-list">
+                    <li>ANSYS (CFD & FEA)</li>
+                    <li>XFLR5 / AVL</li>
+                    <li>MATLAB & Simulink</li>
+                    <li>Python</li>
+                    <li>OpenFOAM</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Manufacturing & Fabrication</h3>
+                <ul class="skill-list">
+                    <li>3D Printing & Composites</li>
+                    <li>CNC Machining & Power Tools</li>
+                    <li>Design Reviews & Technical Communication</li>
+                    <li>Technical Leadership & Project Management</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="expandedImg">
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("expandedImg");
+        const images = document.querySelectorAll(".gallery-item img");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        images.forEach(img => {
+            img.onclick = function() {
+                modal.style.display = "flex"; 
+                modalImg.src = this.src; 
+            }
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
