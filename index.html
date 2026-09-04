@@ -152,7 +152,7 @@
         }
 
         #about p {
-            max-width: 600px;
+            max-width: 100%;
             font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 1.5rem;
@@ -238,6 +238,11 @@
             grid-template-columns: 1fr 1.2fr; 
             gap: 3rem;
             align-items: center;
+        }
+        
+        /* About Section Layout Override */
+        #about .project-layout {
+            grid-template-columns: 2.2fr 1fr; /* Gives the text side more width */
         }
 
         .project-layout.reverse {
@@ -415,7 +420,7 @@
         /* Responsive Design */
         @media (max-width: 992px) {
             section { padding: 6rem 5%; }
-            .project-layout, .project-layout.reverse {
+            .project-layout, .project-layout.reverse, #about .project-layout {
                 grid-template-columns: 1fr; 
                 gap: 2rem;
             }
@@ -464,7 +469,7 @@
 <body>
 
     <nav>
-        <div class="logo">S.J.THOMAS // SYS.OP</div>
+        <div class="logo">SHAUN J THOMAS</div>
         <div class="nav-links">
             <a href="#about" class="nav-item">01. ABOUT</a>
             <a href="#blended-wing" class="nav-item">02. BLENDED WING</a>
@@ -479,11 +484,10 @@
             
             <!-- Left Side: Text and Buttons -->
             <div class="hero-content reveal">
-                <p class="mono" style="color: var(--accent-primary); margin-bottom: 1rem;">> INITIALIZING PROFILE...</p>
                 <h1>Shaun John Thomas</h1>
                 <h2>Aero-Mechanical Engineering</h2>
-                <p>Final-year Aero-Mechanical Engineer at the University of Strathclyde, with strong aerodynamic fundamentals and hands-on experience in CFD and stability analysis. Currently applying this to the design, manufacture, and upcoming flight test of a Blended Wing Body UAV.</p>
-                <p>Proficient across the full simulation-to-hardware pipeline, from vortex-lattice and FEA modelling through to composite and 3D-printed fabrication, with proven cross-functional collaboration in multidisciplinary student engineering teams.</p>
+                <p>Hi, I'm Shaun, an Aero-Mechanical Engineering undergrad at the University of Strathclyde. I'm passionate about designing and manufacturing, whether it's designing a whole plane or even just a small part. I take pride in the extra efficiency gains I get from optimizing anything. Well, technically because optimization saves time and money (iykyk). So far, my background includes leading a team to design an entire rocket airframe, optimizing parts as a member of another rocketry team, and now tackling my dissertation project. For the dissertation, I have already designed a BWB UAV, and now I need to validate, reiterate, manufacture, and fly it! My interests go far and wide. I love to learn about every process, the reasoning behind it, and how to fix a problem, whatever the field may be. But if I had to name the one thing I love most, it is definitely building a plane, it's been one of my life goals for some time now.</p>
+                <p>Consider this portfolio a snapshot of my engineering journey so far. It’s more than just photos of the final products; it shares some of the core design work, problem-solving, and manufacturing behind what I’ve built, both on my own and as part of the massive collaborative efforts behind the two rockets.</p>
                 
                 <div class="contact-info">
                     <div class="contact-item">
@@ -497,15 +501,15 @@
                     </div>
                 </div>
 
-                <a href="Assets/Shaun_John_Thomas_CV.pdf" target="_blank" class="resume-btn">
+                <a href="Assets/Shaun John Thomas CV Airbus.pdf" target="_blank" class="resume-btn">
                     <i class="fa-solid fa-file-pdf"></i> > DOWNLOAD_CV.PDF
                 </a>
             </div>
 
             <!-- Right Side: The Interactive 3D Model -->
-            <div class="hero-model reveal" style="width: 100%; height: 500px;">
+            <div class="hero-model reveal" style="width: 100%; height: 400px;">
                 <model-viewer 
-                    src="Assets/CFD_model_1.5m.glb" 
+                    src="Assets/YOUR_3D_MODEL_NAME.glb" 
                     alt="A 3D CAD model of my engineering project" 
                     auto-rotate 
                     camera-controls 
@@ -526,12 +530,12 @@
                 
                 <div class="project-info">
                     <h3 style="margin-bottom: 1rem;">Project Overview</h3>
-                    <p style="margin-bottom: 1rem;">Individual dissertation project carrying out a parametric study quantifying the effect of winglet cant angle on Dutch roll damping in a rudderless Blended Wing Body UAV, benchmarking results against MIL-F-8785C and CS-23 handling qualities criteria.</p>
+                    <p style="margin-bottom: 1rem;">This is my dissertation, and honestly a huge step into a career that I love. I am designing and manufacturing a tailless Blended Wing Body UAV to study the effect of winglet cant angles. I am trying to find suitable winglet cant angles to balance key aerodynamic trade-offs, such as overall efficiency versus lateral stability.</p>
                     <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                        <li>Extracting stability derivatives via vortex-lattice modelling (XFLR5, AVL) and building a Python state-space eigenvalue model to predict lateral-directional dynamics across wingtip configurations.</li>
-                        <li>Validating methodology and derivative outputs against published VLM stability studies on tailless configurations before committing to manufacturing.</li>
-                        <li>Iterative structural CAD design of a 4 kg MTOW airframe with interchangeable winglet mounts.</li>
-                        <li>Preparing to manufacture a 3D-printed, composite-reinforced airframe and winglets of varying cant angles for flight-test validation.</li>
+                        <li>Started the design using a Clark Y airfoil in XFLR5, but quickly pivoted to an MH series reflexed profile after identifying inherent pitch stability limits.</li>
+                        <li>Iteratively tweaked wing twist, sweep angles, and chord lengths in XFLR5 to find the perfect balance between internal payload volume and the best lift-to-drag ratio.</li>
+                        <li>Next up : Running advanced CFD sweeps in ANSYS to lower induced drag and confirm a positive static margin before moving to production.</li>
+                        <li>Setting up manufacturing to turn the digital model into a physical flight-test article using 3D-printing and composite reinforcements.</li>
                     </ul>
                 </div>
 
@@ -563,11 +567,11 @@
                 
                 <div class="project-info">
                     <h3 style="margin-bottom: 1rem;">Airframe Design Engineer</h3>
-                    <p style="margin-bottom: 1rem;">Engineering and manufacturing bulkhead and supporting structures for a 30,000 ft, Mach 1+ rocket with StrathAIS, presenting design and verification evidence through PDR and CDR reviews for IREC 2026.</p>
+                    <p style="margin-bottom: 1rem;">During my time with StrathAIS, I helped design the structural interface connecting the main parachute to the motor bay. Through cross-team coordination, we iterated on the initial concept, eventually optimizing it from a complex gap-filler into a simple, thick structural sheet. The team successfully flew the rocket at IREC 2026 in the 30,000ft COTS category, securing 8th place overall.</p>
                     <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                        <li>Running FEA simulations to shape critical design choices and maximize strength-to-weight ratio.</li>
-                        <li>Recommending and implementing changes in manufacturing decisions to minimize error and material waste, drawing on lessons from previous failures.</li>
-                        <li>Collaborative engineering within a multidisciplinary student aerospace team.</li>
+                        <li>Engineered and manufactured bulkheads and support structures for a Mach 1+ rocket aiming for 30,000 feet, and successfully presented design and verification evidence through PDR and CDR reviews for IREC 2026.</li>
+                        <li>Ran FEA simulations to shape key design choices and squeeze out the best possible strength-to-weight ratio.</li>
+                        <li>Used lessons learned from past failures to adjust our manufacturing approach, drastically cutting down on errors and material waste.</li>
                     </ul>
                     
                     <div class="contact-info" style="margin-top: 1.5rem;">
@@ -603,11 +607,11 @@
 
                 <div class="project-info">
                     <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
-                    <p style="margin-bottom: 1rem;">Directed a team of 4 to design and build the airframe of a model rocket to reach an altitude of 10,000 feet, collaborating closely with other departments at VIT Chennai to reach innovative design compromises across the project.</p>
+                    <p style="margin-bottom: 1rem;">Seeking hands-on experience at VIT Chennai, I joined a rocketry team and worked my way up to Airframe Lead. I directed a four-person team to design and build our rocket, Pioneer, getting a crash course in GD&T, practical manufacturing, and leadership. Most importantly, it solidified the reality of Design for Manufacture (DFM), theoretical perfection means nothing if it can't be built.</p>
                     <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                        <li>Manufactured supporting structures using power tools and CNC machines, reinforcing fins and nose cones with fibreglass sheets to withstand high temperatures and harsh conditions.</li>
-                        <li>Validated design choices using a testing suite including CFD, FEA, pressure, and vibration analysis.</li>
-                        <li>Drew on technical guidance from external manufacturers on industry standards and practices.</li>
+                        <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
+                        <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
+                        <li>Validated our design choices as a unit through a heavy mix of CFD, FEA and some fun pressure testing (Check gif below), and learnt from external manufacturers to apply real-world industry standards to our build.</li>
                     </ul>
                     
                     <div class="contact-info" style="margin-top: 1.5rem;">
