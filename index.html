@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shaun John Thomas | Engineering Portfolio</title>
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* Base Variables & Technical Theme */
         :root {
@@ -23,6 +26,22 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
+        }
+
+        /* Custom Tech Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2428;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
         }
 
         body {
@@ -74,11 +93,19 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-family: 'Share Tech Mono', monospace;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
         }
 
         .nav-links a:hover {
             color: var(--accent-primary);
+        }
+
+        /* Active Navigation Link */
+        .nav-links a.active-link {
+            color: var(--accent-primary);
+            border-bottom: 2px solid var(--accent-primary);
         }
 
         /* Sections General */
@@ -87,7 +114,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 6rem 10%;
+            padding: 8rem 10% 6rem;
             position: relative;
         }
 
@@ -97,6 +124,18 @@
             margin-bottom: 2rem;
             border-left: 4px solid var(--accent-primary);
             padding-left: 1rem;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* About Section */
@@ -150,6 +189,31 @@
             color: var(--accent-primary);
         }
 
+        /* Resume Download Button CTA */
+        .resume-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: var(--accent-primary);
+            border: 1px solid var(--accent-primary);
+            font-family: 'Share Tech Mono', monospace;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .resume-btn:hover {
+            background: rgba(88, 166, 255, 0.1);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .resume-btn i {
+            margin-right: 8px;
+        }
+
         /* Project Cards */
         .project-container {
             background: var(--card-bg);
@@ -171,25 +235,24 @@
         /* Presentation Style Layout */
         .project-layout {
             display: grid;
-            grid-template-columns: 1fr 1.2fr; /* 1fr for text, 1.2fr for images */
+            grid-template-columns: 1fr 1.2fr; 
             gap: 3rem;
             align-items: center;
         }
 
-        /* Reversed Layout (Images Left, Text Right) */
         .project-layout.reverse {
-            grid-template-columns: 1.2fr 1fr; /* 1.2fr for images (now on left), 1fr for text (now on right) */
+            grid-template-columns: 1.2fr 1fr; 
         }
         
         .project-layout.reverse .project-info {
-            order: 2; /* Pushes text to the right column */
+            order: 2; 
         }
         
         .project-layout.reverse .image-gallery {
-            order: 1; /* Pushes gallery to the left column */
+            order: 1; 
         }
 
-        /* Bento Box Image Gallery Layout */
+        /* Bento Box Image Gallery */
         .image-gallery {
             display: grid;
             grid-template-columns: 1.5fr 1fr; 
@@ -215,7 +278,6 @@
             height: 100%; 
         }
 
-        /* Video & Image Support */
         .gallery-item img, .gallery-item video {
             width: 100%;
             height: 100%;
@@ -304,6 +366,12 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
         }
 
         .skill-category h3 {
@@ -311,6 +379,9 @@
             margin-bottom: 1.5rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .skill-list {
@@ -320,24 +391,34 @@
         .skill-list li {
             margin-bottom: 0.8rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            gap: 10px;
         }
 
-        .skill-list li::before {
-            content: '>';
+        .skill-list li i {
             color: var(--accent-primary);
-            margin-right: 10px;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 10%;
             font-family: 'Share Tech Mono', monospace;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(13, 17, 23, 0.9);
+            font-size: 0.9rem;
         }
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            section { padding: 5rem 5%; }
+            section { padding: 6rem 5%; }
             .project-layout, .project-layout.reverse {
-                grid-template-columns: 1fr; /* Stacks text on top of gallery on mobile/tablet */
+                grid-template-columns: 1fr; 
                 gap: 2rem;
             }
-            /* Resets the order so text is always on top on mobile screens */
             .project-layout.reverse .project-info {
                 order: 1;
             }
@@ -372,6 +453,11 @@
 
             .gallery-caption { transform: translateY(0); }
             .close { top: 15px; right: 20px; }
+            
+            /* Responsive height for 3D model on mobile */
+            .hero-model {
+                height: 350px !important;
+            }
         }
     </style>
 </head>
@@ -380,39 +466,62 @@
     <nav>
         <div class="logo">S.J.THOMAS // SYS.OP</div>
         <div class="nav-links">
-            <a href="#about">01. ABOUT</a>
-            <a href="#blended-wing">02. BLENDED WING</a>
-            <a href="#strath-ais">03. STRATH AIS</a>
-            <a href="#team-ignition">04. TEAM IGNITION</a>
-            <a href="#skills">05. SKILLS</a>
+            <a href="#about" class="nav-item">01. ABOUT</a>
+            <a href="#blended-wing" class="nav-item">02. BLENDED WING</a>
+            <a href="#strath-ais" class="nav-item">03. STRATH AIS</a>
+            <a href="#team-ignition" class="nav-item">04. TEAM IGNITION</a>
+            <a href="#skills" class="nav-item">05. SKILLS</a>
         </div>
     </nav>
 
-    <section id="about">
-        <div class="hero-content">
-            <p class="mono" style="color: var(--accent-primary); margin-bottom: 1rem;">> INITIALIZING PROFILE...</p>
-            <h1>Shaun John Thomas</h1>
-            <h2>Aero-Mechanical Engineering</h2>
-            <p>Final-year Aero-Mechanical Engineer at the University of Strathclyde, with strong aerodynamic fundamentals and hands-on experience in CFD and stability analysis. Currently applying this to the design, manufacture, and upcoming flight test of a Blended Wing Body UAV.</p>
-            <p>Proficient across the full simulation-to-hardware pipeline, from vortex-lattice and FEA modelling through to composite and 3D-printed fabrication, with proven cross-functional collaboration in multidisciplinary student engineering teams.</p>
+    <section id="about" class="section-block">
+        <div class="project-layout">
             
-            <div class="contact-info">
-                <div class="contact-item">
-                    > LOC: <span>Glasgow, Scotland</span>
+            <!-- Left Side: Text and Buttons -->
+            <div class="hero-content reveal">
+                <p class="mono" style="color: var(--accent-primary); margin-bottom: 1rem;">> INITIALIZING PROFILE...</p>
+                <h1>Shaun John Thomas</h1>
+                <h2>Aero-Mechanical Engineering</h2>
+                <p>Final-year Aero-Mechanical Engineer at the University of Strathclyde, with strong aerodynamic fundamentals and hands-on experience in CFD and stability analysis. Currently applying this to the design, manufacture, and upcoming flight test of a Blended Wing Body UAV.</p>
+                <p>Proficient across the full simulation-to-hardware pipeline, from vortex-lattice and FEA modelling through to composite and 3D-printed fabrication, with proven cross-functional collaboration in multidisciplinary student engineering teams.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        > LOC: <span>Glasgow, Scotland</span>
+                    </div>
+                    <div class="contact-item">
+                        > EML: <a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        > PHN: <a href="tel:+447737971193">+44 7737 971193</a>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    > EML: <a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    > PHN: <a href="tel:+447737971193">+44 7737 971193</a>
-                </div>
+
+                <a href="Assets/Shaun_John_Thomas_CV.pdf" target="_blank" class="resume-btn">
+                    <i class="fa-solid fa-file-pdf"></i> > DOWNLOAD_CV.PDF
+                </a>
             </div>
+
+            <!-- Right Side: The Interactive 3D Model -->
+            <div class="hero-model reveal" style="width: 100%; height: 500px;">
+                <model-viewer 
+                    src="Assets/CFD_model_1.5m.glb" 
+                    alt="A 3D CAD model of my engineering project" 
+                    auto-rotate 
+                    camera-controls 
+                    disable-zoom
+                    shadow-intensity="1"
+                    environment-image="neutral"
+                    style="width: 100%; height: 100%; background-color: transparent;">
+                </model-viewer>
+            </div>
+
         </div>
     </section>
 
-    <section id="blended-wing">
-        <h2 class="section-title">Blended Wing UAV</h2>
-        <div class="project-container">
+    <section id="blended-wing" class="section-block">
+        <h2 class="section-title reveal">Blended Wing UAV</h2>
+        <div class="project-container reveal">
             <div class="project-layout">
                 
                 <div class="project-info">
@@ -447,9 +556,9 @@
         </div>
     </section>
 
-    <section id="strath-ais">
-        <h2 class="section-title" style="text-align: right; border-left: none; border-right: 4px solid var(--accent-primary); padding-right: 1rem; padding-left: 0;">Strath AIS</h2>
-        <div class="project-container">
+    <section id="strath-ais" class="section-block">
+        <h2 class="section-title reveal" style="text-align: right; border-left: none; border-right: 4px solid var(--accent-primary); padding-right: 1rem; padding-left: 0;">Strath AIS</h2>
+        <div class="project-container reveal">
             <div class="project-layout reverse">
                 
                 <div class="project-info">
@@ -461,10 +570,9 @@
                         <li>Collaborative engineering within a multidisciplinary student aerospace team.</li>
                     </ul>
                     
-                    <!-- Strath AIS LinkedIn Button -->
                     <div class="contact-info" style="margin-top: 1.5rem;">
                         <div class="contact-item" style="display: inline-flex;">
-                            > LNKD: <a href="https://strathais.com/" target="_blank">StrathAIS Website</a>
+                            > LNKD: <a href="YOUR_STRATHAIS_LINKEDIN_URL" target="_blank">StrathAIS LinkedIn</a>
                         </div>
                     </div>
                 </div>
@@ -488,9 +596,9 @@
         </div>
     </section>
 
-    <section id="team-ignition">
-        <h2 class="section-title">Team Ignition</h2>
-        <div class="project-container">
+    <section id="team-ignition" class="section-block">
+        <h2 class="section-title reveal">Team Ignition</h2>
+        <div class="project-container reveal">
             <div class="project-layout">
 
                 <div class="project-info">
@@ -502,10 +610,9 @@
                         <li>Drew on technical guidance from external manufacturers on industry standards and practices.</li>
                     </ul>
                     
-                    <!-- Team Ignition LinkedIn Button -->
                     <div class="contact-info" style="margin-top: 1.5rem;">
                         <div class="contact-item" style="display: inline-flex;">
-                            > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/" target="_blank">Team Ignition LinkedIn</a>
+                            > LNKD: <a href="YOUR_IGNITION_LINKEDIN_URL" target="_blank">Team Ignition LinkedIn</a>
                         </div>
                     </div>
                 </div>
@@ -529,46 +636,68 @@
         </div>
     </section>
 
-    <section id="skills">
-        <h2 class="section-title">Technical Specifications</h2>
-        <div class="skills-grid">
+    <section id="skills" class="section-block">
+        <h2 class="section-title reveal">Technical Specifications</h2>
+        <div class="skills-grid reveal">
             <div class="skill-category">
-                <h3>CAD & Modeling</h3>
+                <h3><i class="fa-solid fa-cube"></i> CAD & Modeling</h3>
                 <ul class="skill-list">
-                    <li>SolidWorks</li>
-                    <li>OnShape</li>
-                    <li>GD&T</li>
-                    <li>Certified SolidWorks Design Associate (CSWA)</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> SolidWorks</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> OnShape</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> GD&T</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Assembly Visualization</li>
                 </ul>
             </div>
             <div class="skill-category">
-                <h3>Analysis & Simulation</h3>
+                <h3><i class="fa-solid fa-chart-line"></i> Analysis & Simulation</h3>
                 <ul class="skill-list">
-                    <li>ANSYS (CFD & FEA)</li>
-                    <li>XFLR5 / AVL</li>
-                    <li>MATLAB & Simulink</li>
-                    <li>Python</li>
-                    <li>OpenFOAM</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> ANSYS (CFD & FEA)</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> XFLR5 / AVL</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> MATLAB & Simulink</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Python & OpenFOAM</li>
                 </ul>
             </div>
             <div class="skill-category">
-                <h3>Manufacturing & Fabrication</h3>
+                <h3><i class="fa-solid fa-hammer"></i> Manufacturing</h3>
                 <ul class="skill-list">
-                    <li>3D Printing & Composites</li>
-                    <li>CNC Machining & Power Tools</li>
-                    <li>Design Reviews & Technical Communication</li>
-                    <li>Technical Leadership & Project Management</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> 3D Printing & Composites</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> CNC Machining</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Power Tools</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Airframe Assembly</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-users"></i> Soft Skills</h3>
+                <ul class="skill-list">
+                    <li><i class="fa-solid fa-chevron-right"></i> Technical Leadership</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Project Management</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Cross-functional Collaboration</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> Technical Communication</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-award"></i> Certifications</h3>
+                <ul class="skill-list">
+                    <li><i class="fa-solid fa-chevron-right"></i> Certified SolidWorks Design Associate (CSWA)</li>
+                    <li><i class="fa-solid fa-chevron-right"></i> [Add Certification Here]</li>
                 </ul>
             </div>
         </div>
     </section>
 
+    <footer>
+        // SYSTEM OFFLINE - 2026 SHAUN JOHN THOMAS //
+    </footer>
+
+    <!-- Lightbox Modal for Images -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="expandedImg">
     </div>
 
+    <!-- JavaScript Scripts -->
     <script>
+        // 1. Lightbox Functionality
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("expandedImg");
         const images = document.querySelectorAll(".gallery-item img");
@@ -590,6 +719,41 @@
                 modal.style.display = "none";
             }
         }
+
+        // 2. Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stops observing once revealed
+                }
+            });
+        }, { threshold: 0.15 }); // Triggers when 15% of the element is visible
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 3. Active Navigation Highlighting
+        const sections = document.querySelectorAll('.section-block');
+        const navLinks = document.querySelectorAll('.nav-item');
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all links
+                    navLinks.forEach(link => link.classList.remove('active-link'));
+                    // Add active class to the currently intersecting section's link
+                    const activeId = entry.target.getAttribute('id');
+                    const activeLink = document.querySelector(`.nav-links a[href="#${activeId}"]`);
+                    if (activeLink) activeLink.classList.add('active-link');
+                }
+            });
+        }, { threshold: 0.4 }); // Triggers when 40% of a section is on screen
+
+        sections.forEach(section => navObserver.observe(section));
     </script>
+
+    <!-- 4. 3D Model Viewer Script -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </body>
 </html>
