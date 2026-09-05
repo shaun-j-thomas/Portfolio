@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Shaun John Thomas | Engineering Portfolio</title>
-    <!-- Fonts & Icons -->
+    <meta name="description" content="Engineering portfolio of Shaun John Thomas, an Aero-Mechanical Engineering undergrad specializing in CAD, CFD, FEA, and UAV design.">
+    <meta property="og:title" content="Shaun John Thomas | Engineering Portfolio">
+    <meta property="og:description" content="Aero-Mechanical Engineering portfolio showcasing UAV design, rocketry airframes, and manufacturing projects.">
+    <meta property="og:image" content="Assets/og-image.jpg">
+    <meta property="og:type" content="website">
+    
+    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
+
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -26,6 +34,24 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
+        }
+
+        /* Accessibility: Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent-primary);
+            color: var(--bg-color);
+            padding: 8px;
+            z-index: 2000;
+            transition: top 0.3s;
+            font-family: 'Share Tech Mono', monospace;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .skip-link:focus {
+            top: 0;
         }
 
         /* Custom Tech Scrollbar */
@@ -51,7 +77,6 @@
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 40px 40px;
             color: var(--text-main);
-            /* Global Font Set to Titillium Web */
             font-family: 'Titillium Web', sans-serif;
             font-size: 1.05rem;
             line-height: 1.6;
@@ -85,6 +110,13 @@
             letter-spacing: 2px;
         }
 
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -104,7 +136,6 @@
             color: var(--accent-primary);
         }
 
-        /* Active Navigation Link */
         .nav-links a.active-link {
             color: var(--accent-primary);
             border-bottom: 2px solid var(--accent-primary);
@@ -126,6 +157,17 @@
             margin-bottom: 2rem;
             border-left: 4px solid var(--accent-primary);
             padding-left: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .date-badge {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-family: 'Titillium Web', sans-serif;
+            text-transform: none;
         }
 
         /* Scroll Reveal Animation Classes */
@@ -241,9 +283,8 @@
             align-items: center;
         }
         
-        /* About Section Layout Override */
         #about .project-layout {
-            grid-template-columns: 2.2fr 1fr; /* Gives the text side more width */
+            grid-template-columns: 2.2fr 1fr; 
         }
 
         .project-layout.reverse {
@@ -342,7 +383,6 @@
             object-fit: contain;
         }
 
-        /* Modal Caption Text */
         .modal-caption {
             margin-top: 20px;
             color: var(--text-main);
@@ -417,7 +457,6 @@
             margin-top: 5px;
             font-size: 0.9rem;
         }
-        /* Custom Link Styling for Skills */
         .skill-link {
             color: var(--text-main);
             text-decoration: none;
@@ -455,7 +494,29 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(13, 17, 23, 0.95);
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+            .nav-links.nav-active {
+                max-height: 350px;
+            }
+            .nav-links a {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border-color);
+                width: 100%;
+                display: block;
+            }
+
             #about h1 { font-size: 2.5rem; }
             .project-container { padding: 1.5rem; }
             
@@ -481,17 +542,17 @@
             .gallery-caption { transform: translateY(0); }
             .close { top: 15px; right: 20px; }
             
-            /* Responsive height for 3D model on mobile */
-            .hero-model {
-                height: 350px !important;
-            }
+            .hero-model { height: 350px !important; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <nav aria-label="Main Navigation">
         <div class="logo">S.J.THOMAS // SYS.OP</div>
+        <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
         <div class="nav-links">
             <a href="#about" class="nav-item">01. ABOUT</a>
             <a href="#blended-wing" class="nav-item">02. BLENDED WING</a>
@@ -501,223 +562,223 @@
         </div>
     </nav>
 
-    <section id="about" class="section-block">
-        <div class="project-layout">
-            
-            <!-- Left Side: Text and Buttons -->
-            <div class="hero-content reveal">
-                <h1>Shaun John Thomas</h1>
-                <h2>Aero-Mechanical Engineering</h2>
-                <p>Hi! I'm Shaun, an Aero-Mechanical Engineering undergrad at the University of Strathclyde. I'm passionate about designing and manufacturing, whether it's designing a whole plane or even just a small part. I take pride in the extra efficiency gains I get from optimizing anything. Well, technically because optimization saves time and money. So far, my background includes leading a team to design an entire rocket airframe, optimizing parts as a member of another rocketry team, and now tackling my dissertation project. For the dissertation, I have already designed a BWB UAV, and now I need to validate, reiterate, manufacture, and fly it! My interests go far and wide. I love to learn about every process, the reasoning behind it, and how to fix a problem, whatever the field may be. But if I had to name the one thing I love most, it is definitely building a plane—it's been one of my life goals for some time now.</p>
-                <p>Consider this portfolio a snapshot of my engineering journey so far. It’s more than just photos of the final products; it shares some of the core design work, problem-solving, and manufacturing behind what I’ve built, both on my own and as part of the massive collaborative efforts behind the two rockets.</p>
-                
-                <div class="contact-info">
-                    <div class="contact-item">
-                        > LOC: <span>Glasgow, Scotland</span>
-                    </div>
-                    <div class="contact-item">
-                        > EML: <a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        > PHN: <a href="tel:+447737971193">+44 7737 971193</a>
-                    </div>
-                </div>
-
-                <a href="Assets/Shaun_John_Thomas_CV.pdf" target="_blank" class="resume-btn">
-                    <i class="fa-solid fa-file-pdf"></i> > DOWNLOAD_CV.PDF
-                </a>
-            </div>
-
-            <!-- Right Side: The Interactive 3D Model -->
-            <div class="hero-model reveal" style="width: 100%; height: 400px;">
-                <model-viewer 
-                    src="Assets/CFD_model_1.5m.glb" 
-                    alt="A 3D CAD model of my engineering project" 
-                    auto-rotate 
-                    camera-controls 
-                    disable-zoom
-                    shadow-intensity="1"
-                    environment-image="neutral"
-                    style="width: 100%; height: 100%; background-color: transparent;">
-                </model-viewer>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="blended-wing" class="section-block">
-        <h2 class="section-title reveal">Blended Wing UAV</h2>
-        <div class="project-container reveal">
+    <main id="main-content">
+        <section id="about" class="section-block">
             <div class="project-layout">
                 
-                <div class="project-info">
-                    <h3 style="margin-bottom: 1rem;">Project Overview</h3>
-                    <p style="margin-bottom: 1rem;">This is my dissertation, and honestly a huge step into a career that I love. I am designing and manufacturing a tailless Blended Wing Body UAV to study the effect of winglet cant angles. I am trying to find suitable winglet cant angles to balance key aerodynamic trade-offs, such as overall efficiency versus lateral stability.</p>
-                    <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                        <li>Started the design using a Clark Y airfoil in XFLR5, but quickly pivoted to an MH series reflexed profile after identifying inherent pitch stability limits.</li>
-                        <li>Iteratively tweaked wing twist, sweep angles, and chord lengths in XFLR5 to find the perfect balance between internal payload volume and the best lift-to-drag ratio.</li>
-                        <li>Next up : Running advanced CFD sweeps in ANSYS to lower induced drag and confirm a positive static margin before moving to production.</li>
-                        <li>Setting up manufacturing to turn the digital model into a physical flight-test article using 3D-printing and composite reinforcements.</li>
-                    </ul>
+                <div class="hero-content reveal">
+                    <h1>Shaun John Thomas</h1>
+                    <h2>Aero-Mechanical Engineering</h2>
+                    <p>Hi! I'm Shaun, an Aero-Mechanical Engineering undergrad at the University of Strathclyde. I'm passionate about designing and manufacturing, whether it's designing a whole plane or even just a small part. I take pride in the efficiency gains and cost savings achieved through meticulous optimization. So far, my background includes leading a team to design an entire rocket airframe, optimizing parts as a member of another rocketry team, and now tackling my dissertation project. For the dissertation, I have already designed a BWB UAV, and now I need to validate, reiterate, manufacture, and fly it! My interests go far and wide. I love to learn about every process, the reasoning behind it, and how to fix a problem, whatever the field may be. But if I had to name the one thing I love most, it is definitely building a plane—it's been one of my life goals for some time now.</p>
+                    <p>Consider this portfolio a snapshot of my engineering journey so far. It’s more than just photos of the final products; it shares some of the core design work, problem-solving, and manufacturing behind what I’ve built, both on my own and as part of the massive collaborative efforts behind the two rockets.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            > LOC: <span>Glasgow, Scotland</span>
+                        </div>
+                        <div class="contact-item">
+                            > EML: <a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a>
+                        </div>
+                        </div>
+
+                    <a href="Assets/Shaun_John_Thomas_CV.pdf" download="Shaun_John_Thomas_CV.pdf" target="_blank" class="resume-btn">
+                        <i class="fa-solid fa-file-pdf"></i> > DOWNLOAD_CV.PDF
+                    </a>
                 </div>
 
-                <div class="image-gallery">
-                    <div class="gallery-item horiz">
-                        <img src="Assets/XFLR5Image.png" alt="XFLR5 Aerodynamic Analysis" data-desc="">
-                        <div class="gallery-caption">XFLR5 AERODYNAMIC STREAMLINES</div>
-                    </div>
-                    <div class="gallery-item vert">
-                        <img src="Assets/TopVIEW.png" alt="SolidWorks BWB Model" data-desc="">
-                        <div class="gallery-caption">SOLIDWORKS CAD GEOMETRY</div>
-                    </div>
-                    <div class="gallery-item horiz">
-                        <video autoplay loop muted playsinline data-desc="">
-                            <source src="Assets/Video Project 10.mp4" type="video/mp4">
-                        </video>
-                        <div class="gallery-caption">FLIGHT DYNAMICS SIMULATION</div>
-                    </div>
+                <div class="hero-model reveal" style="width: 100%; height: 400px;">
+                    <model-viewer 
+                        src="Assets/CFD_model_1.5m.glb" 
+                        poster="Assets/model-poster.png"
+                        alt="A 3D CAD model of my engineering project" 
+                        auto-rotate 
+                        camera-controls 
+                        shadow-intensity="1"
+                        environment-image="neutral"
+                        style="width: 100%; height: 100%; background-color: transparent;">
+                    </model-viewer>
                 </div>
 
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="strath-ais" class="section-block">
-        <h2 class="section-title reveal" style="text-align: right; border-left: none; border-right: 4px solid var(--accent-primary); padding-right: 1rem; padding-left: 0;">Strath AIS</h2>
-        <div class="project-container reveal">
-            <div class="project-layout reverse">
-                
-                <div class="project-info">
-                    <h3 style="margin-bottom: 1rem;">Airframe Design Engineer</h3>
-                    <p style="margin-bottom: 1rem;">During my time with StrathAIS, I helped design the structural interface connecting the main parachute to the motor bay. Through cross-team coordination, we iterated on the initial concept, eventually optimizing it from a complex gap-filler into a simple, thick structural sheet. The team successfully flew the rocket at IREC 2026 in the 30,000ft COTS category, securing 8th place overall.</p>
-                    <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                        <li>Engineered and manufactured bulkheads and support structures for a Mach 1+ rocket aiming for 30,000 feet, and successfully presented design and verification evidence through PDR and CDR reviews for IREC 2026.</li>
-                        <li>Ran FEA simulations to shape key design choices and squeeze out the best possible strength-to-weight ratio.</li>
-                        <li>Used lessons learned from past failures to adjust our manufacturing approach, drastically cutting down on errors and material waste.</li>
-                    </ul>
+        <section id="blended-wing" class="section-block">
+            <h2 class="section-title reveal">Blended Wing UAV <span class="date-badge">(2025–Present)</span></h2>
+            <div class="project-container reveal">
+                <div class="project-layout">
                     
-                    <div class="contact-info" style="margin-top: 1.5rem;">
-                        <div class="contact-item" style="display: inline-flex;">
-                            > LNKD: <a href="https://strathais.com/" target="_blank">StrathAIS Website</a>
+                    <div class="project-info">
+                        <h3 style="margin-bottom: 1rem;">Project Overview</h3>
+                        <p style="margin-bottom: 1rem;">This is my dissertation, and honestly a huge step into a career that I love. I am designing and manufacturing a tailless Blended Wing Body UAV to study the effect of winglet cant angles. I am trying to find suitable winglet cant angles to balance key aerodynamic trade-offs, such as overall efficiency versus lateral stability.</p>
+                        <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                            <li>Started the design using a Clark Y airfoil in XFLR5, but quickly pivoted to an MH series reflexed profile after identifying inherent pitch stability limits.</li>
+                            <li>Iteratively tweaked wing twist, sweep angles, and chord lengths in XFLR5 to find the perfect balance between internal payload volume and the best lift-to-drag ratio.</li>
+                            <li>Next up : Running advanced CFD sweeps in ANSYS to lower induced drag and confirm a positive static margin before moving to production.</li>
+                            <li>Setting up manufacturing to turn the digital model into a physical flight-test article using 3D-printing and composite reinforcements.</li>
+                        </ul>
+                    </div>
+
+                    <div class="image-gallery">
+                        <div class="gallery-item horiz">
+                            <img src="Assets/XFLR5Image.png" alt="XFLR5 Aerodynamic Analysis" loading="lazy" data-desc="Analyzing the pressure distribution and streamline flow over the BWB to refine wing twist and sweep.">
+                            <div class="gallery-caption">XFLR5 AERODYNAMIC STREAMLINES</div>
+                        </div>
+                        <div class="gallery-item vert">
+                            <img src="Assets/TopVIEW.png" alt="SolidWorks BWB Model" loading="lazy" data-desc="Top-down view of the refined SolidWorks CAD geometry showing the selected wing planform.">
+                            <div class="gallery-caption">SOLIDWORKS CAD GEOMETRY</div>
+                        </div>
+                        <div class="gallery-item horiz">
+                            <video autoplay loop muted playsinline poster="Assets/video-poster.jpg" data-desc="Visualizing the flight dynamics and theoretical roll stability in simulated airspace.">
+                                <source src="Assets/Video Project 10.mp4" type="video/mp4">
+                            </video>
+                            <div class="gallery-caption">FLIGHT DYNAMICS SIMULATION</div>
                         </div>
                     </div>
-                </div>
 
-                <div class="image-gallery">
-                    <div class="gallery-item horiz">
-                        <img src="Assets/FiberglassLayups.jpg" alt="Fiberglass Layup Process" data-desc="">
-                        <div class="gallery-caption">FIBERGLASS COMPOSITE LAYUP</div>
-                    </div>
-                    <div class="gallery-item vert">
-                        <img src="Assets/Nevis.jpg" alt="Nevis Rocket Airframe" data-desc="">
-                        <div class="gallery-caption">NEVIS ROCKET AIRFRAME</div>
-                    </div>
-                    <div class="gallery-item horiz">
-                        <img src="Assets/Optimization.png" alt="FEA Structural Optimization" data-desc="">
-                        <div class="gallery-caption">FEA STRUCTURAL OPTIMIZATION</div>
-                    </div>
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="team-ignition" class="section-block">
-        <h2 class="section-title reveal">Team Ignition</h2>
-        <div class="project-container reveal">
-            <div class="project-layout">
-
-                <div class="project-info">
-                    <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
-                    <p style="margin-bottom: 1rem;">During my two years at VIT Chennai, I joined a rocketry team to gain real-world experience in manufacturing and teamwork. After proving my technical skills and work ethic, I became the Airframe Lead, directing a team of four to design, build, and test the airframe for our rocket, Pioneer. Along the way, I picked up hard skills like GD&T and manufacturing, alongside critical soft skills like anticipating problems and leading a team effectively. But the most valuable lesson I confirmed there was the importance of Design for Manufacture (DFM), realizing that the 'perfect' theoretical design is useless if you can't actually build it in the real world.</p>
-                    <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                        <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
-                        <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
-                        <li>Validated our design choices as a unit through a heavy mix of CFD, FEA and some fun pressure testing (Check gif below), and learnt from external manufacturers to apply real-world industry standards to our build.</li>
-                    </ul>
+        <section id="strath-ais" class="section-block">
+            <div style="display: flex; justify-content: flex-end;">
+                <h2 class="section-title reveal" style="border-left: none; border-right: 4px solid var(--accent-primary); padding-right: 1rem; padding-left: 0; flex-direction: row-reverse;">
+                    Strath AIS <span class="date-badge">(2024–2026)</span>
+                </h2>
+            </div>
+            <div class="project-container reveal">
+                <div class="project-layout reverse">
                     
-                    <div class="contact-info" style="margin-top: 1.5rem;">
-                        <div class="contact-item" style="display: inline-flex;">
-                            > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank">Team Ignition LinkedIn</a>
+                    <div class="project-info">
+                        <h3 style="margin-bottom: 1rem;">Airframe Design Engineer</h3>
+                        <p style="margin-bottom: 1rem;">During my time with StrathAIS, I helped design the structural interface connecting the main parachute to the motor bay. Through cross-team coordination, we iterated on the initial concept, eventually optimizing it from a complex gap-filler into a simple, thick structural sheet. The team successfully flew the rocket at IREC 2026 in the 30,000ft COTS category, securing 8th place overall.</p>
+                        <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                            <li>Engineered and manufactured bulkheads and support structures for a Mach 1+ rocket aiming for 30,000 feet, and successfully presented design and verification evidence through PDR and CDR reviews for IREC 2026.</li>
+                            <li>Ran FEA simulations to shape key design choices and squeeze out the best possible strength-to-weight ratio.</li>
+                            <li>Used lessons learned from past failures to adjust our manufacturing approach, drastically cutting down on errors and material waste.</li>
+                        </ul>
+                        
+                        <div class="contact-info" style="margin-top: 1.5rem;">
+                            <div class="contact-item" style="display: inline-flex;">
+                                > LNKD: <a href="https://strathais.com/" target="_blank">StrathAIS Website</a>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="image-gallery">
+                        <div class="gallery-item horiz">
+                            <img src="Assets/FiberglassLayups.jpg" alt="Fiberglass Layup Process" loading="lazy" data-desc="Applying layers of fiberglass composite to reinforce the primary airframe for Mach 1+ stresses.">
+                            <div class="gallery-caption">FIBERGLASS COMPOSITE LAYUP</div>
+                        </div>
+                        <div class="gallery-item vert">
+                            <img src="Assets/Nevis.jpg" alt="Nevis Rocket Airframe" loading="lazy" data-desc="The fully assembled Nevis launch vehicle, standing ready before its test deployment.">
+                            <div class="gallery-caption">NEVIS ROCKET AIRFRAME</div>
+                        </div>
+                        <div class="gallery-item horiz">
+                            <img src="Assets/Optimization.png" alt="FEA Structural Optimization" loading="lazy" data-desc="FEA load testing on the structural interface connecting the main parachute to the motor bay.">
+                            <div class="gallery-caption">FEA STRUCTURAL OPTIMIZATION</div>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
+        </section>
 
-                <div class="image-gallery">
-                    <div class="gallery-item horiz">
-                        <img src="Assets/GroupPhoto.jpg" alt="Team Ignition Roster" data-desc="">
-                        <div class="gallery-caption">TEAM IGNITION CREW</div>
+        <section id="team-ignition" class="section-block">
+            <h2 class="section-title reveal">Team Ignition <span class="date-badge">(2022–2024)</span></h2>
+            <div class="project-container reveal">
+                <div class="project-layout">
+
+                    <div class="project-info">
+                        <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
+                        <p style="margin-bottom: 1rem;">During my two years at VIT Chennai, I joined a rocketry team to gain real-world experience in manufacturing and teamwork. After proving my technical skills and work ethic, I became the Airframe Lead, directing a team of four to design, build, and test the airframe for our rocket, Pioneer. Along the way, I picked up hard skills like GD&T and manufacturing, alongside critical soft skills like anticipating problems and leading a team effectively. But the most valuable lesson I confirmed there was the importance of Design for Manufacture (DFM), realizing that the 'perfect' theoretical design is useless if you can't actually build it in the real world.</p>
+                        <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                            <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
+                            <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
+                            <li>Validated our design choices as a unit through a heavy mix of CFD, FEA and some fun pressure testing (Check gif below), and learnt from external manufacturers to apply real-world industry standards to our build.</li>
+                        </ul>
+                        
+                        <div class="contact-info" style="margin-top: 1.5rem;">
+                            <div class="contact-item" style="display: inline-flex;">
+                                > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank">Team Ignition LinkedIn</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-item vert">
-                        <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" data-desc="">
-                        <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
+
+                    <div class="image-gallery">
+                        <div class="gallery-item horiz">
+                            <img src="Assets/GroupPhoto.jpg" alt="Team Ignition Roster" loading="lazy" data-desc="The complete Team Ignition crew posing alongside Pioneer prior to launch operations.">
+                            <div class="gallery-caption">TEAM IGNITION CREW</div>
+                        </div>
+                        <div class="gallery-item vert">
+                            <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" loading="lazy" data-desc="Pioneer Launch Vehicle assembled and standing by.">
+                            <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
+                        </div>
+                        <div class="gallery-item horiz">
+                            <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test" loading="lazy" data-desc="PyroTest for parachute ejection mechanism and pressure test for the fiberglass tube.">
+                            <div class="gallery-caption">PYRO IGNITION TESTING</div>
+                        </div>
                     </div>
-                    <div class="gallery-item horiz">
-                        <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test" data-desc="PyroTest for parachute ejection mechanism and pressure test the fiberglass tube.">
-                        <div class="gallery-caption">PYRO IGNITION TESTING</div>
-                    </div>
+
                 </div>
+            </div>
+        </section>
 
+        <section id="skills" class="section-block">
+            <h2 class="section-title reveal">Technical Specifications</h2>
+            <div class="skills-grid reveal">
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-cube"></i> CAD & Modeling</h3>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-chevron-right"></i> SolidWorks</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> OnShape</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> GD&T</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Assembly Visualization</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-chart-line"></i> Analysis & Simulation</h3>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-chevron-right"></i> ANSYS (CFD & FEA)</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> XFLR5 / AVL</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> MATLAB & Simulink</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Python & OpenFOAM</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-hammer"></i> Manufacturing</h3>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-chevron-right"></i> 3D Printing & Composites</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> CNC Machining</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Power Tools</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Airframe Assembly</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-users"></i> Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-chevron-right"></i> Technical Leadership</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Project Management</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Cross-functional Collaboration</li>
+                        <li><i class="fa-solid fa-chevron-right"></i> Technical Communication</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-award"></i> Certifications</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <i class="fa-solid fa-chevron-right"></i> 
+                            <a href="https://www.credly.com/badges/f33cd5e5-7aea-4096-9106-cdddca4f05ad/public_url" target="_blank" class="skill-link">Certified SolidWorks Design Associate (CSWA)</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section id="skills" class="section-block">
-        <h2 class="section-title reveal">Technical Specifications</h2>
-        <div class="skills-grid reveal">
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-cube"></i> CAD & Modeling</h3>
-                <ul class="skill-list">
-                    <li><i class="fa-solid fa-chevron-right"></i> SolidWorks</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> OnShape</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> GD&T</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> Assembly Visualization</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-chart-line"></i> Analysis & Simulation</h3>
-                <ul class="skill-list">
-                    <li><i class="fa-solid fa-chevron-right"></i> ANSYS (CFD & FEA)</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> XFLR5 / AVL</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> MATLAB & Simulink</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> Python & OpenFOAM</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-hammer"></i> Manufacturing</h3>
-                <ul class="skill-list">
-                    <li><i class="fa-solid fa-chevron-right"></i> 3D Printing & Composites</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> CNC Machining</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> Power Tools</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> Airframe Assembly</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-users"></i> Soft Skills</h3>
-                <ul class="skill-list">
-                    <li><i class="fa-solid fa-chevron-right"></i> Technical Leadership</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> Project Management</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> Cross-functional Collaboration</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> Technical Communication</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-award"></i> Certifications</h3>
-                <ul class="skill-list">
-                    <li>
-                        <i class="fa-solid fa-chevron-right"></i> 
-                        <a href="https://www.credly.com/badges/f33cd5e5-7aea-4096-9106-cdddca4f05ad/public_url" target="_blank" class="skill-link">Certified SolidWorks Design Associate (CSWA)</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         // SYSTEM OFFLINE - 2026 SHAUN JOHN THOMAS //
     </footer>
 
-    <!-- Lightbox Modal for Images & Videos -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="expandedImg">
@@ -725,8 +786,19 @@
         <div id="modalCaption" class="modal-caption"></div>
     </div>
 
-    <!-- JavaScript Scripts -->
     <script>
+        // 0. Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('nav-active');
+        });
+
+        document.querySelectorAll('.nav-item').forEach(n => n.addEventListener('click', () => {
+            navMenu.classList.remove('nav-active');
+        }));
+
         // 1. Lightbox Functionality
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("expandedImg");
@@ -740,10 +812,8 @@
                 e.preventDefault(); 
                 modal.style.display = "flex"; 
                 
-                // Pull the description from data-desc attribute
                 modalCaption.innerText = this.getAttribute("data-desc") || "";
 
-                // Check if it's an image or a video
                 if (this.tagName === "IMG") {
                     modalImg.style.display = "block";
                     modalVid.style.display = "none";
@@ -758,14 +828,13 @@
 
         function closeModal() {
             modal.style.display = "none";
-            modalVid.pause(); // Stops video playing in background
+            modalVid.pause(); 
             modalVid.src = ""; 
         }
 
         closeBtn.onclick = closeModal;
 
         modal.onclick = function(event) {
-            // Close if clicking anywhere outside the image/video/caption
             if (event.target === modal || event.target === modalCaption) {
                 closeModal();
             }
@@ -777,10 +846,10 @@
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Stops observing once revealed
+                    observer.unobserve(entry.target); 
                 }
             });
-        }, { threshold: 0.15 }); // Triggers when 15% of the element is visible
+        }, { threshold: 0.15 }); 
 
         revealElements.forEach(el => revealObserver.observe(el));
 
@@ -791,20 +860,17 @@
         const navObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Remove active class from all links
                     navLinks.forEach(link => link.classList.remove('active-link'));
-                    // Add active class to the currently intersecting section's link
                     const activeId = entry.target.getAttribute('id');
                     const activeLink = document.querySelector(`.nav-links a[href="#${activeId}"]`);
                     if (activeLink) activeLink.classList.add('active-link');
                 }
             });
-        }, { threshold: 0.4 }); // Triggers when 40% of a section is on screen
+        }, { threshold: 0.4 }); 
 
         sections.forEach(section => navObserver.observe(section));
     </script>
 
-    <!-- 4. 3D Model Viewer Script -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </body>
 </html>
