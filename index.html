@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shaun John Thomas | Engineering Portfolio</title>
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -51,7 +51,9 @@
                 linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 40px 40px;
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
+            /* Global Font Set to Titillium Web */
+            font-family: 'Titillium Web', sans-serif;
+            font-size: 1.05rem;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -153,7 +155,6 @@
 
         #about p {
             max-width: 100%;
-            font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 1.5rem;
         }
@@ -341,6 +342,17 @@
             object-fit: contain;
         }
 
+        /* Modal Caption Text */
+        .modal-caption {
+            margin-top: 20px;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
         .close {
             position: absolute;
             top: 30px;
@@ -404,6 +416,16 @@
             color: var(--accent-primary);
             margin-top: 5px;
             font-size: 0.9rem;
+        }
+        /* Custom Link Styling for Skills */
+        .skill-link {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .skill-link:hover {
+            color: var(--accent-primary);
         }
 
         /* Footer */
@@ -469,7 +491,7 @@
 <body>
 
     <nav>
-        <div class="logo">SHAUN J THOMAS</div>
+        <div class="logo">S.J.THOMAS // SYS.OP</div>
         <div class="nav-links">
             <a href="#about" class="nav-item">01. ABOUT</a>
             <a href="#blended-wing" class="nav-item">02. BLENDED WING</a>
@@ -486,7 +508,7 @@
             <div class="hero-content reveal">
                 <h1>Shaun John Thomas</h1>
                 <h2>Aero-Mechanical Engineering</h2>
-                <p>Hi, I'm Shaun, an Aero-Mechanical Engineering undergrad at the University of Strathclyde. I'm passionate about designing and manufacturing, whether it's designing a whole plane or even just a small part. I take pride in the extra efficiency gains I get from optimizing anything. Well, technically because optimization saves time and money (iykyk). So far, my background includes leading a team to design an entire rocket airframe, optimizing parts as a member of another rocketry team, and now tackling my dissertation project. For the dissertation, I have already designed a BWB UAV, and now I need to validate, reiterate, manufacture, and fly it! My interests go far and wide. I love to learn about every process, the reasoning behind it, and how to fix a problem, whatever the field may be. But if I had to name the one thing I love most, it is definitely building a plane, it's been one of my life goals for some time now.</p>
+                <p>Hi! I'm Shaun, an Aero-Mechanical Engineering undergrad at the University of Strathclyde. I'm passionate about designing and manufacturing, whether it's designing a whole plane or even just a small part. I take pride in the extra efficiency gains I get from optimizing anything. Well, technically because optimization saves time and money. So far, my background includes leading a team to design an entire rocket airframe, optimizing parts as a member of another rocketry team, and now tackling my dissertation project. For the dissertation, I have already designed a BWB UAV, and now I need to validate, reiterate, manufacture, and fly it! My interests go far and wide. I love to learn about every process, the reasoning behind it, and how to fix a problem, whatever the field may be. But if I had to name the one thing I love most, it is definitely building a plane—it's been one of my life goals for some time now.</p>
                 <p>Consider this portfolio a snapshot of my engineering journey so far. It’s more than just photos of the final products; it shares some of the core design work, problem-solving, and manufacturing behind what I’ve built, both on my own and as part of the massive collaborative efforts behind the two rockets.</p>
                 
                 <div class="contact-info">
@@ -501,7 +523,7 @@
                     </div>
                 </div>
 
-                <a href="Assets/Shaun John Thomas CV Airbus.pdf" target="_blank" class="resume-btn">
+                <a href="Assets/Shaun_John_Thomas_CV.pdf" target="_blank" class="resume-btn">
                     <i class="fa-solid fa-file-pdf"></i> > DOWNLOAD_CV.PDF
                 </a>
             </div>
@@ -541,15 +563,15 @@
 
                 <div class="image-gallery">
                     <div class="gallery-item horiz">
-                        <img src="Assets/XFLR5Image.png" alt="XFLR5 Aerodynamic Analysis">
+                        <img src="Assets/XFLR5Image.png" alt="XFLR5 Aerodynamic Analysis" data-desc="">
                         <div class="gallery-caption">XFLR5 AERODYNAMIC STREAMLINES</div>
                     </div>
                     <div class="gallery-item vert">
-                        <img src="Assets/TopVIEW.png" alt="SolidWorks BWB Model">
+                        <img src="Assets/TopVIEW.png" alt="SolidWorks BWB Model" data-desc="">
                         <div class="gallery-caption">SOLIDWORKS CAD GEOMETRY</div>
                     </div>
                     <div class="gallery-item horiz">
-                        <video autoplay loop muted playsinline>
+                        <video autoplay loop muted playsinline data-desc="">
                             <source src="Assets/Video Project 10.mp4" type="video/mp4">
                         </video>
                         <div class="gallery-caption">FLIGHT DYNAMICS SIMULATION</div>
@@ -576,22 +598,22 @@
                     
                     <div class="contact-info" style="margin-top: 1.5rem;">
                         <div class="contact-item" style="display: inline-flex;">
-                            > LNKD: <a href="YOUR_STRATHAIS_LINKEDIN_URL" target="_blank">StrathAIS LinkedIn</a>
+                            > LNKD: <a href="https://strathais.com/" target="_blank">StrathAIS Website</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="image-gallery">
                     <div class="gallery-item horiz">
-                        <img src="Assets/FiberglassLayups.jpg" alt="Fiberglass Layup Process">
+                        <img src="Assets/FiberglassLayups.jpg" alt="Fiberglass Layup Process" data-desc="">
                         <div class="gallery-caption">FIBERGLASS COMPOSITE LAYUP</div>
                     </div>
                     <div class="gallery-item vert">
-                        <img src="Assets/Nevis.jpg" alt="Nevis Rocket Airframe">
+                        <img src="Assets/Nevis.jpg" alt="Nevis Rocket Airframe" data-desc="">
                         <div class="gallery-caption">NEVIS ROCKET AIRFRAME</div>
                     </div>
                     <div class="gallery-item horiz">
-                        <img src="Assets/Optimization.png" alt="FEA Structural Optimization">
+                        <img src="Assets/Optimization.png" alt="FEA Structural Optimization" data-desc="">
                         <div class="gallery-caption">FEA STRUCTURAL OPTIMIZATION</div>
                     </div>
                 </div>
@@ -607,7 +629,7 @@
 
                 <div class="project-info">
                     <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
-                    <p style="margin-bottom: 1rem;">Seeking hands-on experience at VIT Chennai, I joined a rocketry team and worked my way up to Airframe Lead. I directed a four-person team to design and build our rocket, Pioneer, getting a crash course in GD&T, practical manufacturing, and leadership. Most importantly, it solidified the reality of Design for Manufacture (DFM), theoretical perfection means nothing if it can't be built.</p>
+                    <p style="margin-bottom: 1rem;">During my two years at VIT Chennai, I joined a rocketry team to gain real-world experience in manufacturing and teamwork. After proving my technical skills and work ethic, I became the Airframe Lead, directing a team of four to design, build, and test the airframe for our rocket, Pioneer. Along the way, I picked up hard skills like GD&T and manufacturing, alongside critical soft skills like anticipating problems and leading a team effectively. But the most valuable lesson I confirmed there was the importance of Design for Manufacture (DFM), realizing that the 'perfect' theoretical design is useless if you can't actually build it in the real world.</p>
                     <ul style="color: var(--text-muted); margin-left: 1.5rem;">
                         <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
                         <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
@@ -616,22 +638,22 @@
                     
                     <div class="contact-info" style="margin-top: 1.5rem;">
                         <div class="contact-item" style="display: inline-flex;">
-                            > LNKD: <a href="YOUR_IGNITION_LINKEDIN_URL" target="_blank">Team Ignition LinkedIn</a>
+                            > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank">Team Ignition LinkedIn</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="image-gallery">
                     <div class="gallery-item horiz">
-                        <img src="Assets/GroupPhoto.jpg" alt="Team Ignition Roster">
+                        <img src="Assets/GroupPhoto.jpg" alt="Team Ignition Roster" data-desc="">
                         <div class="gallery-caption">TEAM IGNITION CREW</div>
                     </div>
                     <div class="gallery-item vert">
-                        <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle">
+                        <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" data-desc="">
                         <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
                     </div>
                     <div class="gallery-item horiz">
-                        <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test">
+                        <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test" data-desc="PyroTest for parachute ejection mechanism and pressure test the fiberglass tube.">
                         <div class="gallery-caption">PYRO IGNITION TESTING</div>
                     </div>
                 </div>
@@ -682,21 +704,25 @@
             <div class="skill-category">
                 <h3><i class="fa-solid fa-award"></i> Certifications</h3>
                 <ul class="skill-list">
-                    <li><i class="fa-solid fa-chevron-right"></i> Certified SolidWorks Design Associate (CSWA)</li>
-                    <li><i class="fa-solid fa-chevron-right"></i> [Add Certification Here]</li>
+                    <li>
+                        <i class="fa-solid fa-chevron-right"></i> 
+                        <a href="https://www.credly.com/badges/f33cd5e5-7aea-4096-9106-cdddca4f05ad/public_url" target="_blank" class="skill-link">Certified SolidWorks Design Associate (CSWA)</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </section>
 
     <footer>
-        // This website was designed with the help of AI - 2026 SHAUN JOHN THOMAS //
+        // SYSTEM OFFLINE - 2026 SHAUN JOHN THOMAS //
     </footer>
 
-    <!-- Lightbox Modal for Images -->
+    <!-- Lightbox Modal for Images & Videos -->
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="expandedImg">
+        <video class="modal-content" id="expandedVideo" controls autoplay style="display: none;"></video>
+        <div id="modalCaption" class="modal-caption"></div>
     </div>
 
     <!-- JavaScript Scripts -->
@@ -704,23 +730,44 @@
         // 1. Lightbox Functionality
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("expandedImg");
-        const images = document.querySelectorAll(".gallery-item img");
+        const modalVid = document.getElementById("expandedVideo");
+        const modalCaption = document.getElementById("modalCaption");
+        const mediaItems = document.querySelectorAll(".gallery-item img, .gallery-item video");
         const closeBtn = document.getElementsByClassName("close")[0];
 
-        images.forEach(img => {
-            img.onclick = function() {
+        mediaItems.forEach(media => {
+            media.onclick = function(e) {
+                e.preventDefault(); 
                 modal.style.display = "flex"; 
-                modalImg.src = this.src; 
+                
+                // Pull the description from data-desc attribute
+                modalCaption.innerText = this.getAttribute("data-desc") || "";
+
+                // Check if it's an image or a video
+                if (this.tagName === "IMG") {
+                    modalImg.style.display = "block";
+                    modalVid.style.display = "none";
+                    modalImg.src = this.src; 
+                } else if (this.tagName === "VIDEO") {
+                    modalImg.style.display = "none";
+                    modalVid.style.display = "block";
+                    modalVid.src = this.querySelector('source').src;
+                }
             }
         });
 
-        closeBtn.onclick = function() {
+        function closeModal() {
             modal.style.display = "none";
+            modalVid.pause(); // Stops video playing in background
+            modalVid.src = ""; 
         }
 
+        closeBtn.onclick = closeModal;
+
         modal.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
+            // Close if clicking anywhere outside the image/video/caption
+            if (event.target === modal || event.target === modalCaption) {
+                closeModal();
             }
         }
 
