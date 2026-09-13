@@ -637,6 +637,9 @@
             .project-layout.reverse .image-gallery {
                 order: 2;
             }
+            .model-showcase-grid {
+                grid-template-columns: 1fr !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -712,12 +715,19 @@
         }
 
         /* ============================================= */
-        /* 3D Assembly Animation Showcase (Pioneer)       */
+        /* 3D Assembly Animation Showcase Grid            */
         /* ============================================= */
         .model-showcase {
             margin-top: 3rem;
             padding-top: 2.5rem;
             border-top: 1px dashed var(--border-color);
+        }
+
+        .model-showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
         }
 
         .model-showcase-header {
@@ -740,6 +750,12 @@
         .model-showcase-header h4 i {
             color: var(--accent-secondary);
             margin-right: 8px;
+        }
+        .model-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
         }
 
         .model-tag {
@@ -1060,41 +1076,87 @@
                 </div>
 
                 <div class="model-showcase reveal">
-                    <div class="model-showcase-header">
-                        <h4><i class="fa-solid fa-cube"></i> Pioneer — Interactive 3D Model</h4>
-                        <span class="model-tag">DRAG TO ROTATE · SCROLL TO ZOOM</span>
-                    </div>
-
-                    <div class="model-viewer-wrapper">
-                        <model-viewer
-                            id="pioneer-model"
-                            src="Assets/pioneer.glb"
-                            alt="Interactive 3D CAD model of the Pioneer rocket airframe"
-                            poster="Assets/Pioneer.jpg"
-                            shadow-intensity="1.2"
-                            shadow-softness="0.8"
-                            exposure="0.9"
-                            environment-image="neutral"
-                            camera-controls
-                            auto-rotate
-                            loading="lazy"
-                            ar
-                            ar-modes="webxr scene-viewer quick-look"
-                            touch-action="pan-y">
-
-                            <div slot="progress-bar" class="progress-bar hide">
-                                <div class="update-bar"></div>
+                    <div class="model-showcase-grid">
+                        
+                        <!-- Pioneer CAD Model Column -->
+                        <div class="model-column">
+                            <div class="model-showcase-header">
+                                <h4><i class="fa-solid fa-cube"></i> Pioneer Model</h4>
+                                <span class="model-tag">DRAG TO ROTATE</span>
                             </div>
+                            <p class="model-description">A simplified model of PIONEER showcasing Airframe Components and Motor</p>    
+                            <div class="model-viewer-wrapper">
+                                <model-viewer
+                                    id="pioneer-model"
+                                    src="Assets/pioneer.glb"
+                                    alt="Interactive 3D CAD model of the Pioneer rocket airframe"
+                                    poster="Assets/Pioneer.jpg"
+                                    shadow-intensity="1.2"
+                                    shadow-softness="0.8"
+                                    exposure="0.9"
+                                    environment-image="neutral"
+                                    camera-controls
+                                    auto-rotate
+                                    loading="lazy"
+                                    ar
+                                    ar-modes="webxr scene-viewer quick-look"
+                                    touch-action="pan-y">
 
-                            <button slot="ar-button" class="ar-button-custom">
-                                <i class="fa-solid fa-cube"></i> VIEW IN YOUR SPACE
-                            </button>
+                                    <div slot="progress-bar" class="progress-bar hide">
+                                        <div class="update-bar"></div>
+                                    </div>
 
-                        </model-viewer>
+                                    <button slot="ar-button" class="ar-button-custom">
+                                        <i class="fa-solid fa-cube"></i> VIEW IN AR
+                                    </button>
 
-                        <div class="model-hud-label">// PIONEER.GLB</div>
-                        <span class="hud-corner tr"></span>
-                        <span class="hud-corner bl"></span>
+                                </model-viewer>
+
+                                <div class="model-hud-label">// PIONEER.GLB</div>
+                                <span class="hud-corner tr"></span>
+                                <span class="hud-corner bl"></span>
+                            </div>
+                        </div>
+
+                        <!-- IgniteX CAD Model Column -->
+                        <div class="model-column">
+                            <div class="model-showcase-header">
+                                <h4><i class="fa-solid fa-cube"></i> IgniteX Model</h4>
+                                <span class="model-tag">DRAG TO ROTATE</span>
+                            </div>
+                            <p class="model-description">An initial CAD assembly of IgniteX, later updated and manufactured by the team.</p>
+                            <div class="model-viewer-wrapper">
+                                <model-viewer
+                                    id="ignitex-model"
+                                    src="Assets/IgniteX.glb"
+                                    alt="Interactive 3D CAD model of the IgniteX rocket"
+                                    shadow-intensity="1.2"
+                                    shadow-softness="0.8"
+                                    exposure="0.9"
+                                    environment-image="neutral"
+                                    camera-controls
+                                    auto-rotate
+                                    loading="lazy"
+                                    ar
+                                    ar-modes="webxr scene-viewer quick-look"
+                                    touch-action="pan-y">
+
+                                    <div slot="progress-bar" class="progress-bar hide">
+                                        <div class="update-bar"></div>
+                                    </div>
+
+                                    <button slot="ar-button" class="ar-button-custom">
+                                        <i class="fa-solid fa-cube"></i> VIEW IN AR
+                                    </button>
+
+                                </model-viewer>
+
+                                <div class="model-hud-label">// IGNITEX.GLB</div>
+                                <span class="hud-corner tr"></span>
+                                <span class="hud-corner bl"></span>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
 
@@ -1278,18 +1340,22 @@
 
         sections.forEach(section => navObserver.observe(section));
 
-        // 5. Pioneer 3D Model — custom loading bar
-        const pioneerModel = document.getElementById('pioneer-model');
+        // 5. 3D Models — custom loading bars
+        const setupModelProgress = (modelId) => {
+            const model = document.getElementById(modelId);
+            if (model) {
+                model.addEventListener('progress', (event) => {
+                    const bar = model.querySelector('.progress-bar');
+                    const updateBar = model.querySelector('.update-bar');
+                    const pct = event.detail.totalProgress * 100;
+                    updateBar.style.width = `${pct}%`;
+                    bar.classList.toggle('hide', event.detail.totalProgress === 1);
+                });
+            }
+        };
 
-        if (pioneerModel) {
-            pioneerModel.addEventListener('progress', (event) => {
-                const bar = pioneerModel.querySelector('.progress-bar');
-                const updateBar = pioneerModel.querySelector('.update-bar');
-                const pct = event.detail.totalProgress * 100;
-                updateBar.style.width = `${pct}%`;
-                bar.classList.toggle('hide', event.detail.totalProgress === 1);
-            });
-        }
+        setupModelProgress('pioneer-model');
+        setupModelProgress('ignitex-model');
         
         // 6. Lazy-Load model-viewer script via Intersection Observer
         const modelViewers = document.querySelectorAll('model-viewer');
