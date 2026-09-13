@@ -7,24 +7,48 @@
     <!-- SEO / Shareability -->
     <title>Shaun John Thomas | Engineering Portfolio</title>
     <meta name="description" content="Engineering portfolio of Shaun John Thomas, an Aero-Mechanical Engineering undergrad specializing in CAD, CFD, FEA, and UAV design.">
-    
+    <meta name="theme-color" content="#0d1117">
+
     <!-- Open Graph / Facebook / LinkedIn -->
+    <!-- TODO: once this is hosted on a real domain, add og:url / twitter:url back in,
+         and make og:image / twitter:image absolute URLs (e.g. https://yourdomain.com/Assets/og-image.jpg) —
+         social crawlers generally can't resolve relative image paths. -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourwebsite.com/">
     <meta property="og:title" content="Shaun John Thomas | Engineering Portfolio">
     <meta property="og:description" content="Aero-Mechanical Engineering portfolio showcasing UAV design, rocketry airframes, and manufacturing projects.">
     <meta property="og:image" content="Assets/og-image.jpg">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://yourwebsite.com/">
     <meta name="twitter:title" content="Shaun John Thomas | Engineering Portfolio">
     <meta name="twitter:description" content="Aero-Mechanical Engineering portfolio showcasing UAV design, rocketry airframes, and manufacturing projects.">
     <meta name="twitter:image" content="Assets/og-image.jpg">
-    
+
+    <!-- Structured Data (helps search engines understand this page is about a person) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Shaun John Thomas",
+        "jobTitle": "Aero-Mechanical Engineering Student",
+        "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Strathclyde"
+        },
+        "email": "mailto:shaunjthomas.sjt@gmail.com",
+        "sameAs": [
+            "https://www.linkedin.com/in/shaun-john-thomas-0635652aa"
+        ],
+        "knowsAbout": ["Aerospace Engineering", "CAD", "CFD", "FEA", "UAV Design", "Rocketry"]
+    }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -207,6 +231,15 @@
             transform: translateY(0);
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
         /* About Section */
         #about h1 {
             font-size: 4rem;
@@ -317,6 +350,9 @@
             justify-content: space-between;
             position: relative;
             z-index: 2;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .timeline-node {
@@ -327,7 +363,7 @@
             width: 18%;
             text-align: center;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.85rem;
+            font-size: 1.1rem;
             color: var(--text-main);
             box-shadow: 0 0 15px rgba(13, 17, 23, 0.9);
             transition: all 0.3s ease;
@@ -358,7 +394,7 @@
 
         .timeline-node .year {
             color: var(--accent-secondary);
-            font-size: 0.75rem;
+            font-size: 0.95rem;
             margin-bottom: 0.5rem;
             display: block;
             letter-spacing: 1px;
@@ -867,6 +903,12 @@
     </style>
 </head>
 <body>
+
+    <noscript>
+        <style>
+            .reveal { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
     
     <div id="scrollProgressBar"></div>
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -903,10 +945,10 @@
                             > EML: <a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a>
                         </div>
                         <div class="contact-item">
-                            > LNKD: <a href="https://www.linkedin.com/in/shaun-john-thomas-0635652aa" target="_blank">LinkedIn Profile</a>
+                            > LNKD: <a href="https://www.linkedin.com/in/shaun-john-thomas-0635652aa" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
                         </div>
                     </div>
-                    <a href="Assets/Shaun John Thomas CV Airbus.pdf" download="Shaun_John_Thomas_CV.pdf" target="_blank" class="resume-btn">
+                    <a href="Assets/Shaun John Thomas CV Airbus.pdf" download="Shaun_John_Thomas_CV.pdf" target="_blank" rel="noopener noreferrer" class="resume-btn">
                         <i class="fa-solid fa-file-pdf"></i> > DOWNLOAD_CV.PDF
                     </a>
                 </div>
@@ -930,28 +972,28 @@
             <!-- Visual Journey Timeline -->
             <div class="timeline-wrapper reveal">
                 <div class="timeline-track"></div>
-                <div class="timeline-nodes">
-                    <div class="timeline-node">
-                        <span class="year">2021 - 2023</span>
+                <ol class="timeline-nodes" aria-label="Engineering journey timeline">
+                    <li class="timeline-node">
+                        <span class="year">2023 - 2025</span>
                         VIT Chennai
-                    </div>
-                    <div class="timeline-node">
+                    </li>
+                    <li class="timeline-node">
                         <span class="year">2023 - 2025</span>
                         Team Ignition
-                    </div>
-                    <div class="timeline-node">
+                    </li>
+                    <li class="timeline-node">
                         <span class="year">2025 - Present</span>
                         University of Strathclyde
-                    </div>
-                    <div class="timeline-node">
+                    </li>
+                    <li class="timeline-node">
                         <span class="year">2025 - Present</span>
                         Strath AIS
-                    </div>
-                    <div class="timeline-node">
+                    </li>
+                    <li class="timeline-node">
                         <span class="year">2026</span>
                         BWB Dissertation
-                    </div>
-                </div>
+                    </li>
+                </ol>
             </div>
 
         </section>
@@ -1013,7 +1055,7 @@
                         
                         <div class="contact-info" style="margin-top: 1.5rem;">
                             <div class="contact-item" style="display: inline-flex;">
-                                > LNKD: <a href="https://strathais.com/" target="_blank">StrathAIS Website</a>
+                                > LNKD: <a href="https://strathais.com/" target="_blank" rel="noopener noreferrer">StrathAIS Website</a>
                             </div>
                         </div>
                     </div>
@@ -1053,7 +1095,7 @@
                         
                         <div class="contact-info" style="margin-top: 1.5rem;">
                             <div class="contact-item" style="display: inline-flex;">
-                                > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank">Team Ignition LinkedIn</a>
+                                > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank" rel="noopener noreferrer">Team Ignition LinkedIn</a>
                             </div>
                         </div>
                     </div>
@@ -1164,7 +1206,7 @@
         </section>
 
         <section id="skills" class="section-block">
-            <h2 class="section-title reveal">Technical Specifications</h2>
+            <h2 class="section-title reveal">My Technical Skills, Soft Skills and Certifications</h2>
             <div class="skills-grid reveal">
                 <div class="skill-category">
                     <h3><i class="fa-solid fa-cube"></i> CAD & Modeling</h3>
@@ -1207,7 +1249,7 @@
                     <ul class="skill-list">
                         <li>
                             <i class="fa-solid fa-chevron-right"></i> 
-                            <a href="https://www.credly.com/badges/f33cd5e5-7aea-4096-9106-cdddca4f05ad/public_url" target="_blank" class="skill-link">Certified SolidWorks Design Associate (CSWA)</a>
+                            <a href="https://www.credly.com/badges/f33cd5e5-7aea-4096-9106-cdddca4f05ad/public_url" target="_blank" rel="noopener noreferrer" class="skill-link">Certified SolidWorks Design Associate (CSWA)</a>
                         </li>
                     </ul>
                 </div>
@@ -1233,153 +1275,213 @@
 
     <script>
         // 0. Scroll Progress Bar & Back to Top Toggle
-        const scrollProgressBar = document.getElementById('scrollProgressBar');
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = (scrollTop / scrollHeight) * 100;
-            scrollProgressBar.style.width = scrollPercentage + '%';
-            
-            if (scrollTop > 500) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
+        try {
+            const scrollProgressBar = document.getElementById('scrollProgressBar');
+            const backToTop = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+                if (scrollProgressBar) scrollProgressBar.style.width = scrollPercentage + '%';
+
+                if (backToTop) {
+                    if (scrollTop > 500) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                }
+            });
+        } catch (err) {
+            console.error('Scroll progress / back-to-top failed to initialize:', err);
+        }
 
         // 1. Mobile Navigation Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-links');
+        try {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-links');
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('nav-active');
-        });
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', () => {
+                    navMenu.classList.toggle('nav-active');
+                });
 
-        document.querySelectorAll('.nav-item').forEach(n => n.addEventListener('click', () => {
-            navMenu.classList.remove('nav-active');
-        }));
+                document.querySelectorAll('.nav-item').forEach(n => n.addEventListener('click', () => {
+                    navMenu.classList.remove('nav-active');
+                }));
+            }
+        } catch (err) {
+            console.error('Mobile nav failed to initialize:', err);
+        }
 
         // 2. Lightbox Functionality
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("expandedImg");
-        const modalVid = document.getElementById("expandedVideo");
-        const modalCaption = document.getElementById("modalCaption");
-        const mediaItems = document.querySelectorAll(".gallery-item img, .gallery-item video");
-        const closeBtn = document.getElementsByClassName("close")[0];
+        try {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("expandedImg");
+            const modalVid = document.getElementById("expandedVideo");
+            const modalCaption = document.getElementById("modalCaption");
+            const mediaItems = document.querySelectorAll(".gallery-item img, .gallery-item video");
+            const closeBtn = document.getElementsByClassName("close")[0];
 
-        mediaItems.forEach(media => {
-            media.onclick = function(e) {
-                e.preventDefault(); 
-                modal.style.display = "flex"; 
-                
-                modalCaption.innerText = this.getAttribute("data-desc") || "";
+            mediaItems.forEach(media => {
+                media.onclick = function(e) {
+                    e.preventDefault(); 
+                    modal.style.display = "flex"; 
+                    
+                    modalCaption.innerText = this.getAttribute("data-desc") || "";
 
-                if (this.tagName === "IMG") {
-                    modalImg.style.display = "block";
-                    modalVid.style.display = "none";
-                    modalImg.src = this.src; 
-                } else if (this.tagName === "VIDEO") {
-                    modalImg.style.display = "none";
-                    modalVid.style.display = "block";
-                    modalVid.src = this.querySelector('source').src;
+                    if (this.tagName === "IMG") {
+                        modalImg.style.display = "block";
+                        modalVid.style.display = "none";
+                        modalImg.src = this.src; 
+                    } else if (this.tagName === "VIDEO") {
+                        modalImg.style.display = "none";
+                        modalVid.style.display = "block";
+                        modalVid.src = this.querySelector('source').src;
+                    }
+                }
+            });
+
+            function closeModal() {
+                modal.style.display = "none";
+                modalVid.pause(); 
+                modalVid.src = ""; 
+            }
+
+            closeBtn.onclick = closeModal;
+
+            // Close on click outside
+            modal.onclick = function(event) {
+                if (event.target === modal || event.target === modalCaption) {
+                    closeModal();
                 }
             }
-        });
-
-        function closeModal() {
-            modal.style.display = "none";
-            modalVid.pause(); 
-            modalVid.src = ""; 
+            
+            // Accessibility: Close on Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === "Escape" && modal.style.display === "flex") {
+                    closeModal();
+                }
+            });
+        } catch (err) {
+            console.error('Lightbox failed to initialize:', err);
         }
-
-        closeBtn.onclick = closeModal;
-
-        // Close on click outside
-        modal.onclick = function(event) {
-            if (event.target === modal || event.target === modalCaption) {
-                closeModal();
-            }
-        }
-        
-        // Accessibility: Close on Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape" && modal.style.display === "flex") {
-                closeModal();
-            }
-        });
 
         // 3. Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, { threshold: 0.15 }); 
+        try {
+            const revealElements = document.querySelectorAll('.reveal');
 
-        revealElements.forEach(el => revealObserver.observe(el));
+            if ('IntersectionObserver' in window) {
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            observer.unobserve(entry.target); 
+                        }
+                    });
+                }, { threshold: 0.15 }); 
+
+                revealElements.forEach(el => revealObserver.observe(el));
+            } else {
+                // No IntersectionObserver support — just show everything, don't hide content forever
+                revealElements.forEach(el => el.classList.add('active'));
+            }
+        } catch (err) {
+            console.error('Scroll reveal failed to initialize:', err);
+            // Safety net: never leave content permanently invisible because of a JS error
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+        }
 
         // 4. Active Navigation Highlighting
-        const sections = document.querySelectorAll('.section-block');
-        const navLinks = document.querySelectorAll('.nav-item');
+        try {
+            const sections = document.querySelectorAll('.section-block');
+            const navLinks = document.querySelectorAll('.nav-item');
 
-        const navObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => link.classList.remove('active-link'));
-                    const activeId = entry.target.getAttribute('id');
-                    const activeLink = document.querySelector(`.nav-links a[href="#${activeId}"]`);
-                    if (activeLink) activeLink.classList.add('active-link');
-                }
-            });
-        }, { threshold: 0.4 }); 
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => link.classList.remove('active-link'));
+                        const activeId = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.nav-links a[href="#${activeId}"]`);
+                        if (activeLink) activeLink.classList.add('active-link');
+                    }
+                });
+            }, { threshold: 0.4 }); 
 
-        sections.forEach(section => navObserver.observe(section));
+            sections.forEach(section => navObserver.observe(section));
+        } catch (err) {
+            console.error('Active nav highlighting failed to initialize:', err);
+        }
 
         // 5. 3D Models — custom loading bars
-        const setupModelProgress = (modelId) => {
-            const model = document.getElementById(modelId);
-            if (model) {
-                model.addEventListener('progress', (event) => {
-                    const bar = model.querySelector('.progress-bar');
-                    const updateBar = model.querySelector('.update-bar');
-                    const pct = event.detail.totalProgress * 100;
-                    updateBar.style.width = `${pct}%`;
-                    bar.classList.toggle('hide', event.detail.totalProgress === 1);
-                });
-            }
-        };
+        try {
+            const setupModelProgress = (modelId) => {
+                const model = document.getElementById(modelId);
+                if (model) {
+                    model.addEventListener('progress', (event) => {
+                        const bar = model.querySelector('.progress-bar');
+                        const updateBar = model.querySelector('.update-bar');
+                        const pct = event.detail.totalProgress * 100;
+                        updateBar.style.width = `${pct}%`;
+                        bar.classList.toggle('hide', event.detail.totalProgress === 1);
+                    });
+                }
+            };
 
-        setupModelProgress('pioneer-model');
-        setupModelProgress('ignitex-model');
+            setupModelProgress('pioneer-model');
+            setupModelProgress('ignitex-model');
+        } catch (err) {
+            console.error('Model loading bars failed to initialize:', err);
+        }
         
         // 6. Lazy-Load model-viewer script via Intersection Observer
-        const modelViewers = document.querySelectorAll('model-viewer');
-        const mvObserver = new IntersectionObserver((entries, observer) => {
-            let loadScript = false;
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    loadScript = true;
-                }
-            });
-            if (loadScript) {
-                // Check if we haven't already appended it
+        try {
+            const modelViewers = document.querySelectorAll('model-viewer');
+
+            const loadModelViewerScript = () => {
                 if (!document.querySelector('script[src*="model-viewer.min.js"]')) {
                     const script = document.createElement('script');
                     script.type = 'module';
                     script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js';
                     document.body.appendChild(script);
                 }
-                observer.disconnect(); // Stop watching once script is injected
+            };
+
+            if ('IntersectionObserver' in window) {
+                const mvObserver = new IntersectionObserver((entries, observer) => {
+                    const shouldLoad = entries.some(entry => entry.isIntersecting);
+                    if (shouldLoad) {
+                        loadModelViewerScript();
+                        observer.disconnect(); // Stop watching once script is injected
+                    }
+                }, { rootMargin: '300px' }); // Load a bit before it enters the viewport
+
+                modelViewers.forEach(mv => mvObserver.observe(mv));
+            } else {
+                // No IntersectionObserver support — just load it upfront
+                loadModelViewerScript();
             }
-        }, { rootMargin: '300px' }); // Load a bit before it enters the viewport
-        
-        modelViewers.forEach(mv => mvObserver.observe(mv));
-        
+        } catch (err) {
+            console.error('Model-viewer lazy loader failed, loading it directly instead:', err);
+            if (!document.querySelector('script[src*="model-viewer.min.js"]')) {
+                const script = document.createElement('script');
+                script.type = 'module';
+                script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js';
+                document.body.appendChild(script);
+            }
+        }
+
+        // 7. Respect prefers-reduced-motion for auto-rotating 3D models
+        try {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelectorAll('model-viewer[auto-rotate]').forEach(mv => {
+                    mv.removeAttribute('auto-rotate');
+                });
+            }
+        } catch (err) {
+            console.error('Reduced-motion handling failed:', err);
+        }
     </script>
 
     <!-- GoatCounter Analytics -->
