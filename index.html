@@ -474,43 +474,6 @@
             color: var(--accent-primary);
         }
 
-        /* --- Team Ignition 3D Background --- */
-        #team-ignition {
-            position: relative;
-            overflow: hidden; 
-        }
-
-        .model-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none; 
-            opacity: 1; /* Removed transparency so the model pops */
-        }
-
-        #ignition-model {
-            width: 100%;
-            height: 100%;
-            --poster-color: transparent;
-        }
-
-        .ignition-content {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-        }
-
-        /* Enhances the glass effect so the 3D model is visible behind the text */
-        #team-ignition .project-container {
-            background: rgba(13, 17, 23, 0.4); /* Dark but highly translucent */
-            backdrop-filter: blur(6px); /* Reduced blur for visibility */
-            border-color: rgba(88, 166, 255, 0.25); /* Slight accent border */
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8); /* Strong shadow to separate text from background */
-        }
-
         /* Footer */
         footer {
             text-align: center;
@@ -587,6 +550,202 @@
             .close { top: 15px; right: 20px; }
             
             .hero-model { height: 350px !important; }
+
+            .model-viewer-wrapper { height: 320px; }
+            .model-showcase-header { flex-direction: column; align-items: flex-start; }
+            .model-controls { gap: 0.75rem; }
+            .model-status { text-align: left; }
+        }
+
+        /* ============================================= */
+        /* 3D Assembly Animation Showcase (Pioneer)       */
+        /* ============================================= */
+        .model-showcase {
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .model-showcase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .model-showcase-header h4 {
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+        }
+
+        .model-showcase-header h4 i {
+            color: var(--accent-secondary);
+            margin-right: 8px;
+        }
+
+        .model-tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--accent-secondary);
+            border: 1px solid var(--accent-secondary);
+            padding: 0.35rem 0.8rem;
+            border-radius: 3px;
+            background: rgba(63, 185, 80, 0.08);
+            white-space: nowrap;
+        }
+
+        .model-viewer-wrapper {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            background:
+                radial-gradient(circle at center, #131a22 0%, #0a0d11 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .model-viewer-wrapper model-viewer {
+            width: 100%;
+            height: 100%;
+            --poster-color: transparent;
+        }
+
+        .model-hud-label {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: var(--accent-primary);
+            background: rgba(13, 17, 23, 0.55);
+            padding: 3px 8px;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .hud-corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            opacity: 0.55;
+            pointer-events: none;
+            z-index: 4;
+        }
+        .hud-corner.tr { top: 10px; right: 10px; border-top: 2px solid var(--accent-primary); border-right: 2px solid var(--accent-primary); }
+        .hud-corner.bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--accent-primary); border-left: 2px solid var(--accent-primary); }
+
+        /* Custom loading bar injected via model-viewer's progress-bar slot */
+        .progress-bar {
+            display: block;
+            width: 55%;
+            max-width: 280px;
+            height: 4px;
+            border-radius: 2px;
+            background-color: rgba(139, 148, 158, 0.25);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+        .progress-bar.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .progress-bar .update-bar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary);
+        }
+
+        /* Custom AR trigger injected via model-viewer's ar-button slot */
+        .ar-button-custom {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(13, 17, 23, 0.85);
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 4;
+            transition: all 0.25s ease;
+        }
+        .ar-button-custom:hover {
+            background: rgba(88, 166, 255, 0.15);
+            box-shadow: 0 0 12px rgba(88, 166, 255, 0.3);
+        }
+        .ar-button-custom:not([slot]) { display: none; }
+
+        /* Playback control bar beneath the viewer */
+        .model-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .model-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            padding: 0.55rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .model-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.25);
+        }
+
+        .model-progress-track {
+            flex: 1;
+            min-width: 100px;
+            height: 6px;
+            background: rgba(139, 148, 158, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .model-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+        }
+
+        .model-status {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            min-width: 100px;
+            text-align: right;
         }
     </style>
 </head>
@@ -730,58 +889,95 @@
         </section>
 
         <section id="team-ignition" class="section-block">
-            
-            <!-- The 3D Scroll Background -->
-            <div class="model-background">
-                <model-viewer 
-                    id="ignition-model"
-                    src="Assets/pioneer.glb" 
-                    animation-name="*"
-                    shadow-intensity="1.5"
-                    exposure="1.5"
-                    environment-image="neutral">
-                </model-viewer>
-            </div>
-        
-            <!-- The Existing Content Wrapper -->
-            <div class="ignition-content">
-                <h2 class="section-title reveal">Team Ignition <span class="date-badge">(August 2023 – June 2025)</span></h2>
-                <div class="project-container reveal">
-                    <div class="project-layout">
-        
-                        <div class="project-info">
-                            <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
-                            <p style="margin-bottom: 1rem;">During my two years at VIT Chennai, I joined a rocketry team to gain real-world experience in manufacturing and teamwork. After proving my technical skills and work ethic, I became the Airframe Lead, directing a team of four to design, build, and test the airframe for our rocket, Pioneer. Along the way, I picked up hard skills like GD&T and manufacturing, alongside critical soft skills like anticipating problems and leading a team effectively. But the most valuable lesson I confirmed there was the importance of Design for Manufacture (DFM), realizing that the 'perfect' theoretical design is useless if you can't actually build it in the real world.</p>
-                            <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                                <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
-                                <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
-                                <li>Validated our design choices through a heavy mix of CFD, FEA and some fun pressure testing. We learnt from external manufacturers to apply real-world industry standards to our build.</li>
-                            </ul>
-                            
-                            <div class="contact-info" style="margin-top: 1.5rem;">
-                                <div class="contact-item" style="display: inline-flex;">
-                                    > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank">Team Ignition LinkedIn</a>
-                                </div>
+            <h2 class="section-title reveal">Team Ignition <span class="date-badge">(August 2023 – June 2025)</span></h2>
+            <div class="project-container reveal">
+                <div class="project-layout">
+
+                    <div class="project-info">
+                        <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
+                        <p style="margin-bottom: 1rem;">During my two years at VIT Chennai, I joined a rocketry team to gain real-world experience in manufacturing and teamwork. After proving my technical skills and work ethic, I became the Airframe Lead, directing a team of four to design, build, and test the airframe for our rocket, Pioneer. Along the way, I picked up hard skills like GD&T and manufacturing, alongside critical soft skills like anticipating problems and leading a team effectively. But the most valuable lesson I confirmed there was the importance of Design for Manufacture (DFM), realizing that the 'perfect' theoretical design is useless if you can't actually build it in the real world.</p>
+                        <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                            <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
+                            <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
+                            <li>Validated our design choices through a heavy mix of CFD, FEA and some fun pressure testing. We learnt from external manufacturers to apply real-world industry standards to our build.</li>
+                        </ul>
+                        
+                        <div class="contact-info" style="margin-top: 1.5rem;">
+                            <div class="contact-item" style="display: inline-flex;">
+                                > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank">Team Ignition LinkedIn</a>
                             </div>
                         </div>
-        
-                        <div class="image-gallery">
-                            <div class="gallery-item horiz">
-                                <img src="Assets/Pioneer solidworks.png" alt="Pioneer Solidworks Model" loading="lazy" data-desc="">
-                                <div class="gallery-caption">Pioneer Solidworks Model</div>
-                            </div>
-                            <div class="gallery-item vert">
-                                <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" loading="lazy" data-desc="">
-                                <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
-                            </div>
-                            <div class="gallery-item horiz">
-                                <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test" loading="lazy" data-desc="PyroTest for parachute ejection mechanism and pressure test for the fiberglass tube.">
-                                <div class="gallery-caption">PYRO IGNITION TESTING</div>
-                            </div>
+                    </div>
+
+                    <div class="image-gallery">
+                        <div class="gallery-item horiz">
+                            <img src="Assets/Pioneer solidworks.png" alt="Pioneer Solidworks Model" loading="lazy" data-desc="">
+                            <div class="gallery-caption">Pioneer Solidworks Model</div>
                         </div>
-        
+                        <div class="gallery-item vert">
+                            <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" loading="lazy" data-desc="">
+                            <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
+                        </div>
+                        <div class="gallery-item horiz">
+                            <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test" loading="lazy" data-desc="PyroTest for parachute ejection mechanism and pressure test for the fiberglass tube.">
+                            <div class="gallery-caption">PYRO IGNITION TESTING</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="model-showcase reveal">
+                    <div class="model-showcase-header">
+                        <h4><i class="fa-solid fa-diagram-project"></i> Pioneer — Full Assembly Sequence</h4>
+                        <span class="model-tag">60-FRAME BLENDED ANIMATION</span>
+                    </div>
+
+                    <div class="model-viewer-wrapper">
+                        <model-viewer
+                            id="pioneer-model"
+                            src="Assets/pioneer.glb"
+                            alt="Blended assembly animation of the Pioneer rocket airframe coming together, part by part"
+                            poster="Assets/Pioneer.jpg"
+                            shadow-intensity="1.2"
+                            shadow-softness="0.8"
+                            exposure="0.9"
+                            environment-image="neutral"
+                            camera-controls
+                            autoplay
+                            interaction-prompt="none"
+                            ar
+                            ar-modes="webxr scene-viewer quick-look"
+                            touch-action="pan-y">
+
+                            <div slot="progress-bar" class="progress-bar hide">
+                                <div class="update-bar"></div>
+                            </div>
+
+                            <button slot="ar-button" class="ar-button-custom">
+                                <i class="fa-solid fa-cube"></i> VIEW IN YOUR SPACE
+                            </button>
+
+                        </model-viewer>
+
+                        <div class="model-hud-label">// PIONEER_ASM.GLB</div>
+                        <span class="hud-corner tr"></span>
+                        <span class="hud-corner bl"></span>
+                    </div>
+
+                    <div class="model-controls">
+                        <button id="pioneerPlayPause" class="model-btn" type="button">
+                            <i class="fa-solid fa-pause"></i> PAUSE
+                        </button>
+                        <button id="pioneerReplay" class="model-btn" type="button">
+                            <i class="fa-solid fa-rotate-right"></i> REPLAY
+                        </button>
+                        <div class="model-progress-track">
+                            <div class="model-progress-fill" id="pioneerProgressFill"></div>
+                        </div>
+                        <span class="model-status" id="pioneerStatus">ASSEMBLING...</span>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -932,33 +1128,55 @@
 
         sections.forEach(section => navObserver.observe(section));
 
-        // 4. Team Ignition 3D Scroll Animation
-        const ignitionModel = document.querySelector('#ignition-model');
-        const ignitionSection = document.querySelector('#team-ignition');
+        // 4. Pioneer Assembly Animation Controls
+        const pioneerModel = document.getElementById('pioneer-model');
 
-        if (ignitionModel && ignitionSection) {
-            ignitionModel.addEventListener('load', () => {
-                // Pause the animation so it doesn't play automatically
-                ignitionModel.pause(); 
-                
-                window.addEventListener('scroll', () => {
-                    const rect = ignitionSection.getBoundingClientRect();
-                    
-                    // Calculate how much of the section has been scrolled through (0.0 to 1.0)
-                    const totalScrollDistance = window.innerHeight + rect.height;
-                    const currentScroll = window.innerHeight - rect.top;
-                    
-                    let scrollProgress = currentScroll / totalScrollDistance;
-                    
-                    // Keep the value strictly between 0 and 1
-                    scrollProgress = Math.min(Math.max(scrollProgress, 0), 1);
-                    
-                    // Drive the 3D model timeline based on scroll percentage
-                    if (ignitionModel.duration) {
-                        ignitionModel.currentTime = scrollProgress * ignitionModel.duration;
-                    }
-                });
+        if (pioneerModel) {
+            const playPauseBtn = document.getElementById('pioneerPlayPause');
+            const replayBtn = document.getElementById('pioneerReplay');
+            const progressFill = document.getElementById('pioneerProgressFill');
+            const statusLabel = document.getElementById('pioneerStatus');
+
+            // Custom loading bar, driven by the model's own download progress
+            pioneerModel.addEventListener('progress', (event) => {
+                const bar = pioneerModel.querySelector('.progress-bar');
+                const updateBar = pioneerModel.querySelector('.update-bar');
+                const pct = event.detail.totalProgress * 100;
+                updateBar.style.width = `${pct}%`;
+                bar.classList.toggle('hide', event.detail.totalProgress === 1);
             });
+
+            pioneerModel.addEventListener('load', () => {
+                statusLabel.textContent = 'ASSEMBLING...';
+            });
+
+            playPauseBtn.addEventListener('click', () => {
+                if (pioneerModel.paused) {
+                    pioneerModel.play();
+                    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i> PAUSE';
+                    statusLabel.textContent = 'ASSEMBLING...';
+                } else {
+                    pioneerModel.pause();
+                    playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i> PLAY';
+                    statusLabel.textContent = 'PAUSED';
+                }
+            });
+
+            replayBtn.addEventListener('click', () => {
+                pioneerModel.currentTime = 0;
+                pioneerModel.play();
+                playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i> PAUSE';
+                statusLabel.textContent = 'ASSEMBLING...';
+            });
+
+            // Drive the assembly progress bar off the animation's own clock
+            (function updateAssemblyProgress() {
+                if (pioneerModel.duration > 0) {
+                    const pct = (pioneerModel.currentTime / pioneerModel.duration) * 100;
+                    progressFill.style.width = `${Math.min(pct, 100)}%`;
+                }
+                requestAnimationFrame(updateAssemblyProgress);
+            })();
         }
     </script>
 
