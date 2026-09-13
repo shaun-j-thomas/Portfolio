@@ -474,6 +474,42 @@
             color: var(--accent-primary);
         }
 
+        /* --- Team Ignition 3D Background --- */
+        #team-ignition {
+            position: relative;
+            overflow: hidden; 
+        }
+
+        .model-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none; /* Ensures you can still click the gallery images */
+            opacity: 0.85; /* Blends it slightly into the dark background */
+        }
+
+        #ignition-model {
+            width: 100%;
+            height: 100%;
+            --poster-color: transparent;
+        }
+
+        .ignition-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        /* Enhances the glass effect so the 3D model is visible behind the text */
+        #team-ignition .project-container {
+            background: rgba(22, 27, 34, 0.55);
+            backdrop-filter: blur(12px);
+            border-color: rgba(48, 54, 61, 0.8);
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -693,41 +729,56 @@
         </section>
 
         <section id="team-ignition" class="section-block">
-            <h2 class="section-title reveal">Team Ignition <span class="date-badge">(August 2023 – June 2025)</span></h2>
-            <div class="project-container reveal">
-                <div class="project-layout">
-
-                    <div class="project-info">
-                        <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
-                        <p style="margin-bottom: 1rem;">During my two years at VIT Chennai, I joined a rocketry team to gain real-world experience in manufacturing and teamwork. After proving my technical skills and work ethic, I became the Airframe Lead, directing a team of four to design, build, and test the airframe for our rocket, Pioneer. Along the way, I picked up hard skills like GD&T and manufacturing, alongside critical soft skills like anticipating problems and leading a team effectively. But the most valuable lesson I confirmed there was the importance of Design for Manufacture (DFM), realizing that the 'perfect' theoretical design is useless if you can't actually build it in the real world.</p>
-                        <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                            <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
-                            <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
-                            <li>Validated our design choices through a heavy mix of CFD, FEA and some fun pressure testing. We learnt from external manufacturers to apply real-world industry standards to our build.</li>
-                        </ul>
-                        
-                        <div class="contact-info" style="margin-top: 1.5rem;">
-                            <div class="contact-item" style="display: inline-flex;">
-                                > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank">Team Ignition LinkedIn</a>
+            
+            <!-- The 3D Scroll Background -->
+            <div class="model-background">
+                <model-viewer 
+                    id="ignition-model"
+                    src="Assets/pioneer.glb" 
+                    animation-name="*"
+                    shadow-intensity="1"
+                    environment-image="neutral">
+                </model-viewer>
+            </div>
+        
+            <!-- The Existing Content Wrapper -->
+            <div class="ignition-content">
+                <h2 class="section-title reveal">Team Ignition <span class="date-badge">(August 2023 – June 2025)</span></h2>
+                <div class="project-container reveal">
+                    <div class="project-layout">
+        
+                        <div class="project-info">
+                            <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
+                            <p style="margin-bottom: 1rem;">During my two years at VIT Chennai, I joined a rocketry team to gain real-world experience in manufacturing and teamwork. After proving my technical skills and work ethic, I became the Airframe Lead, directing a team of four to design, build, and test the airframe for our rocket, Pioneer. Along the way, I picked up hard skills like GD&T and manufacturing, alongside critical soft skills like anticipating problems and leading a team effectively. But the most valuable lesson I confirmed there was the importance of Design for Manufacture (DFM), realizing that the 'perfect' theoretical design is useless if you can't actually build it in the real world.</p>
+                            <ul style="color: var(--text-muted); margin-left: 1.5rem;">
+                                <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
+                                <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
+                                <li>Validated our design choices through a heavy mix of CFD, FEA and some fun pressure testing. We learnt from external manufacturers to apply real-world industry standards to our build.</li>
+                            </ul>
+                            
+                            <div class="contact-info" style="margin-top: 1.5rem;">
+                                <div class="contact-item" style="display: inline-flex;">
+                                    > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank">Team Ignition LinkedIn</a>
+                                </div>
                             </div>
                         </div>
+        
+                        <div class="image-gallery">
+                            <div class="gallery-item horiz">
+                                <img src="Assets/Pioneer solidworks.png" alt="Pioneer Solidworks Model" loading="lazy" data-desc="">
+                                <div class="gallery-caption">Pioneer Solidworks Model</div>
+                            </div>
+                            <div class="gallery-item vert">
+                                <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" loading="lazy" data-desc="">
+                                <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
+                            </div>
+                            <div class="gallery-item horiz">
+                                <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test" loading="lazy" data-desc="PyroTest for parachute ejection mechanism and pressure test for the fiberglass tube.">
+                                <div class="gallery-caption">PYRO IGNITION TESTING</div>
+                            </div>
+                        </div>
+        
                     </div>
-
-                    <div class="image-gallery">
-                        <div class="gallery-item horiz">
-                            <img src="Assets/Pioneer solidworks.png" alt="Pioneer Solidworks Model" loading="lazy" data-desc="">
-                            <div class="gallery-caption">Pioneer Solidworks Model</div>
-                        </div>
-                        <div class="gallery-item vert">
-                            <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" loading="lazy" data-desc="">
-                            <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
-                        </div>
-                        <div class="gallery-item horiz">
-                            <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test" loading="lazy" data-desc="PyroTest for parachute ejection mechanism and pressure test for the fiberglass tube.">
-                            <div class="gallery-caption">PYRO IGNITION TESTING</div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
@@ -878,6 +929,35 @@
         }, { threshold: 0.4 }); 
 
         sections.forEach(section => navObserver.observe(section));
+
+        // 4. Team Ignition 3D Scroll Animation
+        const ignitionModel = document.querySelector('#ignition-model');
+        const ignitionSection = document.querySelector('#team-ignition');
+
+        if (ignitionModel && ignitionSection) {
+            ignitionModel.addEventListener('load', () => {
+                // Pause the animation so it doesn't play automatically
+                ignitionModel.pause(); 
+                
+                window.addEventListener('scroll', () => {
+                    const rect = ignitionSection.getBoundingClientRect();
+                    
+                    // Calculate how much of the section has been scrolled through (0.0 to 1.0)
+                    const totalScrollDistance = window.innerHeight + rect.height;
+                    const currentScroll = window.innerHeight - rect.top;
+                    
+                    let scrollProgress = currentScroll / totalScrollDistance;
+                    
+                    // Keep the value strictly between 0 and 1
+                    scrollProgress = Math.min(Math.max(scrollProgress, 0), 1);
+                    
+                    // Drive the 3D model timeline based on scroll percentage
+                    if (ignitionModel.duration) {
+                        ignitionModel.currentTime = scrollProgress * ignitionModel.duration;
+                    }
+                });
+            });
+        }
     </script>
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
