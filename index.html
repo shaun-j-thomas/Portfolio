@@ -487,8 +487,8 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            pointer-events: none; /* Ensures you can still click the gallery images */
-            opacity: 0.85; /* Blends it slightly into the dark background */
+            pointer-events: none; 
+            opacity: 1; /* Removed transparency so the model pops */
         }
 
         #ignition-model {
@@ -505,9 +505,10 @@
 
         /* Enhances the glass effect so the 3D model is visible behind the text */
         #team-ignition .project-container {
-            background: rgba(22, 27, 34, 0.55);
-            backdrop-filter: blur(12px);
-            border-color: rgba(48, 54, 61, 0.8);
+            background: rgba(13, 17, 23, 0.4); /* Dark but highly translucent */
+            backdrop-filter: blur(6px); /* Reduced blur for visibility */
+            border-color: rgba(88, 166, 255, 0.25); /* Slight accent border */
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8); /* Strong shadow to separate text from background */
         }
 
         /* Footer */
@@ -736,7 +737,8 @@
                     id="ignition-model"
                     src="Assets/pioneer.glb" 
                     animation-name="*"
-                    shadow-intensity="1"
+                    shadow-intensity="1.5"
+                    exposure="1.5"
                     environment-image="neutral">
                 </model-viewer>
             </div>
