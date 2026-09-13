@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- SEO / Shareability -->
     <title>Shaun John Thomas | Engineering Portfolio</title>
     <meta name="description" content="Engineering portfolio of Shaun John Thomas, an Aero-Mechanical Engineering undergrad specializing in CAD, CFD, FEA, and UAV design.">
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/">
     <meta property="og:title" content="Shaun John Thomas | Engineering Portfolio">
     <meta property="og:description" content="Aero-Mechanical Engineering portfolio showcasing UAV design, rocketry airframes, and manufacturing projects.">
     <meta property="og:image" content="Assets/og-image.jpg">
-    <meta property="og:type" content="website">
     
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourwebsite.com/">
+    <meta name="twitter:title" content="Shaun John Thomas | Engineering Portfolio">
+    <meta name="twitter:description" content="Aero-Mechanical Engineering portfolio showcasing UAV design, rocketry airframes, and manufacturing projects.">
+    <meta name="twitter:image" content="Assets/og-image.jpg">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
 
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
@@ -34,6 +46,19 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
+        }
+
+        /* Scroll Progress Bar */
+        #scrollProgressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent-primary);
+            width: 0%;
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--accent-primary);
+            transition: width 0.1s ease-out;
         }
 
         /* Accessibility: Skip Link */
@@ -257,6 +282,88 @@
             margin-right: 8px;
         }
 
+        /* Journey Timeline Component */
+        .timeline-wrapper {
+            margin-top: 5rem;
+            position: relative;
+            padding: 2rem 0;
+            width: 100%;
+        }
+
+        .timeline-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--border-color);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-track::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0.5;
+        }
+
+        .timeline-nodes {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-node {
+            background: var(--bg-color);
+            border: 1px solid var(--accent-primary);
+            padding: 1rem;
+            border-radius: 4px;
+            width: 18%;
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            box-shadow: 0 0 15px rgba(13, 17, 23, 0.9);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border: 1px solid var(--accent-primary);
+            border-radius: 4px;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-node:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 8px 20px rgba(63, 185, 80, 0.15);
+        }
+
+        .timeline-node:hover::before {
+            border-color: var(--accent-secondary);
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            opacity: 0.1;
+        }
+
+        .timeline-node .year {
+            color: var(--accent-secondary);
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            letter-spacing: 1px;
+        }
+
         /* Project Cards */
         .project-container {
             background: var(--card-bg);
@@ -412,6 +519,38 @@
             text-decoration: none;
         }
 
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(13, 17, 23, 0.85);
+            color: var(--accent-primary);
+            border: 1px solid var(--accent-primary);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: rgba(88, 166, 255, 0.15);
+            box-shadow: 0 0 12px rgba(88, 166, 255, 0.4);
+            transform: translateY(-3px);
+            color: var(--accent-primary);
+        }
+
         /* Skills Grid */
         .skills-grid {
             display: grid;
@@ -531,6 +670,23 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            /* Responsive Timeline */
+            .timeline-track {
+                top: 0; 
+                left: 50%; 
+                width: 2px; 
+                height: 100%; 
+                transform: translateX(-50%);
+                background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            }
+            .timeline-track::after { display: none; }
+            .timeline-nodes {
+                flex-direction: column; 
+                align-items: center; 
+                gap: 2rem;
+            }
+            .timeline-node { width: 80%; }
 
             .image-gallery {
                 grid-template-columns: 1fr;
@@ -695,7 +851,8 @@
     </style>
 </head>
 <body>
-
+    
+    <div id="scrollProgressBar"></div>
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <nav aria-label="Main Navigation">
@@ -747,11 +904,40 @@
                         camera-controls 
                         shadow-intensity="1"
                         environment-image="neutral"
+                        loading="lazy"
                         style="width: 100%; height: 100%; background-color: transparent;">
                     </model-viewer>
                 </div>
 
             </div>
+
+            <!-- Visual Journey Timeline -->
+            <div class="timeline-wrapper reveal">
+                <div class="timeline-track"></div>
+                <div class="timeline-nodes">
+                    <div class="timeline-node">
+                        <span class="year">2021 - 2023</span>
+                        VIT Chennai
+                    </div>
+                    <div class="timeline-node">
+                        <span class="year">2023 - 2025</span>
+                        Team Ignition
+                    </div>
+                    <div class="timeline-node">
+                        <span class="year">2025 - Present</span>
+                        University of Strathclyde
+                    </div>
+                    <div class="timeline-node">
+                        <span class="year">2025 - Present</span>
+                        Strath AIS
+                    </div>
+                    <div class="timeline-node">
+                        <span class="year">2026</span>
+                        BWB Dissertation
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <section id="blended-wing" class="section-block">
@@ -891,6 +1077,7 @@
                             environment-image="neutral"
                             camera-controls
                             auto-rotate
+                            loading="lazy"
                             ar
                             ar-modes="webxr scene-viewer quick-look"
                             touch-action="pan-y">
@@ -977,9 +1164,30 @@
         <video class="modal-content" id="expandedVideo" controls autoplay style="display: none;"></video>
         <div id="modalCaption" class="modal-caption"></div>
     </div>
+    
+    <a href="#main-content" id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
 
     <script>
-        // 0. Mobile Navigation Toggle
+        // 0. Scroll Progress Bar & Back to Top Toggle
+        const scrollProgressBar = document.getElementById('scrollProgressBar');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            scrollProgressBar.style.width = scrollPercentage + '%';
+            
+            if (scrollTop > 500) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // 1. Mobile Navigation Toggle
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-links');
 
@@ -991,7 +1199,7 @@
             navMenu.classList.remove('nav-active');
         }));
 
-        // 1. Lightbox Functionality
+        // 2. Lightbox Functionality
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("expandedImg");
         const modalVid = document.getElementById("expandedVideo");
@@ -1026,13 +1234,21 @@
 
         closeBtn.onclick = closeModal;
 
+        // Close on click outside
         modal.onclick = function(event) {
             if (event.target === modal || event.target === modalCaption) {
                 closeModal();
             }
         }
+        
+        // Accessibility: Close on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.style.display === "flex") {
+                closeModal();
+            }
+        });
 
-        // 2. Scroll Reveal Animation
+        // 3. Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -1045,7 +1261,7 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // 3. Active Navigation Highlighting
+        // 4. Active Navigation Highlighting
         const sections = document.querySelectorAll('.section-block');
         const navLinks = document.querySelectorAll('.nav-item');
 
@@ -1062,7 +1278,7 @@
 
         sections.forEach(section => navObserver.observe(section));
 
-        // 4. Pioneer 3D Model — custom loading bar
+        // 5. Pioneer 3D Model — custom loading bar
         const pioneerModel = document.getElementById('pioneer-model');
 
         if (pioneerModel) {
@@ -1074,9 +1290,32 @@
                 bar.classList.toggle('hide', event.detail.totalProgress === 1);
             });
         }
+        
+        // 6. Lazy-Load model-viewer script via Intersection Observer
+        const modelViewers = document.querySelectorAll('model-viewer');
+        const mvObserver = new IntersectionObserver((entries, observer) => {
+            let loadScript = false;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadScript = true;
+                }
+            });
+            if (loadScript) {
+                // Check if we haven't already appended it
+                if (!document.querySelector('script[src*="model-viewer.min.js"]')) {
+                    const script = document.createElement('script');
+                    script.type = 'module';
+                    script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js';
+                    document.body.appendChild(script);
+                }
+                observer.disconnect(); // Stop watching once script is injected
+            }
+        }, { rootMargin: '300px' }); // Load a bit before it enters the viewport
+        
+        modelViewers.forEach(mv => mvObserver.observe(mv));
+        
     </script>
 
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <!-- GoatCounter Analytics -->
     <script data-goatcounter="https://shaunjthomas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
