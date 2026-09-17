@@ -252,6 +252,7 @@ section {
 /* Project Sub-Page Specific Enhancements */
 .project-header-summary { margin-bottom: 2.5rem; }
 .project-title-badge-group { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.project-title-badge-group .preview-status { position: static; top: auto; right: auto; }
 .project-page-title { font-family: 'Share Tech Mono', monospace; font-size: 2.5rem; color: #ffffff; margin-bottom: 1rem; line-height: 1.25; background: linear-gradient(90deg, #ffffff, var(--accent-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .project-page-lead { color: var(--text-muted); font-size: 1.15rem; max-width: 900px; line-height: 1.6; margin-bottom: 2rem; }
 .project-quick-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
@@ -336,61 +337,4 @@ footer { text-align: center; padding: 3rem 10%; font-family: 'Share Tech Mono', 
     .model-hint { display: none; }
     #projects.section-block, #skills.section-block { padding-top: 4rem; padding-bottom: 4rem; }
     .section-intro { margin-top: -0.5rem; margin-bottom: 2.5rem; }
-}
-/* =========================================
-   Mobile & Tablet Optimization Additions
-   (Add to the very bottom of style.css)
-   ========================================= */
-
-/* Tablet Adjustments (992px & below) */
-@media (max-width: 992px) {
-    /* Prevents project cards from overflowing on narrow tablets */
-    .preview-grid { 
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    }
-}
-
-/* Mobile Enhancements (768px & below) */
-@media (max-width: 768px) {
-    /* Forces Quick Stats into a clean 2-column grid instead of awkward wrapping */
-    .project-quick-stats { 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 0.8rem; 
-    }
-
-    /* Shifts vertical timeline to the left so the line doesn't cut through the node text */
-    .timeline-track { left: 20px; transform: none; }
-    .timeline-nodes { align-items: flex-start; padding-left: 50px; }
-    .timeline-node { width: 100%; text-align: left; }
-    .timeline-node::before {
-        content: ''; position: absolute; left: -36px; top: 50%; transform: translateY(-50%);
-        width: 12px; height: 12px; background: var(--bg-color);
-        border: 2px solid var(--accent-primary); border-radius: 50%; z-index: 3;
-    }
-
-    /* Reduces footer padding to maximize vertical screen real estate */
-    footer { padding: 2rem 5%; }
-}
-
-/* Small Mobile Specifics (480px & below) */
-@media (max-width: 480px) {
-    /* Scales down large typography to prevent awkward line breaks */
-    .section-title { font-size: 2rem; }
-    #about h1 { font-size: 2.2rem; }
-    .project-page-title { font-size: 1.8rem; }
-    
-    /* Maximizes usable horizontal width on tiny screens */
-    section { padding: 5rem 1rem 4rem; }
-    .project-container { padding: 1.2rem; }
-    
-    /* Forces a single column layout for grids on the smallest screens */
-    .preview-grid, .skills-grid, .project-quick-stats { 
-        grid-template-columns: 1fr; 
-    }
-
-    /* Scales down navigation padding for more space */
-    nav { padding: 1rem; }
-    
-    /* Adjusts lightbox modal close button for better thumb reachability */
-    .close { top: 10px; right: 15px; font-size: 30px; }
 }
