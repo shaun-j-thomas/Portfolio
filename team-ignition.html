@@ -33,6 +33,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Minor additions: role tags + primary-contribution emphasis. Kept subtle so the existing theme carries through. */
+        .methodology-card h4 { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .role-tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            margin-left: auto;
+            opacity: 0.85;
+        }
+        .role-led { background: rgba(0, 217, 255, 0.12); color: #00d9ff; border: 1px solid rgba(0, 217, 255, 0.35); }
+        .role-contributed { background: rgba(255, 255, 255, 0.06); color: #9aa4ad; border: 1px solid rgba(255, 255, 255, 0.15); }
+        .methodology-card.card-primary { border-left: 3px solid rgba(0, 217, 255, 0.5); padding-left: 1rem; }
+    </style>
 </head>
 <body class="detail-page">
 
@@ -64,25 +81,25 @@
                     <span class="preview-status status-completed">Completed · VIT Chennai</span>
                     <span class="date-badge"><i class="fa-regular fa-calendar"></i> August 2023 – June 2025</span>
                 </div>
-                <h1 class="project-page-title">Team Ignition: Pioneer 10,000ft Rocket Airframe</h1>
-                <p class="project-page-lead">Leading a 4-person engineering team to design, manufacture, assemble, and test the Pioneer launch vehicle airframe with strict adherence to Design for Manufacture (DFM) principles.</p>
+                <h1 class="project-page-title">Team Ignition: Airframe Lead</h1>
+                <p class="project-page-lead">Leading a 4-person engineering team to design, manufacture, assemble, and test the Pioneer model rocket airframe with strict adherence to Design for Manufacture (DFM) principles.</p>
                 
                 <div class="project-quick-stats">
                     <div class="stat-pill">
                         <span class="stat-label"><i class="fa-solid fa-users"></i> Leadership Role</span>
-                        <span class="stat-val">Airframe Lead (4 Engineers)</span>
+                        <span class="stat-val">Airframe Lead (4 Members)</span>
                     </div>
                     <div class="stat-pill">
                         <span class="stat-label"><i class="fa-solid fa-arrows-up-to-line"></i> Target Apogee</span>
                         <span class="stat-val">10,000 ft</span>
                     </div>
                     <div class="stat-pill">
-                        <span class="stat-label"><i class="fa-solid fa-gears"></i> Manufacturing</span>
-                        <span class="stat-val">CNC Machining & Layups</span>
+                        <span class="stat-label"><i class="fa-solid fa-chart-line"></i> Validation</span>
+                        <span class="stat-val">CFD, FEA & Pressure Testing</span>
                     </div>
                     <div class="stat-pill">
-                        <span class="stat-label"><i class="fa-solid fa-fire-flame-curved"></i> Testing</span>
-                        <span class="stat-val">Hydrostatic & Pyrotechnic</span>
+                        <span class="stat-label"><i class="fa-solid fa-magnifying-glass-chart"></i> Design Reviews</span>
+                        <span class="stat-val">PDR & CDR Defense</span>
                     </div>
                 </div>
             </div>
@@ -95,24 +112,24 @@
                     <div class="project-info">
                         <h3 class="section-subheading"><i class="fa-solid fa-microscope"></i> Subsystem Integration & Technical Leadership</h3>
                         
-                        <div class="methodology-card">
-                            <h4><i class="fa-solid fa-1"></i> Technical Leadership & Team Management</h4>
-                            <p>Directed cross-functional collaboration between recovery, propulsion, and avionics sub-teams. Established physical subsystem interface limits, maintaining CAD version control and guiding the team from initial conceptual sketches to flight hardware.</p>
+                        <div class="methodology-card card-primary">
+                            <h4><i class="fa-solid fa-users"></i> Technical Leadership & Collaboration <span class="role-tag role-led">Led</span></h4>
+                            <p>Directed a team of four to design and build the Pioneer rocket airframe, targeting an altitude of 10,000 feet, while collaborating closely with other departments to reach design compromises across the project.</p>
                         </div>
 
-                        <div class="methodology-card">
-                            <h4><i class="fa-solid fa-2"></i> Design for Manufacture (DFM) & CNC Machining</h4>
-                            <p>Oversaw the precision CNC machining of internal centering rings, coupler bulkheads, and fin tabs according to strict Geometric Dimensioning & Tolerancing (GD&T) standards to guarantee smooth assembly alignment.</p>
+                        <div class="methodology-card card-primary">
+                            <h4><i class="fa-solid fa-drafting-compass"></i> Bulkhead & Attachment Design <span class="role-tag role-led">Led</span></h4>
+                            <p>Designed bulkhead structures and their airframe attachment bolt patterns in SolidWorks, using computational analysis to optimize strength to weight ratios for each part.</p>
                         </div>
 
-                        <div class="methodology-card">
-                            <h4><i class="fa-solid fa-3"></i> Composite Thermal & Aerodynamic Protection</h4>
-                            <p>Applied customized fiberglass composites onto the nose cone and airframe body tubes to protect sensitive electronics against aerodynamic friction heating during high-speed ascent.</p>
+                        <div class="methodology-card card-primary">
+                            <h4><i class="fa-solid fa-chart-line"></i> Design Validation: CFD & FEA <span class="role-tag role-led">Led</span></h4>
+                            <p>Validated design choices by running CFD, FEA, and pressure and vibration analyses, with technical guidance from external manufacturers and mentors, then defended these decisions during PDR and CDR reviews.</p>
                         </div>
 
-                        <div class="methodology-card">
-                            <h4><i class="fa-solid fa-4"></i> Structural Hydrostatic & Pyrotechnic Validation</h4>
-                            <p>Validated structural integrity through hydrostatic pressure testing of composite tubes and conducted ground-based pyrotechnic ejection tests to confirm reliable separation of recovery bays under pressure.</p>
+                        <div class="methodology-card card-primary">
+                            <h4><i class="fa-solid fa-magnifying-glass-chart"></i> Failure Diagnosis & Design Iteration <span class="role-tag role-led">Led</span></h4>
+                            <p>Diagnosed a launch failure to a loose avionics connector that melted under heat, then led the team in revising connector mounting and thermal isolation practices for future builds.</p>
                         </div>
 
                         <div class="tech-tags-group">
@@ -122,6 +139,7 @@
                             <span class="preview-tag">Pyrotechnic Testing</span>
                             <span class="preview-tag">Fiberglass Layups</span>
                             <span class="preview-tag">Technical Leadership</span>
+                            <span class="preview-tag">Root-Cause Analysis</span>
                         </div>
 
                         <div class="contact-info" style="margin-top: 2rem;">
@@ -136,7 +154,7 @@
                         <div class="image-gallery">
                             <div class="gallery-item horiz">
                                 <img src="Assets/Pioneer solidworks.png" alt="Pioneer SolidWorks Model" loading="lazy" data-desc="Complete SolidWorks CAD assembly of the Pioneer launch vehicle showcasing internal motor mount and recovery bay interfaces.">
-                                <div class="gallery-caption">PIONEER SOLIDWORKS ASSEMBLY</div>
+                                <div class="gallery-caption">SOLIDWORKS ASSEMBLY (SEE 02)</div>
                             </div>
                             <div class="gallery-item vert">
                                 <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" loading="lazy" data-desc="The fully manufactured Pioneer rocket launch vehicle prior to final ground integration testing.">
@@ -245,7 +263,7 @@
             </div>
 
             <div class="project-nav-footer reveal">
-                <a href="strath-ais.html"><i class="fa-solid fa-arrow-left"></i> Strath AIS (IREC 2026)</a>
+                <a href="strath-ais.html"><i class="fa-solid fa-arrow-left"></i> Strath AIS</a>
                 <a href="index.html#projects">All Projects</a>
                 <a href="blended-wing.html">Blended Wing UAV <i class="fa-solid fa-arrow-right"></i></a>
             </div>

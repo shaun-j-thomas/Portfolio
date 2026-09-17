@@ -33,6 +33,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Minor additions: role tags + primary-contribution emphasis. Kept subtle so the existing theme carries through. */
+        .methodology-card h4 { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .role-tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            margin-left: auto;
+            opacity: 0.85;
+        }
+        .role-led { background: rgba(0, 217, 255, 0.12); color: #00d9ff; border: 1px solid rgba(0, 217, 255, 0.35); }
+        .role-contributed { background: rgba(255, 255, 255, 0.06); color: #9aa4ad; border: 1px solid rgba(255, 255, 255, 0.15); }
+        .methodology-card.card-primary { border-left: 3px solid rgba(0, 217, 255, 0.5); padding-left: 1rem; }
+    </style>
 </head>
 <body class="detail-page">
 
@@ -64,25 +81,25 @@
                     <span class="preview-status status-achievement">IREC 2026 · 8th Place Global Finish</span>
                     <span class="date-badge"><i class="fa-regular fa-calendar"></i> September 2025 – Present</span>
                 </div>
-                <h1 class="project-page-title">Strath AIS: Mach 1+ Competition Rocket Airframe</h1>
-                <p class="project-page-lead">Engineering the primary load-bearing recovery interface and structural bulkheads for a 30,000ft high-altitude launch vehicle flown at the International Rocket Engineering Competition (IREC 2026).</p>
+                <h1 class="project-page-title">Strath AIS: Airframe Design Engineer</h1>
+                <p class="project-page-lead">Engineered the primary load-bearing recovery interface and structural bulkheads for a model rocket built to launch at IREC 2026 for the 30,000ft catergory.</p>
                 
                 <div class="project-quick-stats">
                     <div class="stat-pill">
-                        <span class="stat-label"><i class="fa-solid fa-rocket"></i> Target Altitude</span>
-                        <span class="stat-val">30,000 ft COTS</span>
+                        <span class="stat-label"><i class="fa-solid fa-rocket"></i> Apogee Achieved</span>
+                        <span class="stat-val">24,528 ft</span>
                     </div>
                     <div class="stat-pill">
                         <span class="stat-label"><i class="fa-solid fa-gauge-high"></i> Max Velocity</span>
-                        <span class="stat-val">Mach 1.2+</span>
+                        <span class="stat-val">Mach 1+</span>
                     </div>
                     <div class="stat-pill">
                         <span class="stat-label"><i class="fa-solid fa-trophy"></i> Competition</span>
                         <span class="stat-val">IREC 8th Place</span>
                     </div>
                     <div class="stat-pill">
-                        <span class="stat-label"><i class="fa-solid fa-layer-group"></i> Material</span>
-                        <span class="stat-val">Carbon Fiber & Aluminum</span>
+                        <span class="stat-label"><i class="fa-solid fa-weight-hanging"></i> Bulkhead Weight Cut</span>
+                        <span class="stat-val">50%+</span>
                     </div>
                 </div>
             </div>
@@ -93,31 +110,30 @@
 
                     <!-- Technical Methodology Breakdown -->
                     <div class="project-info">
-                        <h3 class="section-subheading"><i class="fa-solid fa-microscope"></i> Airframe Engineering & Load Optimization</h3>
+                        <h3 class="section-subheading"><i class="fa-solid fa-microscope"></i> Bulkhead Engineering & Optimization</h3>
                         
-                        <div class="methodology-card">
-                            <h4><i class="fa-solid fa-1"></i> Parachute-to-Motor Bay Interface Design</h4>
-                            <p>Spearheaded the engineering of the primary structural interface connecting the main parachute shock chord to the motor bay assembly. Transformed an initial multi-part assembly into a unitized structural bulkhead capable of withstanding extreme instantaneous shock loads during high-altitude deployment.</p>
+                        <div class="methodology-card card-primary">
+                            <h4><i class="fa-solid fa-drafting-compass"></i> Interface Design <span class="role-tag role-led">Led</span></h4>
+                            <p>Designed the primary structural interface connecting the main parachute shock chord to the motor bay assembly in SolidWorks, including the bulkhead geometry and its airframe attachment bolt pattern, engineered to withstand extreme instantaneous shock loads during high-altitude deployment.</p>
+                        </div>
+
+                        <div class="methodology-card card-primary">
+                            <h4><i class="fa-solid fa-chart-line"></i> ANSYS FEA Structural Stress Sweeps <span class="role-tag role-led">Led</span></h4>
+                            <p>Executed nonlinear finite element analysis (FEA) in ANSYS to simulate axial drag compression, bending moments under gust loading, and sudden jerk loads during parachute deployment, reducing bulkhead weight by over 50% while preserving structural margins.</p>
                         </div>
 
                         <div class="methodology-card">
-                            <h4><i class="fa-solid fa-2"></i> ANSYS FEA Structural Stress Sweeps</h4>
-                            <p>Executed nonlinear finite element analysis (FEA) in ANSYS to simulate axial drag compression, bending moments under gust loading, and sudden jerk loads during parachute deployment, optimizing bolt hole locations and rib geometry for maximum strength-to-weight ratio.</p>
+                            <h4><i class="fa-solid fa-layer-group"></i> Composite Layup & Manufacturing Refinement <span class="role-tag role-contributed">Contributed</span></h4>
+                            <p>Refined the carbon fiber and fiberglass composite wet layup processes, and recommended and implemented manufacturing changes based on lessons from previous flight campaigns to minimize error and material waste.</p>
                         </div>
 
-                        <div class="methodology-card">
-                            <h4><i class="fa-solid fa-3"></i> Composite Layup & Failure Analysis Integration</h4>
-                            <p>Refined the carbon fiber and fiberglass composite wet layup processes. Integrated historical failure data from previous flight campaigns to eliminate interlaminar shearing risks and minimize resin-void defects in high-stress zones.</p>
-                        </div>
-
-                        <div class="methodology-card">
-                            <h4><i class="fa-solid fa-4"></i> PDR/CDR Technical Defense & Competition Launch</h4>
-                            <p>Defended airframe structural margins and manufacturing processes through rigorous Preliminary Design Review (PDR) and Critical Design Review (CDR) panels, culminating in a successful supersonic launch at spaceport America.</p>
+                        <div class="methodology-card card-primary">
+                            <h4><i class="fa-solid fa-users"></i> PDR/CDR Technical Defense & Competition Launch <span class="role-tag role-led">Led</span></h4>
+                            <p>Defended airframe structural margins and manufacturing processes through rigorous Preliminary Design Review (PDR) and Critical Design Review (CDR) panels, culminating in a successful supersonic launch reaching 24,528 ft at IREC 2026.</p>
                         </div>
 
                         <div class="tech-tags-group">
                             <span class="preview-tag">ANSYS FEA</span>
-                            <span class="preview-tag">Mach 1+ Aerodynamics</span>
                             <span class="preview-tag">Carbon Composite</span>
                             <span class="preview-tag">Bulkhead Integration</span>
                             <span class="preview-tag">PDR & CDR Defense</span>
@@ -136,7 +152,7 @@
                         <div class="image-gallery">
                             <div class="gallery-item horiz">
                                 <img src="Assets/FiberglassLayups.jpg" alt="Fiberglass Layup Process" loading="lazy" data-desc="Precision fiberglass wet layup process reinforcing the internal airframe structure for supersonic flight stresses.">
-                                <div class="gallery-caption">FIBERGLASS COMPOSITE LAYUP</div>
+                                <div class="gallery-caption">COMPOSITE LAYUP (SEE 03)</div>
                             </div>
                             <div class="gallery-item vert">
                                 <img src="Assets/Nevis.jpg" alt="Nevis Rocket Airframe" loading="lazy" data-desc="The fully assembled Nevis competition launch vehicle ready for vertical integration.">
@@ -144,7 +160,7 @@
                             </div>
                             <div class="gallery-item horiz">
                                 <img src="Assets/Optimization.png" alt="FEA Structural Optimization" loading="lazy" data-desc="ANSYS FEA stress heatmaps demonstrating load distribution across the parachute recovery bulkhead.">
-                                <div class="gallery-caption">FEA STRUCTURAL OPTIMIZATION</div>
+                                <div class="gallery-caption">FEA STRESS OPTIMIZATION (SEE 02)</div>
                             </div>
                         </div>
                     </div>
@@ -156,7 +172,7 @@
             <div class="project-nav-footer reveal">
                 <a href="blended-wing.html"><i class="fa-solid fa-arrow-left"></i> Blended Wing UAV</a>
                 <a href="index.html#projects">All Projects</a>
-                <a href="team-ignition.html">Team Ignition (Pioneer Rocket) <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="team-ignition.html">Team Ignition<i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </section>
     </main>
