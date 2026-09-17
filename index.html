@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO / Shareability -->
     <title>Shaun John Thomas | Engineering Portfolio</title>
     <meta name="description" content="Engineering portfolio of Shaun John Thomas, an Aero-Mechanical Engineering undergrad specializing in CAD, CFD, FEA, and UAV design.">
@@ -14,17 +14,26 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shaun-j-thomas.github.io/Portfolio/">
     <meta property="og:title" content="Shaun John Thomas | Engineering Portfolio">
-    <meta property="og:description" content="Aero-Mechanical Engineering portfolio showcasing UAV design, rocketry airframes, and manufacturing projects.">
+    <meta property="og:description" content="Engineering portfolio of Shaun John Thomas, an Aero-Mechanical Engineering undergrad specializing in CAD, CFD, FEA, and UAV design.">
     <meta property="og:image" content="https://shaun-j-thomas.github.io/Portfolio/Assets/og-image.jpg">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://shaun-j-thomas.github.io/Portfolio/">
     <meta name="twitter:title" content="Shaun John Thomas | Engineering Portfolio">
-    <meta name="twitter:description" content="Aero-Mechanical Engineering portfolio showcasing UAV design, rocketry airframes, and manufacturing projects.">
+    <meta name="twitter:description" content="Engineering portfolio of Shaun John Thomas, an Aero-Mechanical Engineering undergrad specializing in CAD, CFD, FEA, and UAV design.">
     <meta name="twitter:image" content="https://shaun-j-thomas.github.io/Portfolio/Assets/og-image.jpg">
 
-    <!-- Structured Data (helps search engines understand this page is about a person) -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -43,866 +52,6 @@
         "knowsAbout": ["Aerospace Engineering", "CAD", "CFD", "FEA", "UAV Design", "Rocketry"]
     }
     </script>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Titillium+Web:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* Base Variables & Technical Theme */
-        :root {
-            --bg-color: #0d1117;
-            --grid-color: rgba(88, 166, 255, 0.07);
-            --accent-primary: #58a6ff;
-            --accent-secondary: #3fb950;
-            --text-main: #c9d1d9;
-            --text-muted: #8b949e;
-            --card-bg: rgba(22, 27, 34, 0.85);
-            --border-color: #30363d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        /* Scroll Progress Bar */
-        #scrollProgressBar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--accent-primary);
-            width: 0%;
-            z-index: 9999;
-            box-shadow: 0 0 10px var(--accent-primary);
-            transition: width 0.1s ease-out;
-        }
-
-        /* Accessibility: Skip Link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent-primary);
-            color: var(--bg-color);
-            padding: 8px;
-            z-index: 2000;
-            transition: top 0.3s;
-            font-family: 'Share Tech Mono', monospace;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .skip-link:focus {
-            top: 0;
-        }
-
-        /* Custom Tech Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2428;
-            border-radius: 5px;
-            border: 1px solid var(--border-color);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-primary);
-        }
-
-        body {
-            background-color: var(--bg-color);
-            background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 40px 40px;
-            color: var(--text-main);
-            font-family: 'Titillium Web', sans-serif;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .mono {
-            font-family: 'Share Tech Mono', monospace;
-            text-transform: uppercase;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 2rem;
-            background: rgba(13, 17, 23, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            color: var(--accent-primary);
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-main);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-family: 'Share Tech Mono', monospace;
-            transition: all 0.3s ease;
-            padding-bottom: 5px;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        .nav-links a.active-link {
-            color: var(--accent-primary);
-            border-bottom: 2px solid var(--accent-primary);
-        }
-
-        /* Sections General */
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 8rem 10% 6rem;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--accent-primary);
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--accent-primary);
-            padding-left: 1rem;
-            display: flex;
-            align-items: baseline;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .date-badge {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            font-family: 'Titillium Web', sans-serif;
-            text-transform: none;
-        }
-
-        /* Scroll Reveal Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-        }
-
-        /* About Section */
-        #about h1 {
-            font-size: 4rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        #about h2 {
-            font-size: 1.5rem;
-            color: var(--accent-secondary);
-            margin-bottom: 2rem;
-        }
-
-        #about p {
-            max-width: 100%;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Contact & Team Link Block */
-        .contact-info {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--accent-secondary);
-            font-size: 0.95rem;
-            background: rgba(22, 27, 34, 0.85);
-            padding: 0.6rem 1.2rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-item span, .contact-item a {
-            color: var(--text-main);
-            margin-left: 10px;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: var(--accent-primary);
-        }
-
-        /* Resume Download Button CTA */
-        .resume-btn {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.8rem 1.5rem;
-            background: transparent;
-            color: var(--accent-primary);
-            border: 1px solid var(--accent-primary);
-            font-family: 'Share Tech Mono', monospace;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .resume-btn:hover {
-            background: rgba(88, 166, 255, 0.1);
-            box-shadow: 0 0 15px rgba(88, 166, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .resume-btn i {
-            margin-right: 8px;
-        }
-
-        /* Journey Timeline Component */
-        .timeline-wrapper {
-            margin-top: 5rem;
-            position: relative;
-            padding: 2rem 0;
-            width: 100%;
-        }
-
-        .timeline-track {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--border-color);
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        .timeline-track::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-            opacity: 0.5;
-        }
-
-        .timeline-nodes {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .timeline-node {
-            background: var(--bg-color);
-            border: 1px solid var(--accent-primary);
-            padding: 1rem;
-            border-radius: 4px;
-            width: 18%;
-            text-align: center;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.1rem;
-            color: var(--text-main);
-            box-shadow: 0 0 15px rgba(13, 17, 23, 0.9);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .timeline-node::before {
-            content: '';
-            position: absolute;
-            top: -1px; left: -1px; right: -1px; bottom: -1px;
-            border: 1px solid var(--accent-primary);
-            border-radius: 4px;
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-node:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-secondary);
-            box-shadow: 0 8px 20px rgba(63, 185, 80, 0.15);
-        }
-
-        .timeline-node:hover::before {
-            border-color: var(--accent-secondary);
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            opacity: 0.1;
-        }
-
-        .timeline-node .year {
-            color: var(--accent-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            display: block;
-            letter-spacing: 1px;
-        }
-
-        /* Project Cards */
-        .project-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 3rem;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
-            position: relative;
-        }
-
-        .project-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, var(--accent-primary), transparent);
-        }
-
-        /* Presentation Style Layout */
-        .project-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr; 
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        #about .project-layout {
-            grid-template-columns: 2.2fr 1fr; 
-        }
-
-        .project-layout.reverse {
-            grid-template-columns: 1.2fr 1fr; 
-        }
-        
-        .project-layout.reverse .project-info {
-            order: 2; 
-        }
-        
-        .project-layout.reverse .image-gallery {
-            order: 1; 
-        }
-
-        /* Bento Box Image Gallery */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr; 
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            background: rgba(0,0,0,0.5);
-        }
-
-        .gallery-item.horiz {
-            grid-column: 1;
-            aspect-ratio: 16/9;
-        }
-
-        .gallery-item.vert {
-            grid-column: 2;
-            grid-row: 1 / span 2; 
-            height: 100%; 
-        }
-
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-            cursor: pointer; 
-        }
-
-        .gallery-item:hover img, .gallery-item:hover video {
-            transform: scale(1.05); 
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: rgba(13, 17, 23, 0.9);
-            color: var(--accent-primary);
-            padding: 0.75rem;
-            font-size: 0.85rem;
-            font-family: 'Share Tech Mono', monospace;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            pointer-events: none; 
-        }
-
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-
-        /* Lightbox Modal */
-        .modal {
-            display: none; 
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90vh;
-            border: 1px solid var(--accent-primary);
-            box-shadow: 0 0 30px rgba(88, 166, 255, 0.15);
-            border-radius: 4px;
-            object-fit: contain;
-        }
-
-        .modal-caption {
-            margin-top: 20px;
-            color: var(--text-main);
-            font-size: 1.05rem;
-            max-width: 800px;
-            text-align: center;
-            line-height: 1.6;
-            padding: 0 20px;
-        }
-
-        .close {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            color: var(--text-muted);
-            font-size: 40px;
-            font-weight: bold;
-            transition: color 0.3s;
-            cursor: pointer;
-            font-family: 'Share Tech Mono', monospace;
-            z-index: 2001;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: var(--accent-primary);
-            text-decoration: none;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(13, 17, 23, 0.85);
-            color: var(--accent-primary);
-            border: 1px solid var(--accent-primary);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 4px;
-            cursor: pointer;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        .back-to-top:hover {
-            background: rgba(88, 166, 255, 0.15);
-            box-shadow: 0 0 12px rgba(88, 166, 255, 0.4);
-            transform: translateY(-3px);
-            color: var(--accent-primary);
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        /* Center the Certifications box */
-        .skills-grid .skill-category:last-child {
-            grid-column: 1 / -1;
-            justify-self: center;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-        }
-
-        .skill-category h3 {
-            color: var(--accent-secondary);
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .skill-list li i {
-            color: var(--accent-primary);
-            margin-top: 5px;
-            font-size: 0.9rem;
-        }
-        .skill-link {
-            color: var(--text-main);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .skill-link:hover {
-            color: var(--accent-primary);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 10%;
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            background: rgba(13, 17, 23, 0.9);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            section { padding: 6rem 5%; }
-            .project-layout, .project-layout.reverse, #about .project-layout {
-                grid-template-columns: 1fr; 
-                gap: 2rem;
-            }
-            .project-layout.reverse .project-info {
-                order: 1;
-            }
-            .project-layout.reverse .image-gallery {
-                order: 2;
-            }
-            .model-showcase-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(13, 17, 23, 0.95);
-                flex-direction: column;
-                gap: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-out;
-            }
-            .nav-links.nav-active {
-                max-height: 350px;
-            }
-            .nav-links a {
-                padding: 1rem 2rem;
-                border-bottom: 1px solid var(--border-color);
-                width: 100%;
-                display: block;
-            }
-
-            #about h1 { font-size: 2.5rem; }
-            .project-container { padding: 1.5rem; }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            /* Responsive Timeline */
-            .timeline-track {
-                top: 0; 
-                left: 50%; 
-                width: 2px; 
-                height: 100%; 
-                transform: translateX(-50%);
-                background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
-            }
-            .timeline-track::after { display: none; }
-            .timeline-nodes {
-                flex-direction: column; 
-                align-items: center; 
-                gap: 2rem;
-            }
-            .timeline-node { width: 80%; }
-
-            .image-gallery {
-                grid-template-columns: 1fr;
-            }
-            .gallery-item.horiz {
-                grid-column: 1;
-                aspect-ratio: 16/9;
-            }
-            .gallery-item.vert {
-                grid-column: 1;
-                grid-row: auto;
-                aspect-ratio: 9/16;
-                height: auto;
-            }
-
-            .gallery-caption { transform: translateY(0); }
-            .close { top: 15px; right: 20px; }
-            
-            .hero-model { height: 350px !important; }
-
-            .model-viewer-wrapper { height: 320px; }
-            .model-showcase-header { flex-direction: column; align-items: flex-start; }
-        }
-
-        /* ============================================= */
-        /* 3D Assembly Animation Showcase Grid            */
-        /* ============================================= */
-        .model-showcase {
-            margin-top: 3rem;
-            padding-top: 2.5rem;
-            border-top: 1px dashed var(--border-color);
-        }
-
-        .model-showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            width: 100%;
-        }
-
-        .model-showcase-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .model-showcase-header h4 {
-            font-family: 'Share Tech Mono', monospace;
-            text-transform: uppercase;
-            color: var(--text-main);
-            font-size: 1.05rem;
-            letter-spacing: 1px;
-        }
-
-        .model-showcase-header h4 i {
-            color: var(--accent-secondary);
-            margin-right: 8px;
-        }
-        .model-description {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
-        }
-
-        .model-tag {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            color: var(--accent-secondary);
-            border: 1px solid var(--accent-secondary);
-            padding: 0.35rem 0.8rem;
-            border-radius: 3px;
-            background: rgba(63, 185, 80, 0.08);
-            white-space: nowrap;
-        }
-
-        .model-viewer-wrapper {
-            position: relative;
-            width: 100%;
-            height: 480px;
-            background:
-                radial-gradient(circle at center, #131a22 0%, #0a0d11 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .model-viewer-wrapper model-viewer {
-            width: 100%;
-            height: 100%;
-            --poster-color: transparent;
-        }
-
-        .model-hud-label {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            color: var(--accent-primary);
-            background: rgba(13, 17, 23, 0.55);
-            padding: 3px 8px;
-            border-radius: 2px;
-            pointer-events: none;
-            z-index: 4;
-        }
-
-        .hud-corner {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            opacity: 0.55;
-            pointer-events: none;
-            z-index: 4;
-        }
-        .hud-corner.tr { top: 10px; right: 10px; border-top: 2px solid var(--accent-primary); border-right: 2px solid var(--accent-primary); }
-        .hud-corner.bl { bottom: 10px; left: 10px; border-bottom: 2px solid var(--accent-primary); border-left: 2px solid var(--accent-primary); }
-
-        /* Custom loading bar injected via model-viewer's progress-bar slot */
-        .progress-bar {
-            display: block;
-            width: 55%;
-            max-width: 280px;
-            height: 4px;
-            border-radius: 2px;
-            background-color: rgba(139, 148, 158, 0.25);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            overflow: hidden;
-            transition: opacity 0.3s ease;
-        }
-        .progress-bar.hide {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .progress-bar .update-bar {
-            width: 0%;
-            height: 100%;
-            background-color: var(--accent-primary);
-            box-shadow: 0 0 8px var(--accent-primary);
-        }
-
-        /* Custom AR trigger injected via model-viewer's ar-button slot */
-        .ar-button-custom {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(13, 17, 23, 0.85);
-            border: 1px solid var(--accent-primary);
-            color: var(--accent-primary);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.5px;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-            z-index: 4;
-            transition: all 0.25s ease;
-        }
-        .ar-button-custom:hover {
-            background: rgba(88, 166, 255, 0.15);
-            box-shadow: 0 0 12px rgba(88, 166, 255, 0.3);
-        }
-        .ar-button-custom:not([slot]) { display: none; }
-    </style>
-</head>
 <body>
 
     <noscript>
@@ -910,43 +59,48 @@
             .reveal { opacity: 1 !important; transform: none !important; }
         </style>
     </noscript>
-    
+
     <div id="scrollProgressBar"></div>
     <a href="#main-content" class="skip-link">Skip to content</a>
-
+    
     <nav aria-label="Main Navigation">
-        <div class="logo">SHAUN J THOMAS</div>
+        <div class="logo"><a href="#" style="color:inherit;text-decoration:none;">SHAUN J THOMAS</a></div>
         <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
         <div class="nav-links">
+            <!-- Updated to relative anchor links to prevent page reload on index -->
             <a href="#about" class="nav-item">01. ABOUT</a>
-            <a href="#blended-wing" class="nav-item">02. BLENDED WING</a>
-            <a href="#strath-ais" class="nav-item">03. STRATH AIS</a>
-            <a href="#team-ignition" class="nav-item">04. TEAM IGNITION</a>
-            <a href="#skills" class="nav-item">05. SKILLS</a>
+            <a href="#journey" class="nav-item">02. JOURNEY</a>
+            <a href="#projects" class="nav-item">03. PROJECTS</a>
+            <a href="#skills" class="nav-item">04. SKILLS</a>
         </div>
     </nav>
 
     <main id="main-content">
         <section id="about" class="section-block">
             <div class="project-layout">
-                
+
                 <div class="hero-content reveal">
+                    <div class="status-badge">
+                        <span class="status-dot"></span> Available after June 2027
+                    </div>
+                    <span class="eyebrow">Aero-Mechanical Engineer · Glasgow, UK</span>
                     <h1>Shaun John Thomas</h1>
-                    <h2>Aero-Mechanical Engineering</h2>
-                    <p>Hi! I'm Shaun, an Aero-Mechanical Engineering undergrad at the University of Strathclyde. I'm passionate about designing and manufacturing, whether it's building a complex system from the ground up or meticulously optimizing a single small part to achieve real efficiency gains and cost savings.</p>
-    
-                    <p>So far, my background includes leading a team to design the entire Pioneer rocket airframe, designing parts as a member of the StrathAIS rocketry team, and tackling my final-year dissertation. For the dissertation, I have already designed a Blended Wing Body UAV, and my next steps are to validate, reiterate, manufacture, and test it in the real world. To build these systems, I use a bit of everything, CAD using SolidWorks, simulations through ANSYS and MATLAB, and then manufacturing using CNC, 3D printing, and composites. My interests go far and wide. I love to learn about every process, the reasoning behind it, and how to fix a problem, whatever the industry or field may be.</p>
-    
-                    <p>Consider this portfolio a snapshot of my engineering journey so far. It is more than just photos of the final products. It shares some of the core design work, problem-solving, and manufacturing techniques behind what I have built, both on my own and as part of massive collaborative team efforts.</p>
+                    <h2>Designing & building systems that fly</h2>
+                    <p>I'm a final-year BEng Aero-Mechanical Engineering student at the University of Strathclyde, passionate about leading engineering designs from blank-page concepts to flight-ready hardware.</p>
+
+                    <p>My work spans leading the 10,000ft Pioneer rocket airframe team at VIT Chennai, designing critical recovery bulkheads for StrathAIS at IREC 2026, and researching winglet aerodynamics on a custom-manufactured Blended Wing Body UAV for my honors dissertation.</p>
+
+                    <p>I specialize in 3D CAD modeling (SolidWorks, CSWA certified), aerodynamic CFD simulation (ANSYS, XFLR5, OpenFOAM), finite element analysis (FEA), composite layup, and CNC manufacturing.</p>
+                    
                     <div class="contact-info">
                         <div class="contact-item">
-                            > LOC: <span>Glasgow, Scotland</span>
+                            <i class="fa-solid fa-location-dot"></i> LOC: <span>Glasgow, Scotland</span>
                         </div>
                         <div class="contact-item">
-                            > EML: <a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a>
+                            <i class="fa-solid fa-envelope"></i> EML: <a href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com</a>
                         </div>
                         <div class="contact-item">
-                            > LNKD: <a href="https://www.linkedin.com/in/shaun-john-thomas-0635652aa" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+                            <i class="fa-brands fa-linkedin"></i> LNKD: <a href="https://www.linkedin.com/in/shaun-john-thomas-0635652aa" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
                         </div>
                     </div>
                     <a href="Assets/Shaun John Thomas CV Airbus.pdf" download="Shaun_John_Thomas_CV.pdf" target="_blank" rel="noopener noreferrer" class="resume-btn">
@@ -954,260 +108,148 @@
                     </a>
                 </div>
 
-                <div class="hero-model reveal" style="width: 100%; height: 400px;">
-                    <model-viewer 
-                        src="Assets/CFD_model_1.5m.glb" 
+                <div class="hero-model-container reveal">
+                    <div class="hero-model-hud-bar">
+                        <span class="hud-tag"><i class="fa-solid fa-cube"></i> CAD / CFD MODEL HUD</span>
+                        <div class="hud-controls">
+                            <button id="resetModelCam" class="hud-btn" title="Reset View"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+                            <button id="toggleModelRotate" class="hud-btn active" title="Toggle Auto-Rotate"><i class="fa-solid fa-arrows-spin"></i> Rotate</button>
+                        </div>
+                    </div>
+                    <model-viewer
+                        id="heroModelViewer"
+                        src="Assets/CFD_model_1.5m.glb"
                         poster="Assets/model-poster.png"
-                        alt="A 3D CAD model of my engineering project" 
-                        auto-rotate 
-                        camera-controls 
+                        alt="A 3D CAD aerodynamic model of my engineering project"
+                        auto-rotate
+                        camera-controls
                         shadow-intensity="1"
                         environment-image="neutral"
                         loading="lazy"
                         style="width: 100%; height: 100%; background-color: transparent;">
                     </model-viewer>
+                    <div class="model-hint"><i class="fa-solid fa-hand-pointer"></i> Drag to orbit 3D model</div>
                 </div>
 
             </div>
 
-            <!-- Visual Journey Timeline -->
-            <div class="timeline-wrapper reveal">
+            <a href="#journey" class="scroll-cue reveal" aria-label="Scroll to my journey timeline">
+                <span>Explore Journey</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
+        </section>
+
+        <div class="section-divider reveal"><i class="fa-solid fa-compass"></i></div>
+
+        <!-- Visual Journey Timeline -->
+        <section id="journey" class="section-block timeline-section reveal">
+            <span class="eyebrow">My Journey So Far</span>
+            <h2 class="section-title">Engineering Path & Milestones</h2>
+            <div class="timeline-wrapper">
                 <div class="timeline-track"></div>
                 <ol class="timeline-nodes" aria-label="Engineering journey timeline">
-                    <li class="timeline-node">
+                    <li class="timeline-node" data-period="2023 - 2025">
                         <span class="year">2023 - 2025</span>
-                        VIT Chennai
+                        <div class="node-title">VIT Chennai</div>
+                        <div class="node-desc">Mechanical Eng. Fundamentals</div>
                     </li>
-                    <li class="timeline-node">
+                    <li class="timeline-node" data-period="2023 - 2025">
                         <span class="year">2023 - 2025</span>
-                        Team Ignition
+                        <div class="node-title">Team Ignition</div>
+                        <div class="node-desc">Airframe Lead (Pioneer Rocket)</div>
                     </li>
-                    <li class="timeline-node">
+                    <li class="timeline-node" data-period="2025 - Present">
                         <span class="year">2025 - Present</span>
-                        University of Strathclyde
+                        <div class="node-title">Univ of Strathclyde</div>
+                        <div class="node-desc">Aero-Mechanical Engineering</div>
                     </li>
-                    <li class="timeline-node">
+                    <li class="timeline-node" data-period="2025 - Present">
                         <span class="year">2025 - Present</span>
-                        Strath AIS
+                        <div class="node-title">Strath AIS</div>
+                        <div class="node-desc">Airframe Design (IREC 2026)</div>
                     </li>
-                    <li class="timeline-node">
-                        <span class="year">2026</span>
-                        BWB Dissertation
+                    <li class="timeline-node" data-period="2026 - 2027">
+                        <span class="year">2026 - 2027</span>
+                        <div class="node-title">BWB UAV Dissertation</div>
+                        <div class="node-desc">Aerodynamic & Flight Testing</div>
                     </li>
                 </ol>
             </div>
-
         </section>
-
-        <section id="blended-wing" class="section-block">
-            <h2 class="section-title reveal">Blended Wing UAV <span class="date-badge">(August 2026 – Present)</span></h2>
-            <div class="project-container reveal">
-                <div class="project-layout">
-                    
-                    <div class="project-info">
-                        <h3 style="margin-bottom: 1rem;">Project Overview</h3>
-                        <p style="margin-bottom: 1rem;">This is my dissertation, and honestly a huge step into a career that I love. I am designing and manufacturing a tailless Blended Wing Body UAV to study the effect of winglet cant angles. I am trying to find suitable winglet cant angles to balance key aerodynamic trade-offs, such as overall efficiency versus lateral stability.</p>
-                        <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                            <li>Started the design using a Clark Y airfoil in XFLR5, but quickly pivoted to an MH series reflexed profile after identifying inherent pitch stability limits.</li>
-                            <li>Iteratively tweaked wing twist, sweep angles, and chord lengths in XFLR5 to find the perfect balance between internal payload volume and the best lift-to-drag ratio.</li>
-                            <li>Next up : Running advanced CFD sweeps in ANSYS to lower induced drag and confirm a positive static margin before moving to production.</li>
-                            <li>Setting up manufacturing to turn the digital model into a physical flight-test article using 3D-printing and composite reinforcements.</li>
-                        </ul>
+        
+        <div class="section-divider reveal"><i class="fa-solid fa-plane"></i></div>
+        
+        <section id="projects" class="section-block">
+            <span class="eyebrow reveal">02 — Selected Work</span>
+            <h2 class="section-title reveal">Featured Projects</h2>
+            <p class="section-intro reveal">Three flagship engineering endeavors tracing my progression from student rocketry airframes to competition builds flown at IREC and my current honors dissertation.</p>
+            <div class="preview-grid">
+                <a href="blended-wing.html" class="preview-card reveal">
+                    <div class="preview-thumb">
+                        <img src="Assets/TopVIEW.png" alt="Blended Wing Body UAV CAD model" loading="lazy">
+                        <span class="preview-status status-active">In Progress</span>
                     </div>
-
-                    <div class="image-gallery">
-                        <div class="gallery-item horiz">
-                            <img src="Assets/XFLR5Image.png" alt="XFLR5 Aerodynamic Analysis" loading="lazy" data-desc="Analyzing the pressure distribution and streamline flow over the BWB to refine wing twist and sweep.">
-                            <div class="gallery-caption">XFLR5 AERODYNAMIC STREAMLINES</div>
+                    <div class="preview-body">
+                        <span class="date-badge"><i class="fa-regular fa-calendar"></i> August 2026 – Present</span>
+                        <h3>Blended Wing UAV</h3>
+                        <p>Honors Dissertation: Designing, manufacturing, and flight-testing a tailless Blended Wing Body UAV to study how winglet cant angle trades off lateral stability against aerodynamic efficiency.</p>
+                        <div class="preview-tags">
+                            <span class="preview-tag">SolidWorks</span>
+                            <span class="preview-tag">XFLR5</span>
+                            <span class="preview-tag">ANSYS CFD</span>
+                            <span class="preview-tag">Composites</span>
                         </div>
-                        <div class="gallery-item vert">
-                            <img src="Assets/TopVIEW.png" alt="SolidWorks BWB Model" loading="lazy" data-desc="Top-down view of the refined SolidWorks CAD geometry showing the selected wing planform.">
-                            <div class="gallery-caption">SOLIDWORKS CAD GEOMETRY</div>
-                        </div>
-                        <div class="gallery-item horiz">
-                            <video autoplay loop muted playsinline poster="Assets/video-poster.jpg" data-desc="Visualizing the flight dynamics through various angles of attack.">
-                                <source src="Assets/Video Project 10.mp4" type="video/mp4">
-                            </video>
-                            <div class="gallery-caption">FLIGHT DYNAMICS SIMULATION</div>
-                        </div>
+                        <span class="learn-more">Explore Breakdown <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
+                </a>
 
-                </div>
-            </div>
-        </section>
-
-        <section id="strath-ais" class="section-block">
-            <div style="display: flex; justify-content: flex-end;">
-                <h2 class="section-title reveal" style="border-left: none; border-right: 4px solid var(--accent-primary); padding-right: 1rem; padding-left: 0; flex-direction: row-reverse;">
-                    Strath AIS <span class="date-badge">(September 2025 - Present)</span>
-                </h2>
-            </div>
-            <div class="project-container reveal">
-                <div class="project-layout reverse">
-                    
-                    <div class="project-info">
-                        <h3 style="margin-bottom: 1rem;">Airframe Design Engineer</h3>
-                        <p style="margin-bottom: 1rem;">During my time with StrathAIS, I helped design the structural interface connecting the main parachute to the motor bay. Through cross-team coordination, we iterated on the initial concept, eventually optimizing it from a complex gap-filler into a simple, thick structural sheet. The team successfully flew the rocket at IREC 2026 in the 30,000ft COTS category, securing 8th place overall.</p>
-                        <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                            <li>Engineered and manufactured bulkheads and support structures for a Mach 1+ rocket aiming for 30,000 feet, and successfully presented design and verification evidence through PDR and CDR reviews for IREC 2026.</li>
-                            <li>Ran FEA simulations to shape key design choices and squeeze out the best possible strength-to-weight ratio.</li>
-                            <li>Used lessons learned from past failures to adjust our manufacturing approach, drastically cutting down on errors and material waste.</li>
-                        </ul>
-                        
-                        <div class="contact-info" style="margin-top: 1.5rem;">
-                            <div class="contact-item" style="display: inline-flex;">
-                                > LNKD: <a href="https://strathais.com/" target="_blank" rel="noopener noreferrer">StrathAIS Website</a>
-                            </div>
-                        </div>
+                <a href="strath-ais.html" class="preview-card reveal">
+                    <div class="preview-thumb">
+                        <img src="Assets/Nevis.jpg" alt="Nevis rocket airframe" loading="lazy">
+                        <span class="preview-status status-achievement">IREC 2026 · 8th Place</span>
                     </div>
-
-                    <div class="image-gallery">
-                        <div class="gallery-item horiz">
-                            <img src="Assets/FiberglassLayups.jpg" alt="Fiberglass Layup Process" loading="lazy" data-desc="Applying layers of fiberglass composite to reinforce the primary airframe for Mach 1+ stresses.">
-                            <div class="gallery-caption">FIBERGLASS COMPOSITE LAYUP</div>
+                    <div class="preview-body">
+                        <span class="date-badge"><i class="fa-regular fa-calendar"></i> September 2025 – Present</span>
+                        <h3>Strath AIS</h3>
+                        <p>Airframe Design Engineer for a Mach 1+ competition rocket flown to 30,000ft at IREC 2026. Engineered structural interfaces between parachute recovery system and motor bay.</p>
+                        <div class="preview-tags">
+                            <span class="preview-tag">FEA Analysis</span>
+                            <span class="preview-tag">Carbon Fiber</span>
+                            <span class="preview-tag">Bulkheads</span>
+                            <span class="preview-tag">Mach 1+ Flight</span>
                         </div>
-                        <div class="gallery-item vert">
-                            <img src="Assets/Nevis.jpg" alt="Nevis Rocket Airframe" loading="lazy" data-desc="The fully assembled Nevis launch vehicle">
-                            <div class="gallery-caption">NEVIS ROCKET AIRFRAME</div>
-                        </div>
-                        <div class="gallery-item horiz">
-                            <img src="Assets/Optimization.png" alt="FEA Structural Optimization" loading="lazy" data-desc="FEA load testing on the structural interface connecting the main parachute to the motor bay.">
-                            <div class="gallery-caption">FEA STRUCTURAL OPTIMIZATION</div>
-                        </div>
+                        <span class="learn-more">Explore Breakdown <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
+                </a>
 
-                </div>
-            </div>
-        </section>
-
-        <section id="team-ignition" class="section-block">
-            <h2 class="section-title reveal">Team Ignition <span class="date-badge">(August 2023 – June 2025)</span></h2>
-            <div class="project-container reveal">
-                <div class="project-layout">
-
-                    <div class="project-info">
-                        <h3 style="margin-bottom: 1rem;">Airframe Lead</h3>
-                        <p style="margin-bottom: 1rem;">During my two years at VIT Chennai, I joined a rocketry team to gain real-world experience in manufacturing and teamwork. After proving my technical skills and work ethic, I became the Airframe Lead, directing a team of four to design, build, and test the airframe for our rocket, Pioneer. Along the way, I picked up hard skills like GD&T and manufacturing, alongside critical soft skills like anticipating problems and leading a team effectively. But the most valuable lesson I confirmed there was the importance of Design for Manufacture (DFM), realizing that the 'perfect' theoretical design is useless if you can't actually build it in the real world.</p>
-                        <ul style="color: var(--text-muted); margin-left: 1.5rem;">
-                            <li>Led a four-person team to design and build a 10,000-foot model rocket airframe, working closely across departments to figure out smart design compromises.</li>
-                            <li>Guided the team in machining support structures using CNCs and power tools, and we specifically reinforced the nose cone with fiberglass to handle the high temperatures and harsh flight conditions.</li>
-                            <li>Validated our design choices through a heavy mix of CFD, FEA and some fun pressure testing. We learnt from external manufacturers to apply real-world industry standards to our build.</li>
-                        </ul>
-                        
-                        <div class="contact-info" style="margin-top: 1.5rem;">
-                            <div class="contact-item" style="display: inline-flex;">
-                                > LNKD: <a href="https://www.linkedin.com/company/teamignitionvitc/posts/?feedView=all" target="_blank" rel="noopener noreferrer">Team Ignition LinkedIn</a>
-                            </div>
-                        </div>
+                <a href="team-ignition.html" class="preview-card reveal">
+                    <div class="preview-thumb">
+                        <img src="Assets/Pioneer.jpg" alt="Pioneer rocket launch vehicle" loading="lazy">
+                        <span class="preview-status status-completed">Completed</span>
                     </div>
-
-                    <div class="image-gallery">
-                        <div class="gallery-item horiz">
-                            <img src="Assets/Pioneer solidworks.png" alt="Pioneer Solidworks Model" loading="lazy" data-desc="">
-                            <div class="gallery-caption">Pioneer Solidworks Model</div>
+                    <div class="preview-body">
+                        <span class="date-badge"><i class="fa-regular fa-calendar"></i> August 2023 – June 2025</span>
+                        <h3>Team Ignition</h3>
+                        <p>Airframe Lead at VIT Chennai: Directed a 4-person engineering team to design, manufacture, and test the full composite airframe for our 10,000ft model rocket, Pioneer.</p>
+                        <div class="preview-tags">
+                            <span class="preview-tag">GD&T</span>
+                            <span class="preview-tag">CNC Machining</span>
+                            <span class="preview-tag">Airframe Assembly</span>
+                            <span class="preview-tag">Team Lead</span>
                         </div>
-                        <div class="gallery-item vert">
-                            <img src="Assets/Pioneer.jpg" alt="Pioneer Rocket Vehicle" loading="lazy" data-desc="">
-                            <div class="gallery-caption">PIONEER LAUNCH VEHICLE</div>
-                        </div>
-                        <div class="gallery-item horiz">
-                            <img src="Assets/PyroTestIgnition.gif" alt="Pyrotechnic Ignition Test" loading="lazy" data-desc="PyroTest for parachute ejection mechanism and pressure test for the fiberglass tube.">
-                            <div class="gallery-caption">PYRO IGNITION TESTING</div>
-                        </div>
+                        <span class="learn-more">Explore Breakdown <i class="fa-solid fa-arrow-right"></i></span>
                     </div>
-
-                </div>
-
-                <div class="model-showcase reveal">
-                    <div class="model-showcase-grid">
-                        
-                        <!-- Pioneer CAD Model Column -->
-                        <div class="model-column">
-                            <div class="model-showcase-header">
-                                <h4><i class="fa-solid fa-cube"></i> Pioneer Model</h4>
-                                <span class="model-tag">DRAG TO ROTATE</span>
-                            </div>
-                            <p class="model-description">A simplified model of PIONEER showcasing Airframe Components and Motor</p>    
-                            <div class="model-viewer-wrapper">
-                                <model-viewer
-                                    id="pioneer-model"
-                                    src="Assets/pioneer.glb"
-                                    alt="Interactive 3D CAD model of the Pioneer rocket airframe"
-                                    poster="Assets/Pioneer.jpg"
-                                    shadow-intensity="1.2"
-                                    shadow-softness="0.8"
-                                    exposure="0.9"
-                                    environment-image="neutral"
-                                    camera-controls
-                                    auto-rotate
-                                    loading="lazy"
-                                    ar
-                                    ar-modes="webxr scene-viewer quick-look"
-                                    touch-action="pan-y">
-
-                                    <div slot="progress-bar" class="progress-bar hide">
-                                        <div class="update-bar"></div>
-                                    </div>
-
-                                    <button slot="ar-button" class="ar-button-custom">
-                                        <i class="fa-solid fa-cube"></i> VIEW IN AR
-                                    </button>
-
-                                </model-viewer>
-
-                                <div class="model-hud-label">// PIONEER.GLB</div>
-                                <span class="hud-corner tr"></span>
-                                <span class="hud-corner bl"></span>
-                            </div>
-                        </div>
-
-                        <!-- IgniteX CAD Model Column -->
-                        <div class="model-column">
-                            <div class="model-showcase-header">
-                                <h4><i class="fa-solid fa-cube"></i> IgniteX Model</h4>
-                                <span class="model-tag">DRAG TO ROTATE</span>
-                            </div>
-                            <p class="model-description">An initial CAD assembly of IgniteX, later updated and manufactured by the team.</p>
-                            <div class="model-viewer-wrapper">
-                                <model-viewer
-                                    id="ignitex-model"
-                                    src="Assets/IgniteX.glb"
-                                    alt="Interactive 3D CAD model of the IgniteX rocket"
-                                    shadow-intensity="1.2"
-                                    shadow-softness="0.8"
-                                    exposure="0.9"
-                                    environment-image="neutral"
-                                    camera-controls
-                                    auto-rotate
-                                    loading="lazy"
-                                    ar
-                                    ar-modes="webxr scene-viewer quick-look"
-                                    touch-action="pan-y">
-
-                                    <div slot="progress-bar" class="progress-bar hide">
-                                        <div class="update-bar"></div>
-                                    </div>
-
-                                    <button slot="ar-button" class="ar-button-custom">
-                                        <i class="fa-solid fa-cube"></i> VIEW IN AR
-                                    </button>
-
-                                </model-viewer>
-
-                                <div class="model-hud-label">// IGNITEX.GLB</div>
-                                <span class="hud-corner tr"></span>
-                                <span class="hud-corner bl"></span>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
+                </a>
 
             </div>
         </section>
-
+        
+        <div class="section-divider reveal"><i class="fa-solid fa-gear"></i></div>
+        
         <section id="skills" class="section-block">
-            <h2 class="section-title reveal">My Technical Skills, Soft Skills and Certifications</h2>
+            <span class="eyebrow reveal">03 — Capabilities</span>
+            <h2 class="section-title reveal">Skills & Certifications</h2>
+            <p class="section-intro reveal">The tools and habits behind the projects above — from CAD and simulation through to the hands-on manufacturing and teamwork that gets a design into the real world.</p>
             <div class="skills-grid reveal">
                 <div class="skill-category">
                     <h3><i class="fa-solid fa-cube"></i> CAD & Modeling</h3>
@@ -1249,7 +291,7 @@
                     <h3><i class="fa-solid fa-award"></i> Certifications</h3>
                     <ul class="skill-list">
                         <li>
-                            <i class="fa-solid fa-chevron-right"></i> 
+                            <i class="fa-solid fa-chevron-right"></i>
                             <a href="https://www.credly.com/badges/f33cd5e5-7aea-4096-9106-cdddca4f05ad/public_url" target="_blank" rel="noopener noreferrer" class="skill-link">Certified SolidWorks Design Associate (CSWA)</a>
                         </li>
                     </ul>
@@ -1269,221 +311,12 @@
         <video class="modal-content" id="expandedVideo" controls autoplay style="display: none;"></video>
         <div id="modalCaption" class="modal-caption"></div>
     </div>
-    
+
     <a href="#main-content" id="backToTop" class="back-to-top" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </a>
 
-    <script>
-        // 0. Scroll Progress Bar & Back to Top Toggle
-        try {
-            const scrollProgressBar = document.getElementById('scrollProgressBar');
-            const backToTop = document.getElementById('backToTop');
-
-            window.addEventListener('scroll', () => {
-                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-                if (scrollProgressBar) scrollProgressBar.style.width = scrollPercentage + '%';
-
-                if (backToTop) {
-                    if (scrollTop > 500) {
-                        backToTop.classList.add('show');
-                    } else {
-                        backToTop.classList.remove('show');
-                    }
-                }
-            });
-        } catch (err) {
-            console.error('Scroll progress / back-to-top failed to initialize:', err);
-        }
-
-        // 1. Mobile Navigation Toggle
-        try {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-links');
-
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', () => {
-                    navMenu.classList.toggle('nav-active');
-                });
-
-                document.querySelectorAll('.nav-item').forEach(n => n.addEventListener('click', () => {
-                    navMenu.classList.remove('nav-active');
-                }));
-            }
-        } catch (err) {
-            console.error('Mobile nav failed to initialize:', err);
-        }
-
-        // 2. Lightbox Functionality
-        try {
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("expandedImg");
-            const modalVid = document.getElementById("expandedVideo");
-            const modalCaption = document.getElementById("modalCaption");
-            const mediaItems = document.querySelectorAll(".gallery-item img, .gallery-item video");
-            const closeBtn = document.getElementsByClassName("close")[0];
-
-            mediaItems.forEach(media => {
-                media.onclick = function(e) {
-                    e.preventDefault(); 
-                    modal.style.display = "flex"; 
-                    
-                    modalCaption.innerText = this.getAttribute("data-desc") || "";
-
-                    if (this.tagName === "IMG") {
-                        modalImg.style.display = "block";
-                        modalVid.style.display = "none";
-                        modalImg.src = this.src; 
-                    } else if (this.tagName === "VIDEO") {
-                        modalImg.style.display = "none";
-                        modalVid.style.display = "block";
-                        modalVid.src = this.querySelector('source').src;
-                    }
-                }
-            });
-
-            function closeModal() {
-                modal.style.display = "none";
-                modalVid.pause(); 
-                modalVid.src = ""; 
-            }
-
-            closeBtn.onclick = closeModal;
-
-            // Close on click outside
-            modal.onclick = function(event) {
-                if (event.target === modal || event.target === modalCaption) {
-                    closeModal();
-                }
-            }
-            
-            // Accessibility: Close on Escape key
-            document.addEventListener('keydown', function(event) {
-                if (event.key === "Escape" && modal.style.display === "flex") {
-                    closeModal();
-                }
-            });
-        } catch (err) {
-            console.error('Lightbox failed to initialize:', err);
-        }
-
-        // 3. Scroll Reveal Animation
-        try {
-            const revealElements = document.querySelectorAll('.reveal');
-
-            if ('IntersectionObserver' in window) {
-                const revealObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if(entry.isIntersecting) {
-                            entry.target.classList.add('active');
-                            observer.unobserve(entry.target); 
-                        }
-                    });
-                }, { threshold: 0.15 }); 
-
-                revealElements.forEach(el => revealObserver.observe(el));
-            } else {
-                // No IntersectionObserver support — just show everything, don't hide content forever
-                revealElements.forEach(el => el.classList.add('active'));
-            }
-        } catch (err) {
-            console.error('Scroll reveal failed to initialize:', err);
-            // Safety net: never leave content permanently invisible because of a JS error
-            document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-        }
-
-        // 4. Active Navigation Highlighting
-        try {
-            const sections = document.querySelectorAll('.section-block');
-            const navLinks = document.querySelectorAll('.nav-item');
-
-            const navObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => link.classList.remove('active-link'));
-                        const activeId = entry.target.getAttribute('id');
-                        const activeLink = document.querySelector(`.nav-links a[href="#${activeId}"]`);
-                        if (activeLink) activeLink.classList.add('active-link');
-                    }
-                });
-            }, { threshold: 0.4 }); 
-
-            sections.forEach(section => navObserver.observe(section));
-        } catch (err) {
-            console.error('Active nav highlighting failed to initialize:', err);
-        }
-
-        // 5. 3D Models — custom loading bars
-        try {
-            const setupModelProgress = (modelId) => {
-                const model = document.getElementById(modelId);
-                if (model) {
-                    model.addEventListener('progress', (event) => {
-                        const bar = model.querySelector('.progress-bar');
-                        const updateBar = model.querySelector('.update-bar');
-                        const pct = event.detail.totalProgress * 100;
-                        updateBar.style.width = `${pct}%`;
-                        bar.classList.toggle('hide', event.detail.totalProgress === 1);
-                    });
-                }
-            };
-
-            setupModelProgress('pioneer-model');
-            setupModelProgress('ignitex-model');
-        } catch (err) {
-            console.error('Model loading bars failed to initialize:', err);
-        }
-        
-        // 6. Lazy-Load model-viewer script via Intersection Observer
-        try {
-            const modelViewers = document.querySelectorAll('model-viewer');
-
-            const loadModelViewerScript = () => {
-                if (!document.querySelector('script[src*="model-viewer.min.js"]')) {
-                    const script = document.createElement('script');
-                    script.type = 'module';
-                    script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js';
-                    document.body.appendChild(script);
-                }
-            };
-
-            if ('IntersectionObserver' in window) {
-                const mvObserver = new IntersectionObserver((entries, observer) => {
-                    const shouldLoad = entries.some(entry => entry.isIntersecting);
-                    if (shouldLoad) {
-                        loadModelViewerScript();
-                        observer.disconnect(); // Stop watching once script is injected
-                    }
-                }, { rootMargin: '300px' }); // Load a bit before it enters the viewport
-
-                modelViewers.forEach(mv => mvObserver.observe(mv));
-            } else {
-                // No IntersectionObserver support — just load it upfront
-                loadModelViewerScript();
-            }
-        } catch (err) {
-            console.error('Model-viewer lazy loader failed, loading it directly instead:', err);
-            if (!document.querySelector('script[src*="model-viewer.min.js"]')) {
-                const script = document.createElement('script');
-                script.type = 'module';
-                script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js';
-                document.body.appendChild(script);
-            }
-        }
-
-        // 7. Respect prefers-reduced-motion for auto-rotating 3D models
-        try {
-            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelectorAll('model-viewer[auto-rotate]').forEach(mv => {
-                    mv.removeAttribute('auto-rotate');
-                });
-            }
-        } catch (err) {
-            console.error('Reduced-motion handling failed:', err);
-        }
-    </script>
+    <script src="main.js"></script>
 
     <!-- GoatCounter Analytics -->
     <script data-goatcounter="https://shaunjthomas.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
