@@ -301,9 +301,15 @@ body.detail-page #main-content { padding-bottom: 4rem; }
 .skill-link { color: var(--text-main); text-decoration: none; transition: color 0.3s ease; }
 .skill-link:hover { color: var(--accent-primary); }
 
-/* Footer */
-footer { text-align: center; padding: 3rem 10%; font-family: 'Share Tech Mono', monospace; color: var(--text-muted); border-top: 1px solid var(--border-color); background: rgba(13, 17, 23, 0.9); font-size: 0.9rem; }
-
+footer { 
+    text-align: center; 
+    padding: 1rem 10%; /* Reduced vertical padding */
+    font-family: 'Share Tech Mono', monospace; 
+    color: var(--text-muted); 
+    border-top: 1px solid var(--border-color); 
+    background: rgba(13, 17, 23, 0.9); 
+    font-size: 0.9rem; 
+}
 /* Responsive Design */
 @media (max-width: 992px) {
     section { padding: 6rem 5%; }
