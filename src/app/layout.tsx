@@ -3,7 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
-import Script from "next/script";
+import { GoatCounter } from "@/components/GoatCounter";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -135,13 +135,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
 
-        {/* GoatCounter privacy-friendly analytics */}
-        <Script
-          data-goatcounter="https://shaunjthomas.goatcounter.com/count"
-          async
-          src="https://gc.zgo.at/count.js"
-          strategy="afterInteractive"
-        />
+        <GoatCounter />
       </body>
     </html>
   );
