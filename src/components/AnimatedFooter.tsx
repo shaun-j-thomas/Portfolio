@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUp, Linkedin, Mail, FileText } from "lucide-react";
 import { portfolioData } from "@/data/portfolioData";
@@ -22,21 +23,21 @@ export function AnimatedFooter() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 pb-8 sm:pb-12 border-b border-slate-200/60 dark:border-slate-800/60">
           {/* Quick links */}
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 font-mono text-sm text-slate-600 dark:text-slate-400">
-            <a href="/#about" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            <Link href="/#about" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               // 01. ABOUT
-            </a>
-            <a href="/#skills" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            </Link>
+            <Link href="/#skills" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               // 02. SKILLS
-            </a>
-            <a href="/#journey" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            </Link>
+            <Link href="/#journey" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               // 03. JOURNEY
-            </a>
-            <a href="/#projects" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            </Link>
+            <Link href="/#projects" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               // 04. PROJECTS
-            </a>
-            <a href="/#contact" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            </Link>
+            <Link href="/#contact" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               // 05. CONTACT
-            </a>
+            </Link>
           </div>
 
           {/* Social Links & Back To Top */}

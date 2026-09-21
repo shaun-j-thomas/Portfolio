@@ -96,13 +96,13 @@ export function HeroSection() {
           </a>
 
           {/* Secondary Button: Telemetry Amber Hover State */}
-          <a
+          <Link
             href="/#projects"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold font-mono text-slate-800 dark:text-slate-200 bg-white/70 dark:bg-slate-800/80 hover:bg-amber-500/10 hover:text-amber-600 dark:hover:text-amber-400 hover:border-amber-500/50 border border-slate-200 dark:border-slate-700 transition-all shadow-sm group"
           >
             <span>Explore Projects</span>
             <ArrowDown className="w-4 h-4 text-slate-500 dark:text-slate-400 group-hover:text-amber-400 group-hover:translate-y-0.5 transition-transform" />
-          </a>
+          </Link>
 
           {/* Social Links with Sharp Amber Hover Accents */}
           <div className="flex items-center gap-2 pl-1 sm:pl-2 text-slate-500 dark:text-slate-400 font-mono text-xs">
