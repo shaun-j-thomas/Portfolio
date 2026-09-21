@@ -234,6 +234,7 @@ export const portfolioData = {
       issuer: "Dassault Systèmes",
       link: "https://www.credly.com/badges/f33cd5e5-7aea-4096-9106-cdddca4f05ad/public_url",
       badgeId: "CSWA - Credly Verified",
+      badgeImage: "/Assets/credly badge.png",
     },
   ],
 

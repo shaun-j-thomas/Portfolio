@@ -26,6 +26,7 @@ import {
   Search,
 } from "lucide-react";
 import { portfolioData, SkillCategory, SkillItem } from "@/data/portfolioData";
+import { getAssetPath } from "@/lib/utils";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Box,
@@ -210,10 +211,14 @@ export function SkillsSection() {
           href={certifications[0]?.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass-card border border-amber-500/30 dark:border-amber-500/25 bg-amber-500/[0.03] hover:bg-amber-500/[0.08] hover:border-amber-500/50 hover:scale-[1.02] transition-all duration-200 shadow-sm text-xs sm:text-sm font-sans"
+          className="group inline-flex items-center gap-3 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full glass-card border border-amber-500/30 dark:border-amber-500/25 bg-amber-500/[0.03] hover:bg-amber-500/[0.08] hover:border-amber-500/50 hover:scale-[1.02] transition-all duration-200 shadow-sm text-xs sm:text-sm font-sans"
         >
-          <div className="w-6 h-6 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-500 shrink-0">
-            <Award className="w-3.5 h-3.5" />
+          <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden bg-white/10 dark:bg-white/5 border border-amber-500/30 flex items-center justify-center shrink-0 p-0.5 shadow-sm group-hover:scale-110 transition-transform duration-300">
+            <img
+              src={getAssetPath(certifications[0]?.badgeImage || "/Assets/credly badge.png")}
+              alt="CSWA Credly Badge"
+              className="w-full h-full object-contain rounded-full"
+            />
           </div>
           <div className="flex items-center gap-1.5 text-slate-800 dark:text-slate-200">
             <span className="font-semibold text-slate-900 dark:text-white">
