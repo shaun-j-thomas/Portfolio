@@ -136,6 +136,8 @@ export const projectsData: ProjectData[] = [
       "XFLR5 / AVL",
       "ANSYS Fluent (CFD)",
       "SolidWorks",
+      "MATLAB",
+      "SIMULINK",
       "3D Printing & Additive",
       "Composite Wet Layup",
     ],
