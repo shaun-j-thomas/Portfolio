@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shaun-j-thomas.github.io/Portfolio/sitemap.xml

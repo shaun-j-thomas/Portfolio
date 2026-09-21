@@ -67,7 +67,7 @@ export interface ProjectItem {
 export const portfolioData = {
   personal: {
     name: "Shaun John Thomas",
-    eyebrow: "Aero-Mechanical Engineer · Glasgow, UK",
+    eyebrow: "Aerospace Engineering Portfolio",
     headline: "Developing integrated aerodynamic and structural systems.",
     status: "Available after June 2027",
     location: "Glasgow, Scotland, UK",
