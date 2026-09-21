@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { RotateCw, RotateCcw, Box, Compass } from "lucide-react";
+import { getAssetPath } from "@/lib/utils";
 
 interface ModelViewer3DProps {
   src: string;
@@ -124,8 +125,8 @@ export function ModelViewer3D({
           // @ts-ignore - custom element
           <model-viewer
             ref={viewerRef}
-            src={src}
-            poster={poster}
+            src={getAssetPath(src)}
+            poster={getAssetPath(poster)}
             alt={alt}
             auto-rotate={isRotating ? "" : undefined}
             camera-controls

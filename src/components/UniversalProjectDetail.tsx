@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { ProjectData, ProjectMediaItem } from "@/data/projects";
 import { portfolioData } from "@/data/portfolioData";
+import { getAssetPath } from "@/lib/utils";
 import { ModelViewer3D } from "./ModelViewer3D";
 import { AnimatedFooter } from "./AnimatedFooter";
 
@@ -159,7 +160,7 @@ export function UniversalProjectDetail({
                 </div>
               ) : project.heroAsset.type === "video" ? (
                 <video
-                  src={project.heroAsset.src}
+                  src={getAssetPath(project.heroAsset.src)}
                   autoPlay
                   loop
                   muted
@@ -168,7 +169,7 @@ export function UniversalProjectDetail({
                 />
               ) : (
                 <img
-                  src={project.heroAsset.src}
+                  src={getAssetPath(project.heroAsset.src)}
                   alt={project.heroAsset.caption || project.title}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
@@ -353,7 +354,7 @@ export function UniversalProjectDetail({
                   </a>
                 ) : (
                   <a
-                    href={portfolioData.personal.cvUrl}
+                    href={getAssetPath(portfolioData.personal.cvUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-mono font-semibold text-white bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 shadow-md shadow-cyan-600/20 hover:shadow-purple-500/35 transition-all transform hover:-translate-y-0.5"
@@ -440,7 +441,7 @@ export function UniversalProjectDetail({
                           className="w-full h-full cursor-pointer relative group/vid overflow-hidden"
                         >
                           <video
-                            src={media.src}
+                            src={getAssetPath(media.src)}
                             autoPlay
                             loop
                             muted
@@ -454,7 +455,7 @@ export function UniversalProjectDetail({
                           className="w-full h-full cursor-pointer relative group/img overflow-hidden flex items-center justify-center"
                         >
                           <img
-                            src={media.src}
+                            src={getAssetPath(media.src)}
                             alt={media.caption}
                             loading="lazy"
                             className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500 ease-out"
@@ -560,7 +561,7 @@ export function UniversalProjectDetail({
                     className="max-w-5xl max-h-[75vh] flex items-center justify-center"
                   >
                     <video
-                      src={project.gallery[lightboxIndex].src}
+                      src={getAssetPath(project.gallery[lightboxIndex].src)}
                       controls
                       autoPlay
                       loop
@@ -577,7 +578,7 @@ export function UniversalProjectDetail({
                     className="max-w-6xl max-h-[75vh] flex items-center justify-center p-2"
                   >
                     <img
-                      src={project.gallery[lightboxIndex].src}
+                      src={getAssetPath(project.gallery[lightboxIndex].src)}
                       alt={project.gallery[lightboxIndex].caption}
                       className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-slate-800"
                     />
@@ -652,7 +653,7 @@ export function UniversalProjectDetail({
                       </div>
                     ) : (
                       <img
-                        src={g.src}
+                        src={getAssetPath(g.src)}
                         alt={g.caption}
                         className="w-full h-full object-cover"
                       />

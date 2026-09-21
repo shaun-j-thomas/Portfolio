@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Compass, ArrowRight } from "lucide-react";
+import { getAssetPath } from "@/lib/utils";
 import { projectsData, ProjectData } from "@/data/projects";
 
 export function ProjectsSection() {
@@ -75,7 +76,7 @@ export function ProjectsSection() {
                   {/* Thumbnail Image with Fixed Aspect Ratio & Subtle Hover Zoom */}
                   <div className="relative aspect-[16/10] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950 mb-4 sm:mb-5">
                     <img
-                      src={project.heroAsset.poster || project.heroAsset.src}
+                      src={getAssetPath(project.heroAsset.poster || project.heroAsset.src)}
                       alt={project.title}
                       loading="lazy"
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"

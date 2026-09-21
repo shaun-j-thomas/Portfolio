@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUp, Linkedin, Mail, FileText } from "lucide-react";
 import { portfolioData } from "@/data/portfolioData";
+import { getAssetPath } from "@/lib/utils";
 
 export function AnimatedFooter() {
   const { personal } = portfolioData;
@@ -61,7 +62,7 @@ export function AnimatedFooter() {
             </a>
 
             <a
-              href={personal.cvUrl}
+              href={getAssetPath(personal.cvUrl)}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 sm:p-2.5 rounded-full glass-card hover:text-cyan-500 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-colors border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300"

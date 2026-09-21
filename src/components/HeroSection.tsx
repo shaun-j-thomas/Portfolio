@@ -10,6 +10,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { portfolioData } from "@/data/portfolioData";
+import { getAssetPath } from "@/lib/utils";
 import { ModelViewer3D } from "./ModelViewer3D";
 
 export function HeroSection() {
@@ -85,7 +86,7 @@ export function HeroSection() {
         >
           {/* Primary Button: Tinted Cyan with Glowing Hover State */}
           <a
-            href={personal.cvUrl}
+            href={getAssetPath(personal.cvUrl)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold font-mono text-cyan-700 dark:text-cyan-300 bg-cyan-500/10 dark:bg-cyan-950/40 border border-cyan-500/50 hover:bg-cyan-500/20 dark:hover:bg-cyan-900/60 hover:shadow-[0_0_20px_rgba(34,211,238,0.25)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 shadow-sm"

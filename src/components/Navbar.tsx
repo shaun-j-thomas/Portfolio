@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, FileDown, Plane } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { portfolioData } from "@/data/portfolioData";
+import { getAssetPath } from "@/lib/utils";
 
 const navLinks = [
   { name: "About", href: "/#about" },
@@ -95,7 +96,7 @@ export function Navbar() {
         {/* Right Actions: View CV + ThemeToggle + Mobile Toggle */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <a
-            href={portfolioData.personal.cvUrl}
+            href={getAssetPath(portfolioData.personal.cvUrl)}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-semibold text-slate-700 dark:text-slate-200 bg-slate-100/90 dark:bg-slate-800/90 hover:bg-cyan-500/15 hover:text-cyan-600 dark:hover:bg-cyan-500/20 dark:hover:text-cyan-300 hover:border-cyan-500/50 transition-all border border-slate-200 dark:border-slate-700 shadow-sm"
@@ -148,7 +149,7 @@ export function Navbar() {
 
             <div className="pt-3 border-t border-slate-200 dark:border-slate-800 mt-2 flex justify-between items-center px-1">
               <a
-                href={portfolioData.personal.cvUrl}
+                href={getAssetPath(portfolioData.personal.cvUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono font-medium text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-cyan-500/10 hover:text-cyan-600 border border-slate-200 dark:border-slate-700 transition-colors"
