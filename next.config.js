@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
-// Deploying to root GitHub Pages (https://shaun-j-thomas.github.io/)
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const isProd = process.env.NODE_ENV === "production";
+const basePath =
+  process.env.NEXT_PUBLIC_BASE_PATH !== undefined
+    ? process.env.NEXT_PUBLIC_BASE_PATH
+    : isProd
+    ? "/Portfolio"
+    : "";
 
 const nextConfig = {
   output: "export",

@@ -37,7 +37,7 @@ jobs:
 
       - name: Build with Next.js
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path || '/Portfolio' }}
         run: npm run build
 
       - name: Upload artifact

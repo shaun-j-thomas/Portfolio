@@ -42,10 +42,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Shaun John Thomas" }],
   creator: "Shaun John Thomas",
-  metadataBase: new URL("https://shaun-j-thomas.github.io/"),
+  metadataBase: new URL("https://shaun-j-thomas.github.io/Portfolio/"),
   openGraph: {
     type: "website",
-    url: "https://shaun-j-thomas.github.io/",
+    url: "https://shaun-j-thomas.github.io/Portfolio/",
     title: "Shaun John Thomas | Aero-Mechanical Engineering Portfolio",
     description:
       "Engineering portfolio of Shaun John Thomas, final-year Aero-Mechanical Engineering student at the University of Strathclyde specializing in CAD, CFD, FEA, UAV design, and supersonic rocketry.",
@@ -99,7 +99,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Shaun John Thomas",
-              url: "https://shaun-j-thomas.github.io/",
+              url: "https://shaun-j-thomas.github.io/Portfolio/",
               jobTitle: "Aero-Mechanical Engineering Student",
               affiliation: {
                 "@type": "CollegeOrUniversity",
