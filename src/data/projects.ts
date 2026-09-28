@@ -27,6 +27,37 @@ export interface EngineeringBreakdownItem {
   iconName?: string;
 }
 
+export interface ProjectProgressStep {
+  step: string;
+  title: string;
+  shortDesc?: string;
+  status: "completed" | "current" | "upcoming";
+  badge?: string;
+}
+
+export interface ProjectProgressTracker {
+  title?: string;
+  currentStepLabel?: string;
+  steps: ProjectProgressStep[];
+}
+
+export interface CfdResultItem {
+  fileName: string;
+  title: string;
+  src: string;
+  aoa?: string;
+  tag?: string;
+  description: string;
+}
+
+export interface CfdResultsSection {
+  title: string;
+  subtitle?: string;
+  velocity?: string;
+  disclaimer: string;
+  items: CfdResultItem[];
+}
+
 export interface ProjectData {
   slug: string;
   title: string;
@@ -41,6 +72,8 @@ export interface ProjectData {
     caption?: string;
     poster?: string;
   };
+  progressTracker?: ProjectProgressTracker;
+  cfdResults?: CfdResultsSection;
   content: ProjectContentSection[];
   milestones?: ProjectMilestoneItem[];
   breakdownItems?: EngineeringBreakdownItem[];
@@ -69,6 +102,40 @@ export const projectsData: ProjectData[] = [
       src: "/Assets/CFD_model_1.5m.glb",
       caption: "Interactive 1.5m Wingspan Aerodynamic CFD Mesh",
       poster: "/Assets/TopVIEW.png",
+    },
+    progressTracker: {
+      title: "PROJECT PROGRESSION TIMELINE",
+      currentStepLabel: "Current Stage: Step 02 of 04 — Iterative Studies & CFD Sweeps",
+      steps: [
+        {
+          step: "01",
+          title: "Sizing & Airfoil Selection",
+          shortDesc: "VLM baseline sweeps in XFLR5; MH-series reflexed airfoil selection for longitudinal pitch stability.",
+          status: "completed",
+          badge: "Completed",
+        },
+        {
+          step: "02",
+          title: "Iterative Studies & CFD Sweeps",
+          shortDesc: "Automated ANSYS Fluent 3D Navier-Stokes sweeps (-2° to 14° AOA) quantifying lateral stability derivatives.",
+          status: "current",
+          badge: "Current Stage",
+        },
+        {
+          step: "03",
+          title: "Additive Manufacturing & Composite Layup",
+          shortDesc: "Translating CAD geometry into modular 3D-printed core formers reinforced with carbon and fiberglass layups.",
+          status: "upcoming",
+          badge: "Upcoming",
+        },
+        {
+          step: "04",
+          title: "Flight Dynamics & Telemetry Validation",
+          shortDesc: "Instrumented test flight with onboard IMU, pitot-static probe, and differential elevon telemetry logging.",
+          status: "upcoming",
+          badge: "Upcoming",
+        },
+      ],
     },
     content: [
       {
@@ -111,7 +178,7 @@ export const projectsData: ProjectData[] = [
         icon: "Activity",
         iconName: "Activity",
         description:
-          "The design was refined through iterative studies on wing twist, sweep angle, and chord taper ratio. CFD sweeps in ANSYS Fluent across a range of angles of attack (-2° to 14°) were used to analyze induced drag and vortex structures, and to quantify the lateral stability derivatives (Cl_β, Cn_β).",
+          "The design was refined through iterative studies on wing twist, sweep angle, and chord taper ratio. CFD sweeps in ANSYS Fluent across a range of angles of attack (-2° to 14°) at 20 m/s were used to analyze induced drag and vortex structures, and to quantify the lateral stability derivatives (Cl_β, Cn_β).",
       },
       {
         id: 3,
@@ -151,6 +218,52 @@ export const projectsData: ProjectData[] = [
       { label: "Control Method", value: "Wingtip Fin Cant Angles" },
       { label: "Status", value: "Dissertation Research" },
     ],
+    cfdResults: {
+      title: "Test CFD Results",
+      subtitle:
+        "Preliminary aerodynamic flow simulation sweeps conducted in ANSYS Fluent 2025 R1 at 20 m/s freestream velocity",
+      velocity: "20 m/s (Freestream Airspeed)",
+      disclaimer:
+        "Note: These computational fluid dynamics results are preliminary test runs and are not final whatsoever.",
+      items: [
+        {
+          fileName: "Pathlines at 0 AOA",
+          title: "Pathlines at 0 AOA",
+          src: "/Assets/Pathlines at 0 AOA.png",
+          aoa: "0° AOA",
+          tag: "Particle Streamlines",
+          description:
+            "Visualization of the flow pathlines across the blended wing body at a 0-degree angle of attack.",
+        },
+        {
+          fileName: "StaticPressure at 0 AOA",
+          title: "StaticPressure at 0 AOA",
+          src: "/Assets/StaticPressure at 0 AOA.png",
+          aoa: "0° AOA",
+          tag: "Surface Static Pressure",
+          description:
+            "Static pressure distribution contour over the airframe surface at a 0-degree angle of attack.",
+        },
+        {
+          fileName: "5 AOA Pathlines Side Profile",
+          title: "5 AOA Pathlines Side Profile",
+          src: "/Assets/5 AOA Pathlines Side Profile.png",
+          aoa: "5° AOA",
+          tag: "Side Profile Velocity",
+          description:
+            "Side profile view of the velocity pathlines demonstrating flow behavior and separation characteristics at a 5-degree angle of attack.",
+        },
+        {
+          fileName: "Static Pressure at 5 AOA",
+          title: "Static Pressure at 5 AOA",
+          src: "/Assets/Static Pressure at 5 AOA.png",
+          aoa: "5° AOA",
+          tag: "Surface Static Pressure",
+          description:
+            "Static pressure distribution contour at a 5-degree angle of attack, highlighting the pressure differentials across the geometry.",
+        },
+      ],
+    },
     gallery: [
       {
         type: "image",

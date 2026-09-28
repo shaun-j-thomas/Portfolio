@@ -16,12 +16,24 @@ import {
   ChevronRight,
   Sparkles,
   Compass,
+  Check,
+  Activity,
+  AlertTriangle,
+  Wind,
 } from "lucide-react";
 import { ProjectData, ProjectMediaItem } from "@/data/projects";
 import { portfolioData } from "@/data/portfolioData";
 import { getAssetPath } from "@/lib/utils";
 import { ModelViewer3D } from "./ModelViewer3D";
 import { AnimatedFooter } from "./AnimatedFooter";
+
+interface LightboxItem {
+  src: string;
+  type?: "image" | "video" | "3d";
+  caption: string;
+  desc?: string;
+  category?: string;
+}
 
 interface UniversalProjectDetailProps {
   project: ProjectData;
@@ -34,7 +46,34 @@ export function UniversalProjectDetail({
   prevProject,
   nextProject,
 }: UniversalProjectDetailProps) {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [activeLightbox, setActiveLightbox] = useState<{
+    items: LightboxItem[];
+    index: number;
+  } | null>(null);
+
+  const openGalleryLightbox = (idx: number) => {
+    if (!project.gallery) return;
+    const items: LightboxItem[] = project.gallery.map((g) => ({
+      src: g.src,
+      type: g.type,
+      caption: g.caption,
+      desc: g.desc,
+      category: "Technical Media Gallery",
+    }));
+    setActiveLightbox({ items, index: idx });
+  };
+
+  const openCfdLightbox = (idx: number) => {
+    if (!project.cfdResults) return;
+    const items: LightboxItem[] = project.cfdResults.items.map((c) => ({
+      src: c.src,
+      type: "image",
+      caption: c.title,
+      desc: `${c.description} (Freestream simulation airspeed: 20 m/s)`,
+      category: `Test CFD Results · ${c.aoa || "Preliminary Simulation"}`,
+    }));
+    setActiveLightbox({ items, index: idx });
+  };
 
   // Parallax scroll effect for Hero Asset
   const heroRef = useRef<HTMLDivElement>(null);
@@ -48,23 +87,33 @@ export function UniversalProjectDetail({
   // Keyboard navigation for Fullscreen Lightbox
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (lightboxIndex === null) return;
-      if (e.key === "Escape") setLightboxIndex(null);
+      if (!activeLightbox) return;
+      if (e.key === "Escape") setActiveLightbox(null);
       if (e.key === "ArrowLeft") {
-        setLightboxIndex((prev) =>
-          prev !== null ? (prev - 1 + project.gallery.length) % project.gallery.length : null
+        setActiveLightbox((prev) =>
+          prev
+            ? {
+                ...prev,
+                index: (prev.index - 1 + prev.items.length) % prev.items.length,
+              }
+            : null
         );
       }
       if (e.key === "ArrowRight") {
-        setLightboxIndex((prev) =>
-          prev !== null ? (prev + 1) % project.gallery.length : null
+        setActiveLightbox((prev) =>
+          prev
+            ? {
+                ...prev,
+                index: (prev.index + 1) % prev.items.length,
+              }
+            : null
         );
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxIndex, project.gallery.length]);
+  }, [activeLightbox]);
 
   return (
     <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden pt-20 sm:pt-28 transition-colors duration-500 ease-in-out">
@@ -115,6 +164,154 @@ export function UniversalProjectDetail({
               {project.summary}
             </p>
           </motion.div>
+
+          {/* Visual Project Progress Tracker / Timeline */}
+          {project.progressTracker && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.08 }}
+              className="mb-10 p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-white/90 dark:bg-slate-900/75 backdrop-blur-xl border border-slate-200/90 dark:border-slate-800 shadow-lg shadow-cyan-500/5"
+            >
+              {/* Top tracker bar */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-200/80 dark:border-slate-800/80">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0">
+                    <Activity className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h2 className="text-xs font-mono font-bold tracking-wider text-slate-900 dark:text-slate-100 uppercase">
+                      {project.progressTracker.title || "Project Progression Timeline"}
+                    </h2>
+                    <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                      Vehicle research, aerodynamic analysis & flight testing roadmap
+                    </p>
+                  </div>
+                </div>
+
+                {/* Current Stage Badge */}
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 dark:bg-cyan-950/50 border border-cyan-500/30 text-xs font-mono font-semibold text-cyan-700 dark:text-cyan-300 shrink-0 self-start sm:self-auto shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                  </span>
+                  <span>{project.progressTracker.currentStepLabel}</span>
+                </div>
+              </div>
+
+              {/* Progress Bar Track (Segmented Lifecycle Rail) */}
+              <div className="mb-6 space-y-2">
+                <div className="grid grid-cols-4 gap-2.5 h-1.5">
+                  {/* Phase 1 Completed */}
+                  <div className="h-full rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/30" />
+                  {/* Phase 2 Active Pulse */}
+                  <div className="relative h-full rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.6)] animate-pulse" />
+                  {/* Phase 3 Upcoming */}
+                  <div className="h-full rounded-full bg-slate-200 dark:bg-slate-800" />
+                  {/* Phase 4 Upcoming */}
+                  <div className="h-full rounded-full bg-slate-200 dark:bg-slate-800" />
+                </div>
+              </div>
+
+              {/* 4 Clean Phase Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-5 items-stretch">
+                {project.progressTracker.steps.map((st, sIdx) => {
+                  const isCompleted = st.status === "completed";
+                  const isCurrent = st.status === "current";
+
+                  return (
+                    <div
+                      key={sIdx}
+                      className={`relative flex flex-col justify-between p-4 sm:p-5 rounded-2xl transition-all duration-300 h-full ${
+                        isCurrent
+                          ? "bg-cyan-50/70 dark:bg-cyan-950/30 border-2 border-cyan-500 dark:border-cyan-400 shadow-lg shadow-cyan-500/10 ring-1 ring-cyan-500/30"
+                          : isCompleted
+                          ? "bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/90 shadow-sm"
+                          : "bg-slate-50/40 dark:bg-slate-900/25 border border-slate-200/60 dark:border-slate-800/50 opacity-70"
+                      }`}
+                    >
+                      <div>
+                        {/* Top Indicator Row */}
+                        <div className="flex items-center justify-between gap-2 mb-3">
+                          <span
+                            className={`text-xs font-mono font-bold tracking-wider ${
+                              isCurrent
+                                ? "text-cyan-700 dark:text-cyan-300"
+                                : isCompleted
+                                ? "text-emerald-600 dark:text-emerald-400"
+                                : "text-slate-400 dark:text-slate-500"
+                            }`}
+                          >
+                            PHASE {st.step}
+                          </span>
+
+                          <span
+                            className={`inline-flex items-center gap-1.5 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border uppercase tracking-wider shrink-0 ${
+                              isCompleted
+                                ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-800"
+                                : isCurrent
+                                ? "bg-cyan-100 dark:bg-cyan-900/60 text-cyan-800 dark:text-cyan-200 border-cyan-400/60 shadow-sm"
+                                : "bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-700"
+                            }`}
+                          >
+                            {isCompleted ? (
+                              <>
+                                <Check className="w-3 h-3 stroke-[3]" />
+                                <span>COMPLETED</span>
+                              </>
+                            ) : isCurrent ? (
+                              <>
+                                <span className="relative flex h-1.5 w-1.5">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-500"></span>
+                                </span>
+                                <span>CURRENT STAGE</span>
+                              </>
+                            ) : (
+                              <span>{st.badge || "UPCOMING"}</span>
+                            )}
+                          </span>
+                        </div>
+
+                        {/* Step Title */}
+                        <h3
+                          className={`text-sm font-bold font-mono tracking-tight mb-2 ${
+                            isCurrent
+                              ? "text-cyan-900 dark:text-cyan-100"
+                              : isCompleted
+                              ? "text-slate-900 dark:text-slate-100"
+                              : "text-slate-600 dark:text-slate-400"
+                          }`}
+                        >
+                          {st.title}
+                        </h3>
+
+                        {/* Step Description */}
+                        {st.shortDesc && (
+                          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                            {st.shortDesc}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Card Bottom Progress Bar Accent */}
+                      <div className="pt-4 mt-auto">
+                        <div
+                          className={`h-1 w-full rounded-full ${
+                            isCompleted
+                              ? "bg-emerald-500"
+                              : isCurrent
+                              ? "bg-gradient-to-r from-cyan-500 to-blue-500 shadow-[0_0_8px_rgba(6,182,212,0.6)] animate-pulse"
+                              : "bg-slate-200 dark:bg-slate-800"
+                          }`}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
 
           {/* ONE Massive Full-Width Hero Asset with Parallax Scroll */}
           <motion.div
@@ -376,7 +573,158 @@ export function UniversalProjectDetail({
         </div>
 
         {/* ========================================================================= */}
-        {/* 3. SINGLE MIXED-MEDIA MASONRY BENTO GRID (Images, Videos & 3D Models)    */}
+        {/* 3. TEST CFD RESULTS SECTION                                               */}
+        {/* ========================================================================= */}
+        {project.cfdResults && (
+          <section className="mb-20 sm:mb-28 space-y-6">
+            {/* Section Header */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-slate-200/80 dark:border-slate-800/80">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold tracking-wider text-cyan-600 dark:text-cyan-400 uppercase mb-2">
+                  <span className="flex items-center gap-1.5">
+                    <Wind className="w-4 h-4" />
+                    <span>AERODYNAMIC FLOW SIMULATION // ANSYS FLUENT 2025 R1</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-cyan-500/25">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
+                    <span>V∞ = 20 m/s</span>
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+                  {project.cfdResults.title}
+                </h2>
+                {project.cfdResults.subtitle && (
+                  <p className="text-sm text-slate-600 dark:text-slate-400 font-mono mt-1">
+                    {project.cfdResults.subtitle}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col sm:items-end gap-1.5 shrink-0">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">
+                  <span className="text-slate-400 dark:text-slate-500">Test Airspeed:</span>
+                  <span className="font-bold text-cyan-600 dark:text-cyan-400">20 m/s</span>
+                  <span className="text-[10px] text-slate-400">(~72 km/h)</span>
+                </div>
+                <span className="text-xs font-mono text-slate-500 hidden sm:inline">
+                  Click any contour to inspect in cinematic lightbox
+                </span>
+              </div>
+            </div>
+
+            {/* Prominent Disclaimer */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4 }}
+              className="relative overflow-hidden rounded-2xl p-4 sm:p-5 bg-gradient-to-r from-amber-500/15 via-amber-500/10 to-orange-500/15 dark:from-amber-500/20 dark:via-amber-500/10 dark:to-orange-500/20 border-2 border-amber-500/40 dark:border-amber-400/50 shadow-md shadow-amber-500/10"
+            >
+              <div className="flex items-start gap-3.5 sm:gap-4">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-700 dark:text-amber-300 shrink-0">
+                  <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div className="flex-1">
+                  <span className="inline-block text-[11px] font-mono font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 mb-1">
+                    ENGINEERING RESEARCH DISCLAIMER
+                  </span>
+                  <p className="text-sm sm:text-base font-semibold text-amber-950 dark:text-amber-100 leading-snug">
+                    {project.cfdResults.disclaimer}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 4 CFD Results Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-2">
+              {project.cfdResults.items.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.45, delay: idx * 0.08 }}
+                  className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 dark:hover:border-cyan-400/50 shadow-lg hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col justify-between"
+                >
+                  {/* Card Header with HUD info - Fixed height to guarantee perfect alignment */}
+                  <div className="h-11 flex items-center justify-between px-4 sm:px-5 bg-slate-100/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 text-xs font-mono z-10 shrink-0 gap-3">
+                    <div className="flex items-center gap-2 min-w-0 overflow-hidden">
+                      <span className="px-2.5 py-0.5 rounded-md font-bold bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-cyan-500/20 whitespace-nowrap shrink-0">
+                        {item.aoa || "CFD SWEEP"}
+                      </span>
+                      {item.tag && (
+                        <span className="text-slate-500 dark:text-slate-400 truncate text-[11px]">
+                          · {item.tag}
+                        </span>
+                      )}
+                    </div>
+
+                    <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap shrink-0">
+                      V∞ = 20 m/s
+                    </span>
+                  </div>
+
+                  {/* Image Display Container with Lightbox Trigger */}
+                  <div
+                    onClick={() => openCfdLightbox(idx)}
+                    className="relative w-full aspect-[16/10] bg-slate-950 flex items-center justify-center overflow-hidden cursor-pointer group/img"
+                  >
+                    <img
+                      src={getAssetPath(item.src)}
+                      alt={item.fileName}
+                      loading="lazy"
+                      className="w-full h-full object-contain p-2 group-hover/img:scale-[1.03] transition-transform duration-500 ease-out"
+                    />
+
+                    {/* Expand overlay button */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openCfdLightbox(idx);
+                      }}
+                      className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-white/85 dark:bg-slate-900/80 hover:bg-white dark:hover:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-md transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                      title="Inspect high-resolution simulation in lightbox"
+                      aria-label={`Expand ${item.fileName} in lightbox`}
+                    >
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  {/* Card Content & Description */}
+                  <div className="p-4 sm:p-5 bg-white dark:bg-slate-950 flex flex-col justify-between flex-1">
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <h3 className="font-mono font-bold text-sm sm:text-base text-slate-900 dark:text-white truncate">
+                          {item.title}
+                        </h3>
+                        <button
+                          type="button"
+                          onClick={() => openCfdLightbox(idx)}
+                          className="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 font-semibold shrink-0 hover:underline inline-flex items-center gap-1"
+                        >
+                          <span>Expand</span>
+                          <span>↗</span>
+                        </button>
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans min-h-[42px]">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-auto">
+                      <span className="truncate">File: {item.fileName}</span>
+                      <span className="text-cyan-600 dark:text-cyan-400 shrink-0 font-medium ml-2">High-Fidelity Contour</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ========================================================================= */}
+        {/* 4. SINGLE MIXED-MEDIA MASONRY BENTO GRID (Images, Videos & 3D Models)    */}
         {/* ========================================================================= */}
         {project.gallery && project.gallery.length > 0 && (
           <section className="mb-20 sm:mb-28 space-y-6">
@@ -410,7 +758,7 @@ export function UniversalProjectDetail({
                     {/* Expand Button */}
                     <button
                       type="button"
-                      onClick={() => setLightboxIndex(idx)}
+                      onClick={() => openGalleryLightbox(idx)}
                       className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-white/85 dark:bg-slate-900/70 hover:bg-white dark:hover:bg-slate-900 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-300 flex items-center justify-center backdrop-blur-md shadow-md transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
                       title="Open in Cinematic Lightbox"
                       aria-label="Expand in full-screen lightbox"
@@ -437,7 +785,7 @@ export function UniversalProjectDetail({
                         </div>
                       ) : isVideo ? (
                         <div
-                          onClick={() => setLightboxIndex(idx)}
+                          onClick={() => openGalleryLightbox(idx)}
                           className="w-full h-full cursor-pointer relative group/vid overflow-hidden"
                         >
                           <video
@@ -451,7 +799,7 @@ export function UniversalProjectDetail({
                         </div>
                       ) : (
                         <div
-                          onClick={() => setLightboxIndex(idx)}
+                          onClick={() => openGalleryLightbox(idx)}
                           className="w-full h-full cursor-pointer relative group/img overflow-hidden flex items-center justify-center"
                         >
                           <img
@@ -467,7 +815,7 @@ export function UniversalProjectDetail({
                     {/* Caption Bar */}
                     {!is3D && (
                       <div
-                        onClick={() => setLightboxIndex(idx)}
+                        onClick={() => openGalleryLightbox(idx)}
                         className="p-3 sm:p-4 bg-slate-100/90 dark:bg-slate-950/90 border-t border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-slate-300 flex items-center justify-between cursor-pointer"
                       >
                         <span className="truncate font-semibold">{media.caption}</span>
@@ -484,7 +832,7 @@ export function UniversalProjectDetail({
         )}
 
         {/* ========================================================================= */}
-        {/* 4. BOTTOM PAGINATION: Prev & Next Projects                                */}
+        {/* 5. BOTTOM PAGINATION: Prev & Next Projects                                */}
         {/* ========================================================================= */}
         <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs sm:text-sm">
           <Link
@@ -504,10 +852,10 @@ export function UniversalProjectDetail({
       </main>
 
       {/* ========================================================================= */}
-      {/* 5. FULLSCREEN CINEMATIC LIGHTBOX MODAL                                   */}
+      {/* 6. FULLSCREEN CINEMATIC LIGHTBOX MODAL                                   */}
       {/* ========================================================================= */}
       <AnimatePresence>
-        {lightboxIndex !== null && project.gallery && project.gallery[lightboxIndex] && (
+        {activeLightbox !== null && activeLightbox.items[activeLightbox.index] && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -520,13 +868,14 @@ export function UniversalProjectDetail({
                 <span className="text-cyan-400 font-bold">{project.title}</span>
                 <span className="text-slate-600 dark:text-slate-500">|</span>
                 <span className="text-slate-400">
-                  Exhibit {lightboxIndex + 1} of {project.gallery.length}
+                  {activeLightbox.items[activeLightbox.index].category || "Exhibit"} (
+                  {activeLightbox.index + 1} of {activeLightbox.items.length})
                 </span>
               </div>
 
               <button
                 type="button"
-                onClick={() => setLightboxIndex(null)}
+                onClick={() => setActiveLightbox(null)}
                 className="w-10 h-10 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95"
                 aria-label="Close Lightbox (Esc)"
               >
@@ -537,31 +886,31 @@ export function UniversalProjectDetail({
             {/* Central Stage */}
             <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
               <AnimatePresence mode="wait">
-                {project.gallery[lightboxIndex].type === "3d" ? (
+                {activeLightbox.items[activeLightbox.index].type === "3d" ? (
                   <motion.div
-                    key={`lb-3d-${project.gallery[lightboxIndex].src}`}
+                    key={`lb-3d-${activeLightbox.items[activeLightbox.index].src}`}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="w-full max-w-4xl h-[70vh] rounded-3xl overflow-hidden glass-card border border-cyan-500/30"
                   >
                     <ModelViewer3D
-                      src={project.gallery[lightboxIndex].src}
-                      alt={project.gallery[lightboxIndex].caption}
-                      hudLabel={project.gallery[lightboxIndex].caption.toUpperCase()}
+                      src={activeLightbox.items[activeLightbox.index].src}
+                      alt={activeLightbox.items[activeLightbox.index].caption}
+                      hudLabel={activeLightbox.items[activeLightbox.index].caption.toUpperCase()}
                       height="100%"
                     />
                   </motion.div>
-                ) : project.gallery[lightboxIndex].type === "video" ? (
+                ) : activeLightbox.items[activeLightbox.index].type === "video" ? (
                   <motion.div
-                    key={`lb-vid-${project.gallery[lightboxIndex].src}`}
+                    key={`lb-vid-${activeLightbox.items[activeLightbox.index].src}`}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="max-w-5xl max-h-[75vh] flex items-center justify-center"
                   >
                     <video
-                      src={getAssetPath(project.gallery[lightboxIndex].src)}
+                      src={getAssetPath(activeLightbox.items[activeLightbox.index].src)}
                       controls
                       autoPlay
                       loop
@@ -571,15 +920,15 @@ export function UniversalProjectDetail({
                   </motion.div>
                 ) : (
                   <motion.div
-                    key={`lb-img-${project.gallery[lightboxIndex].src}`}
+                    key={`lb-img-${activeLightbox.items[activeLightbox.index].src}`}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="max-w-6xl max-h-[75vh] flex items-center justify-center p-2"
                   >
                     <img
-                      src={getAssetPath(project.gallery[lightboxIndex].src)}
-                      alt={project.gallery[lightboxIndex].caption}
+                      src={getAssetPath(activeLightbox.items[activeLightbox.index].src)}
+                      alt={activeLightbox.items[activeLightbox.index].caption}
                       className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-slate-800"
                     />
                   </motion.div>
@@ -587,14 +936,21 @@ export function UniversalProjectDetail({
               </AnimatePresence>
 
               {/* Prev / Next Buttons */}
-              {project.gallery.length > 1 && (
+              {activeLightbox.items.length > 1 && (
                 <>
                   <button
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setLightboxIndex(
-                        (prev) => (prev! - 1 + project.gallery.length) % project.gallery.length
+                      setActiveLightbox((prev) =>
+                        prev
+                          ? {
+                              ...prev,
+                              index:
+                                (prev.index - 1 + prev.items.length) %
+                                prev.items.length,
+                            }
+                          : null
                       );
                     }}
                     className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-slate-700 text-white flex items-center justify-center backdrop-blur-md shadow-2xl transition-all hover:scale-105"
@@ -607,7 +963,14 @@ export function UniversalProjectDetail({
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      setLightboxIndex((prev) => (prev! + 1) % project.gallery.length);
+                      setActiveLightbox((prev) =>
+                        prev
+                          ? {
+                              ...prev,
+                              index: (prev.index + 1) % prev.items.length,
+                            }
+                          : null
+                      );
                     }}
                     className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-900/80 hover:bg-slate-900 border border-slate-700 text-white flex items-center justify-center backdrop-blur-md shadow-2xl transition-all hover:scale-105"
                     aria-label="Next exhibit"
@@ -622,23 +985,27 @@ export function UniversalProjectDetail({
             <div className="pt-4 border-t border-slate-800 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-2 max-w-6xl mx-auto w-full">
               <div>
                 <h4 className="text-sm sm:text-base font-bold font-mono text-slate-200">
-                  {project.gallery[lightboxIndex].caption}
+                  {activeLightbox.items[activeLightbox.index].caption}
                 </h4>
-                {project.gallery[lightboxIndex].desc && (
+                {activeLightbox.items[activeLightbox.index].desc && (
                   <p className="text-xs sm:text-sm text-slate-400 max-w-3xl mt-0.5">
-                    {project.gallery[lightboxIndex].desc}
+                    {activeLightbox.items[activeLightbox.index].desc}
                   </p>
                 )}
               </div>
 
               {/* Thumbnail strip */}
               <div className="flex items-center gap-1.5 overflow-x-auto max-w-xs shrink-0">
-                {project.gallery.map((g, gIdx) => (
+                {activeLightbox.items.map((g, gIdx) => (
                   <button
                     key={gIdx}
-                    onClick={() => setLightboxIndex(gIdx)}
+                    onClick={() =>
+                      setActiveLightbox((prev) =>
+                        prev ? { ...prev, index: gIdx } : null
+                      )
+                    }
                     className={`w-10 h-7 rounded border transition-all overflow-hidden ${
-                      gIdx === lightboxIndex
+                      gIdx === activeLightbox.index
                         ? "border-cyan-400 scale-110"
                         : "border-slate-700 opacity-50 hover:opacity-100"
                     }`}
