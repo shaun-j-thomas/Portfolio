@@ -20,6 +20,7 @@ import {
   Activity,
   AlertTriangle,
   Wind,
+  Clock,
 } from "lucide-react";
 import { ProjectData, ProjectMediaItem } from "@/data/projects";
 import { portfolioData } from "@/data/portfolioData";
@@ -150,6 +151,12 @@ export function UniversalProjectDetail({
               <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shadow-sm">
                 {project.statusBadge}
               </span>
+              {project.readTime && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono text-slate-600 dark:text-slate-400 bg-slate-200/60 dark:bg-slate-800/60 border border-slate-300/60 dark:border-slate-700/60 shadow-sm">
+                  <Clock className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                  <span>{project.readTime}</span>
+                </span>
+              )}
             </div>
 
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-3">

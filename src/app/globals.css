@@ -142,3 +142,57 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ========================================================================= */
+/* Print and PDF Media Styles                                                */
+/* ========================================================================= */
+@media print {
+  /* Hide floating header, navbars, theme toggle, and interactive buttons */
+  nav,
+  header.fixed,
+  .print\:hidden,
+  .glass-pill,
+  button,
+  footer,
+  aside,
+  [data-theme-toggle] {
+    display: none !important;
+  }
+
+  /* Force white background and high contrast text */
+  html,
+  body,
+  main,
+  div,
+  section,
+  article,
+  header {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    padding-top: 0 !important;
+  }
+
+  /* Prevent page breaks inside cards, tables, figures */
+  figure,
+  table,
+  tr,
+  section,
+  .rounded-lg,
+  .rounded,
+  svg {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  figcaption {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  /* Ensure borders and table lines remain crisp in monochrome/color print */
+  table, th, td, div {
+    border-color: #cbd5e1 !important;
+  }
+}

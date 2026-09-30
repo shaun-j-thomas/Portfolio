@@ -83,11 +83,178 @@ export interface ProjectData {
   quickStats: { label: string; value: string }[];
   specs?: { label: string; value: string }[];
   gallery: ProjectMediaItem[];
+  readTime?: string;
   externalUrl?: string;
   externalLabel?: string;
 }
 
 export const projectsData: ProjectData[] = [
+  {
+    slug: "supercar-spoiler-cfd",
+    title: "Supercar Rear Spoiler Aerodynamics",
+    subtitle: "2D External Flow CFD Study of Spoiler Deployment Angles at 80 m/s",
+    year: "2026",
+    category: "Automotive Aerodynamics & CFD",
+    statusBadge: "ANSYS FLUENT STUDY",
+    readTime: "6 min read",
+    summary:
+      "Comprehensive 2D computational fluid dynamics investigation evaluating vehicle downforce generation, flow separation suppression, and drag penalties across deployment angles (190°, 175°, 150°) at 80 m/s (288 km/h).",
+    heroAsset: {
+      type: "image",
+      src: "/Assets/Pathlines150.jpg",
+      caption: "ANSYS Fluent 150° Particle Streamlines & Wake Trajectory (V∞ = 80 m/s)",
+      poster: "/Assets/Pathlines150_thumb.jpg",
+    },
+    progressTracker: {
+      title: "CFD SIMULATION LIFECYCLE & AERODYNAMIC OPTIMIZATION ROADMAP",
+      currentStepLabel: "Completed: Full 2D CFD Investigation & Diminishing Returns Study",
+      steps: [
+        {
+          step: "01",
+          title: "Baseline Geometry & Farfield Domain",
+          shortDesc: "Structured 2D vehicle boundary in a 10x body length domain at 80 m/s inlet velocity.",
+          status: "completed",
+          badge: "Completed",
+        },
+        {
+          step: "02",
+          title: "Boundary Layer Meshing (y+ ≈ 1)",
+          shortDesc: "Prism layer inflation capturing turbulent shear layer separation over the rear decklid.",
+          status: "completed",
+          badge: "Completed",
+        },
+        {
+          step: "03",
+          title: "Angle Sweeps (190°, 175°, 150°)",
+          shortDesc: "RANS Realizable k-ε solver iterations measuring lift reversal and pressure drag growth.",
+          status: "completed",
+          badge: "Completed",
+        },
+        {
+          step: "04",
+          title: "Diminishing Returns & Marginal Drag",
+          shortDesc: "Quantified marginal return dropping from 17.96 N to 9.63 N downforce per unit drag.",
+          status: "completed",
+          badge: "Completed",
+        },
+      ],
+    },
+    content: [
+      {
+        heading: "Research Background & Problem Statement",
+        paragraphs: [
+          "At high velocities exceeding 80 m/s (288 km/h), baseline supercar body geometries often suffer from significant vehicle aerodynamic lift due to roofline curvature and flow acceleration over the fastback canopy. This induces rear tire unloading, directional instability, and severe high-speed yaw sensitivity.",
+          "This project investigates the deployment kinematics of an active rear airfoil, analyzing how three distinct deployment angles (190° retracted/mild, 175° intermediate downforce, and 150° high-downforce) transform flow separation, surface static pressure differentials, and total force vectors.",
+        ],
+      },
+      {
+        heading: "CFD Methodology & Numerical Setup",
+        paragraphs: [
+          "Simulations were conducted using ANSYS Fluent 2025 R1 using a steady-state 2D Reynolds-Averaged Navier-Stokes (RANS) formulation with the Realizable k-ε turbulence model and Enhanced Wall Treatment. Inflation layers maintained y+ ≈ 1.0 along all vehicle wall boundaries.",
+          "Inlet velocity was fixed at 80.0 m/s with 1% freestream turbulence intensity. Pressure-velocity coupling was resolved using the SIMPLE scheme with second-order upwind spatial discretization for momentum, turbulent kinetic energy, and dissipation rates.",
+        ],
+      },
+      {
+        heading: "Aerodynamic Forces & Diminishing Returns",
+        paragraphs: [
+          "The baseline vehicle generates 1,416 N of upward vertical lift with 565 N of drag. Introducing the 190° spoiler converts lift into +550 N of net downforce (+1,966 N net shift) at the cost of only +109 N drag, yielding 17.96 N of downforce per Newton of added drag.",
+          "Steepening the angle to 150° delivers a peak downforce of +8,588 N (L/D = 6.03) with 1,425 N of drag (+152% vs baseline). However, the marginal return degrades to 9.63 N/N between 175° and 150°, illustrating classic diminishing aerodynamic returns.",
+        ],
+      },
+    ],
+    breakdownTitle: "AERODYNAMIC SIMULATION PHASES & CORE MILESTONES",
+    engineeringBreakdown: [
+      {
+        id: 1,
+        title: "Baseline Geometry & Domain Discretization",
+        role: "LED",
+        icon: "DraftingCompass",
+        iconName: "DraftingCompass",
+        description:
+          "Defined 2D domain boundaries extending 4 body lengths upstream and 8 lengths downstream with velocity inlet (80 m/s) and pressure outlet (0 Pa gauge).",
+      },
+      {
+        id: 2,
+        title: "Boundary Layer Inflation & Mesh Independence",
+        role: "LED",
+        icon: "Activity",
+        iconName: "Activity",
+        description:
+          "Constructed dense prism inflation layers targeting y+ ≈ 1.0 across the spoiler leading edge and vehicle underbody, validating grid convergence across 3 mesh densities.",
+      },
+      {
+        id: 3,
+        title: "Turbulence Modeling & RANS Convergence",
+        role: "LED",
+        icon: "Layers",
+        iconName: "Layers",
+        description:
+          "Resolved turbulent kinetic energy and dissipation via Realizable k-ε model in ANSYS Fluent until residual convergence < 10⁻⁵ and force monitors plateaued.",
+      },
+      {
+        id: 4,
+        title: "Diminishing Returns & Marginal Drag Trade-off",
+        role: "LED",
+        icon: "ShieldCheck",
+        iconName: "ShieldCheck",
+        description:
+          "Calculated marginal efficiency metrics demonstrating the drop in downforce gain per unit drag from 17.96 N/N down to 9.63 N/N as the angle steepens to 150°.",
+      },
+    ],
+    techStack: [
+      "ANSYS Fluent 2025 R1",
+      "Realizable k-ε RANS",
+      "Enhanced Wall Treatment (y+ ≈ 1)",
+      "2D External Aerodynamics",
+      "Automotive Active Aero",
+      "Aerodynamic Efficiency (L/D)",
+      "MATLAB Analysis",
+    ],
+    quickStats: [
+      { label: "Baseline Lift", value: "-1,416 N (Upward)" },
+      { label: "Peak Downforce (150°)", value: "+8,588 N" },
+      { label: "Best L/D Ratio", value: "6.03 (at 150°)" },
+      { label: "Drag Increase (150°)", value: "+152% vs Baseline" },
+    ],
+    specs: [
+      { label: "Freestream Airspeed", value: "80 m/s (~288 km/h)" },
+      { label: "Turbulence Model", value: "Realizable k-ε (Enhanced Wall)" },
+      { label: "Near-Wall Mesh", value: "y+ ≈ 1.0 (Inflation Layers)" },
+      { label: "Baseline Drag Force", value: "565 N" },
+      { label: "150° Total Drag Force", value: "1,425 N (+152%)" },
+      { label: "Best Return / Unit Drag", value: "17.96 N/N (at 190° Step)" },
+    ],
+    gallery: [
+      {
+        type: "image",
+        src: "/Assets/Pathlines150.jpg",
+        caption: "ANSYS Fluent 150° Particle Streamlines & Wake Recirculation",
+        desc: "Particle ID streamline tracking showing vortex core development and high-energy wake deflection at 80 m/s.",
+        colSpan: "col-span-12 md:col-span-6",
+      },
+      {
+        type: "image",
+        src: "/Assets/VelocityContour150.jpg",
+        caption: "150° Peak Downforce Velocity Field",
+        desc: "Velocity magnitude contour exhibiting peak vertical flow momentum deflection (+8,588 N downforce).",
+        colSpan: "col-span-12 md:col-span-6",
+      },
+      {
+        type: "image",
+        src: "/Assets/StaticPressureContour150.jpg",
+        caption: "150° Static Pressure Distribution",
+        desc: "Intense stagnation zone across the leading spoiler face generating maximum downward load.",
+        colSpan: "col-span-12 md:col-span-6",
+      },
+      {
+        type: "image",
+        src: "/Assets/VelocityContour.jpg",
+        caption: "Baseline Velocity Contour (Unspoilered)",
+        desc: "Severe flow detachment and roofline recirculation causing 1,416 N upward rear-axle lift.",
+        colSpan: "col-span-12 md:col-span-6",
+      },
+    ],
+  },
   {
     slug: "bwb-uav",
     title: "Blended Wing Body UAV",
@@ -95,6 +262,7 @@ export const projectsData: ProjectData[] = [
     year: "2026 – Present",
     category: "Autonomous Aerospace Vehicle",
     statusBadge: "ACTIVE RESEARCH",
+    readTime: "7 min read",
     summary:
       "Investigating the interplay between winglet cant angles, lateral-directional stability derivatives (Cl_β, Cn_β), and induced drag penalties on a tailless Blended Wing Body aircraft configuration.",
     heroAsset: {
@@ -295,6 +463,7 @@ export const projectsData: ProjectData[] = [
     year: "2025 – 2026",
     category: "Supersonic Rocketry Vehicle",
     statusBadge: "Launched",
+    readTime: "6 min read",
     summary:
       "Engineered the high-strength parachute deployment interface and structural recovery bulkheads for a supersonic model rocket that achieved 24,528 ft at the 2026 Spaceport America IREC competition.",
     heroAsset: {
@@ -446,6 +615,7 @@ export const projectsData: ProjectData[] = [
     year: "2023 – 2025",
     category: "High-Power Rocketry",
     statusBadge: "COMPLETED",
+    readTime: "5 min read",
     summary:
       "Led a 4-engineer airframe subteam to design, CNC-machine, and ground-test a high-power model rocket targeting 10,000 ft, establishing core DFM and pyrotechnic test procedures.",
     heroAsset: {
