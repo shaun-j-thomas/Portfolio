@@ -134,10 +134,17 @@ export function ProjectsSection() {
                     <div
                       className={`flex items-center justify-between text-[11px] font-mono mb-2 ${badgeColor}`}
                     >
-                      <span className="uppercase font-semibold tracking-wider truncate">
-                        {project.category}
-                      </span>
-                      <span className="text-slate-400 text-[10px]">
+                      <div className="flex items-center gap-1.5 truncate">
+                        <span className="uppercase font-semibold tracking-wider truncate">
+                          {project.category}
+                        </span>
+                        {project.statusBadge === "Under revision" && (
+                          <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 shrink-0">
+                            Under revision
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-slate-400 text-[10px] shrink-0">
                         {project.year}
                       </span>
                     </div>

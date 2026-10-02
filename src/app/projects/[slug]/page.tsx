@@ -24,13 +24,17 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   if (params.slug === "supercar-spoiler-cfd") {
     const title = "Aerodynamic Analysis of a Supercar Rear Spoiler | CFD Study | Shaun John Thomas";
     const description =
-      "2D computational fluid dynamics study in ANSYS Fluent investigating active rear spoiler deployment angles (190°, 175°, 150°) at 80 m/s. Lift neutralization, L/D ratios, and marginal drag efficiency.";
+      "2D computational fluid dynamics study in ANSYS Fluent investigating active rear spoiler deployment angles. Method and numerical setup under revision.";
     const url = `https://shaun-j-thomas.github.io/Portfolio/projects/${params.slug}/`;
-    const ogImage = "https://shaun-j-thomas.github.io/Portfolio/Assets/Pathlines150.jpg";
+    const ogImage = "https://shaun-j-thomas.github.io/Portfolio/Assets/og-image.jpg";
 
     return {
       title,
       description,
+      robots: {
+        index: false,
+        follow: true,
+      },
       alternates: {
         canonical: url,
       },
@@ -44,7 +48,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
             url: ogImage,
             width: 1200,
             height: 630,
-            alt: "ANSYS Fluent 2D CFD Particle Pathlines for Supercar Active Rear Spoiler at 150 degrees",
+            alt: "Shaun John Thomas Portfolio",
           },
         ],
       },
@@ -97,16 +101,16 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
       : projectsData[0];
 
   if (params.slug === "supercar-spoiler-cfd") {
-    // Structured JSON-LD TechArticle schema
+    // Structured JSON-LD TechArticle schema without result values
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "TechArticle",
       headline: "Aerodynamic Analysis of a Supercar Rear Spoiler",
       description:
-        "2D external flow computational fluid dynamics (CFD) investigation evaluating active rear spoiler deployment angles at 80 m/s.",
-      image: "https://shaun-j-thomas.github.io/Portfolio/Assets/Pathlines150.jpg",
+        "2D external flow computational fluid dynamics (CFD) investigation evaluating active rear spoiler deployment angles in ANSYS Fluent.",
+      image: "https://shaun-j-thomas.github.io/Portfolio/Assets/og-image.jpg",
       datePublished: "2026-09-30",
-      dateModified: "2026-09-30",
+      dateModified: "2026-10-02",
       author: {
         "@type": "Person",
         name: "Shaun John Thomas",

@@ -333,66 +333,52 @@ export const portfolioData = {
       title: "Supercar Rear Spoiler Aerodynamics",
       subtitle: "2D External Flow CFD Study of Spoiler Deployment Angles at 80 m/s",
       category: "Automotive Aerodynamics & CFD",
-      status: "Completed",
-      statusBadge: "ANSYS Fluent Study · 80 m/s",
+      status: "Under revision",
+      statusBadge: "Under revision",
       dateRange: "2026",
       leadParagraph:
-        "Comprehensive 2D computational fluid dynamics investigation evaluating vehicle downforce generation, flow separation suppression, and drag penalties across deployment angles (190°, 175°, 150°) at 80 m/s (288 km/h).",
+        "2D CFD study of rear spoiler deployment angle on a supercar profile, ANSYS Fluent. Results under revision.",
       overview:
-        "Investigated the deployment kinematics of an active rear airfoil on a high-performance supercar geometry in ANSYS Fluent. Evaluated how progressive angles eliminate high-speed vehicle lift (-1,416 N) and generate up to +8,588 N of downforce with an optimal L/D of 6.03.",
-      quickStats: [
-        { label: "Baseline Lift", value: "-1,416 N (Upward)" },
-        { label: "Peak Downforce", value: "+8,588 N (150°)" },
-        { label: "Best L/D Ratio", value: "6.03 (at 150°)" },
-        { label: "Drag Increase", value: "+152% (150° vs Base)" },
-      ],
+        "2D CFD study of rear spoiler deployment angle on a supercar profile, ANSYS Fluent. Results under revision.",
+      quickStats: [],
       methodology: [
         {
           step: "01",
-          title: "Baseline Domain & Farfield Setup",
+          title: "Setup Review & Domain Diagnosis",
           role: "Led",
           description:
-            "Modeled 2D flow symmetry in a 10x body length domain at 80 m/s freestream velocity with atmospheric pressure outlet.",
+            "Analyzed first-round boundary conditions, identifying stationary ground wall effects and domain blockage constraints.",
         },
         {
           step: "02",
-          title: "Boundary Layer Inflation (y+ ≈ 1)",
+          title: "Moving Ground & Expanded Domain Setup",
           role: "Led",
           description:
-            "Constructed prism layers to capture turbulent separation and recirculation bubbles over the vehicle decklid.",
+            "Implementing moving road boundary conditions at freestream speed (80.0 m/s) with enlarged farfield boundaries.",
         },
         {
           step: "03",
-          title: "Angle Sweeps (190°, 175°, 150°)",
+          title: "Mesh Independence Verification",
           role: "Led",
           description:
-            "Ran RANS Realizable k-ε solver iterations measuring lift reversal into peak downforce and pressure drag growth.",
+            "Setting up systematic grid convergence index verification with explicit near-wall y+ tracking.",
         },
         {
           step: "04",
-          title: "Diminishing Returns & Marginal Drag",
+          title: "Isolated Force Reporting & Re-run",
           role: "Led",
           description:
-            "Quantified marginal return dropping from 17.96 N to 9.63 N downforce per unit drag as the angle steepens.",
+            "Configuring independent spoiler wall force reporting to evaluate aerodynamic forces across all configurations.",
         },
       ],
       tags: [
         "ANSYS Fluent",
-        "RANS Realizable k-ε",
+        "SST k-omega",
         "Automotive Aerodynamics",
         "Active Aerodynamics",
-        "Downforce Optimization",
-        "Drag Penalty Analysis",
       ],
-      featuredImage: "/Assets/Pathlines150.jpg",
-      gallery: [
-        {
-          type: "image",
-          src: "/Assets/Pathlines150.jpg",
-          caption: "ANSYS Fluent 150° Particle Streamlines",
-          desc: "Particle ID streamline tracking showing vortex core development and high-energy wake deflection at 80 m/s.",
-        },
-      ],
+      featuredImage: "/Assets/og-image.jpg",
+      gallery: [],
       links: {},
     },
     {

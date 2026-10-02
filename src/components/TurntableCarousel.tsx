@@ -295,12 +295,19 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
 
                   {/* Category & Status */}
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span
-                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider border ${badgeColor}`}
-                    >
-                      {project.category}
-                    </span>
-                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                    <div className="flex items-center gap-1.5 truncate">
+                      <span
+                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider border ${badgeColor}`}
+                      >
+                        {project.category}
+                      </span>
+                      {project.statusBadge === "Under revision" && (
+                        <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 shrink-0">
+                          Under revision
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 shrink-0">
                       {project.year}
                     </span>
                   </div>
@@ -320,10 +327,20 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
                 <div className="pt-3 sm:pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between gap-3">
                   <div className="flex flex-col min-w-0 pr-1">
                     <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate">
-                      {project.quickStats[0]?.label || "METRIC"}
+                      {project.quickStats && project.quickStats.length > 0
+                        ? project.quickStats[0].label
+                        : "STATUS"}
                     </span>
-                    <span className="text-xs font-mono font-bold text-cyan-600 dark:text-cyan-400 truncate">
-                      {project.quickStats[0]?.value || "Optimal"}
+                    <span
+                      className={`text-xs font-mono font-bold truncate ${
+                        project.statusBadge === "Under revision"
+                          ? "text-amber-600 dark:text-amber-400"
+                          : "text-cyan-600 dark:text-cyan-400"
+                      }`}
+                    >
+                      {project.quickStats && project.quickStats.length > 0
+                        ? project.quickStats[0].value
+                        : (project.statusBadge || "Active")}
                     </span>
                   </div>
 
