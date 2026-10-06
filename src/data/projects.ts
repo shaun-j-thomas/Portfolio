@@ -86,6 +86,8 @@ export interface ProjectData {
   readTime?: string;
   externalUrl?: string;
   externalLabel?: string;
+  /** Short label shown on the project card thumbnail (defaults to SIMULATION / 3D CAD). */
+  cardLabel?: string;
 }
 
 export const projectsData: ProjectData[] = [
@@ -216,7 +218,7 @@ export const projectsData: ProjectData[] = [
     slug: "bwb-uav",
     title: "Blended Wing Body UAV",
     subtitle: "Aerodynamic Validation & Lateral Stability Optimization",
-    year: "2026 – Present",
+    year: "2026 to Present",
     category: "Autonomous Aerospace Vehicle",
     statusBadge: "ACTIVE RESEARCH",
     readTime: "7 min read",
@@ -414,10 +416,41 @@ export const projectsData: ProjectData[] = [
     ],
   },
   {
+    slug: "bwb-propulsion-review",
+    title: "BWB Propulsion Review",
+    subtitle:
+      "A review of engine options for 200 to 300 seat blended wing body airliners, from podded turbofans to hydrogen",
+    year: "2026",
+    category: "Propulsion Review",
+    statusBadge: "Completed",
+    cardLabel: "REVIEW PAPER",
+    readTime: "4 min read",
+    summary:
+      "IEEE-format review comparing six propulsion families for commercial blended wing body aircraft on fuel burn, noise, integration, emissions and readiness.",
+    heroAsset: {
+      type: "image",
+      src: "/Assets/bwb-propulsion-review-thumb.jpg",
+      caption: "Blended wing body with podded engines above the aft centre body",
+      poster: "/Assets/bwb-propulsion-review-thumb.jpg",
+    },
+    content: [],
+    techStack: [
+      "Literature review",
+      "Aircraft propulsion",
+      "Blended wing body",
+      "Open rotor",
+      "Boundary layer ingestion",
+      "Hydrogen",
+      "IEEE format",
+    ],
+    quickStats: [{ label: "Format", value: "8-page IEEE review" }],
+    gallery: [],
+  },
+  {
     slug: "strath-ais",
     title: "StrathAIS: Airframe Design Engineer",
     subtitle: "Parachute Recovery Interface & Bulkhead FEA Optimization",
-    year: "2025 – 2026",
+    year: "2025 to 2026",
     category: "Supersonic Rocketry Vehicle",
     statusBadge: "Launched",
     readTime: "6 min read",
@@ -569,7 +602,7 @@ export const projectsData: ProjectData[] = [
     slug: "pioneer-rocket",
     title: "Team Ignition: Airframe Lead",
     subtitle: "Technical Leadership & 10,000 ft Model Rocket Airframe",
-    year: "2023 – 2025",
+    year: "2023 to 2025",
     category: "High-Power Rocketry",
     statusBadge: "COMPLETED",
     readTime: "5 min read",

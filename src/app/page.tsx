@@ -11,12 +11,15 @@ export default function Home() {
       {/* 1. Two-Column Hero & Live 3D CAD Stage */}
       <HeroSection />
 
+      {/* 2. Projects first: the work is what visitors come for */}
+      <ProjectsSection />
+
       {/* Subtle Section Divider */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-8">
         <div className="h-px bg-gradient-to-r from-transparent via-slate-200/80 dark:via-slate-800/80 to-transparent" />
       </div>
 
-      {/* 2. Skills & Capabilities Section */}
+      {/* 3. Skills & Capabilities */}
       <SkillsSection />
 
       {/* Subtle Section Divider */}
@@ -32,18 +35,9 @@ export default function Home() {
         <div className="h-px bg-gradient-to-r from-transparent via-slate-200/80 dark:via-slate-800/80 to-transparent" />
       </div>
 
-      {/* 5. Rotating Projects Carousel & Interactive Modals */}
-      <ProjectsSection />
-
-      {/* Subtle Section Divider */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="h-px bg-gradient-to-r from-transparent via-slate-200/80 dark:via-slate-800/80 to-transparent" />
-      </div>
-
-      {/* 6. Tactile Contact Section */}
+      {/* 5. Contact */}
       <ContactSection />
 
-      {/* 7. Final Animated Footer with Name Text-Mask */}
       <AnimatedFooter />
     </main>
   );

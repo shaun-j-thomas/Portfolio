@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import { projectsData } from "@/data/projects";
 import { UniversalProjectDetail } from "@/components/UniversalProjectDetail";
 import { SupercarCfdDetail } from "@/components/SupercarCfdDetail";
+import { ProjectPageTools } from "@/components/ProjectPageTools";
+import { BwbPropulsionReviewDetail } from "@/components/BwbPropulsionReviewDetail";
 
 interface ProjectPageProps {
   params: {
@@ -20,6 +22,37 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const project = projectsData.find((p) => p.slug === params.slug);
   if (!project) return { title: "Project Not Found" };
+
+  if (params.slug === "bwb-propulsion-review") {
+    const title = "Propulsion for Commercial Blended Wing Body Aircraft | Review Paper | Shaun John Thomas";
+    const description =
+      "IEEE-format review of turbofans, open rotors, boundary layer ingestion, hybrid-electric systems and hydrogen for commercial blended wing body aircraft.";
+    const url = `https://shaun-j-thomas.github.io/Portfolio/projects/${params.slug}/`;
+    const ogImage = "https://shaun-j-thomas.github.io/Portfolio/Assets/bwb-propulsion-review-thumb.jpg";
+    return {
+      title,
+      description,
+      alternates: { canonical: url },
+      openGraph: {
+        type: "article",
+        url,
+        title,
+        description,
+        images: [{ url: ogImage, width: 1200, height: 750, alt: "Blended wing body propulsion review" }],
+      },
+      twitter: { card: "summary_large_image", title, description, images: [ogImage] },
+      keywords: [
+        "Blended Wing Body",
+        "Aircraft Propulsion",
+        "Open Rotor",
+        "Boundary Layer Ingestion",
+        "Turboelectric Distributed Propulsion",
+        "Hydrogen Aircraft",
+        "Shaun John Thomas",
+      ],
+      authors: [{ name: "Shaun John Thomas" }],
+    };
+  }
 
   if (params.slug === "supercar-spoiler-cfd") {
     const title = "Aerodynamic Analysis of a Supercar Rear Spoiler | CFD Study | Shaun John Thomas";
@@ -74,16 +107,43 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     };
   }
 
+  const pageTitle = `${project.title} | Shaun John Thomas`;
+  const pageUrl = `https://shaun-j-thomas.github.io/Portfolio/projects/${params.slug}/`;
+  const heroSrc = project.heroAsset.poster || project.heroAsset.src;
+  const pageImage = heroSrc.startsWith("http")
+    ? heroSrc
+    : `https://shaun-j-thomas.github.io/Portfolio${heroSrc}`;
+
   return {
-    title: `${project.title} | Shaun John Thomas`,
+    title: pageTitle,
     description: project.summary,
-    alternates: {
-      canonical: `https://shaun-j-thomas.github.io/Portfolio/projects/${params.slug}/`,
+    alternates: { canonical: pageUrl },
+    openGraph: {
+      type: "article",
+      url: pageUrl,
+      title: pageTitle,
+      description: project.summary,
+      images: [{ url: pageImage, alt: project.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageTitle,
+      description: project.summary,
+      images: [pageImage],
     },
   };
 }
 
-export default function ProjectDetailPage({ params }: ProjectPageProps) {
+export default function ProjectDetailPage(props: ProjectPageProps) {
+  return (
+    <>
+      <ProjectPageTools />
+      <ProjectDetailContent {...props} />
+    </>
+  );
+}
+
+function ProjectDetailContent({ params }: ProjectPageProps) {
   const project = projectsData.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -143,6 +203,16 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
           nextProject={nextProject}
         />
       </>
+    );
+  }
+
+  if (params.slug === "bwb-propulsion-review") {
+    return (
+      <BwbPropulsionReviewDetail
+        project={project}
+        prevProject={prevProject}
+        nextProject={nextProject}
+      />
     );
   }
 

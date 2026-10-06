@@ -27,6 +27,7 @@ import { portfolioData } from "@/data/portfolioData";
 import { getAssetPath } from "@/lib/utils";
 import { ModelViewer3D } from "./ModelViewer3D";
 import { AnimatedFooter } from "./AnimatedFooter";
+import { ProjectHeader, ProjectPager } from "./ProjectHeader";
 
 interface LightboxItem {
   src: string;
@@ -117,60 +118,16 @@ export function UniversalProjectDetail({
   }, [activeLightbox]);
 
   return (
-    <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden pt-20 sm:pt-28 transition-colors duration-500 ease-in-out">
+    <div className="relative min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden pt-24 sm:pt-28 transition-colors duration-500 ease-in-out">
       {/* Ambient background glow */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-cyan-500/10 dark:bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 pb-24">
-        {/* Top Breadcrumb Navigation */}
-        <div className="mb-8">
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card hover:bg-slate-200 dark:hover:bg-slate-800 text-xs sm:text-sm font-mono text-slate-700 dark:text-slate-300 transition-all border border-slate-200 dark:border-slate-800 shadow-sm"
-          >
-            <ArrowLeft className="w-4 h-4 text-cyan-500" />
-            <span>Back to All Projects</span>
-          </Link>
-        </div>
-
         {/* ========================================================================= */}
         {/* 1. HEADER & HERO: Title, Year, Summary & Full-Width Parallax Hero Asset   */}
         {/* ========================================================================= */}
         <section className="mb-14 sm:mb-20">
-          {/* Header Metadata */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="mb-8 sm:mb-10 max-w-4xl"
-          >
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-cyan-600 dark:text-cyan-400 uppercase">
-                {project.category} · {project.year}
-              </span>
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shadow-sm">
-                {project.statusBadge}
-              </span>
-              {project.readTime && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono text-slate-600 dark:text-slate-400 bg-slate-200/60 dark:bg-slate-800/60 border border-slate-300/60 dark:border-slate-700/60 shadow-sm">
-                  <Clock className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-                  <span>{project.readTime}</span>
-                </span>
-              )}
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-3">
-              {project.title}
-            </h1>
-
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium mb-4 font-mono">
-              {project.subtitle}
-            </p>
-
-            <p className="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed max-w-3xl">
-              {project.summary}
-            </p>
-          </motion.div>
+          <ProjectHeader project={project} />
 
           {/* Visual Project Progress Tracker / Timeline */}
           {project.progressTracker && (
@@ -183,14 +140,14 @@ export function UniversalProjectDetail({
               {/* Top tracker bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-200/80 dark:border-slate-800/80">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-700 dark:text-cyan-400 shrink-0">
                     <Activity className="w-4 h-4" />
                   </div>
                   <div>
                     <h2 className="text-xs font-mono font-bold tracking-wider text-slate-900 dark:text-slate-100 uppercase">
                       {project.progressTracker.title || "Project Progression Timeline"}
                     </h2>
-                    <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                    <p className="text-xs font-mono text-slate-500 dark:text-slate-400">
                       Vehicle research, aerodynamic analysis & flight testing roadmap
                     </p>
                   </div>
@@ -246,14 +203,14 @@ export function UniversalProjectDetail({
                                 ? "text-cyan-700 dark:text-cyan-300"
                                 : isCompleted
                                 ? "text-emerald-600 dark:text-emerald-400"
-                                : "text-slate-400 dark:text-slate-500"
+                                : "text-slate-500 dark:text-slate-400"
                             }`}
                           >
                             PHASE {st.step}
                           </span>
 
                           <span
-                            className={`inline-flex items-center gap-1.5 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border uppercase tracking-wider shrink-0 ${
+                            className={`inline-flex items-center gap-1.5 text-xs font-mono font-bold px-2 py-0.5 rounded-full border uppercase tracking-wider shrink-0 ${
                               isCompleted
                                 ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-800"
                                 : isCurrent
@@ -343,7 +300,7 @@ export function UniversalProjectDetail({
                     : "// VEHICLE & SYSTEM ARCHITECTURE"}
                 </span>
               </div>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono hidden sm:inline">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-mono hidden sm:inline">
                 ASPECT 21:9 · REAL-TIME VIEWPORT
               </span>
             </div>
@@ -396,7 +353,7 @@ export function UniversalProjectDetail({
           {/* Left Column: Engineering Breakdown (Milestone Cards) */}
           <div className="lg:col-span-7 xl:col-span-8 flex flex-col space-y-6">
             {project.breakdownTitle && (
-              <h3 className="font-mono uppercase text-cyan-600 dark:text-cyan-400 font-bold mb-4 text-base sm:text-lg tracking-wider">
+              <h3 className="font-mono uppercase text-cyan-700 dark:text-cyan-400 font-bold mb-4 text-base sm:text-lg tracking-wider">
                 {project.breakdownTitle}
               </h3>
             )}
@@ -409,7 +366,7 @@ export function UniversalProjectDetail({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.45, delay: idx * 0.08 }}
-                  className="relative p-[1.5px] rounded-2xl sm:rounded-3xl bg-gradient-to-b from-cyan-500/50 via-purple-500/30 to-slate-200 dark:to-slate-800/60 hover:from-cyan-400 hover:via-purple-400 hover:to-slate-300 dark:hover:to-slate-700 transition-all duration-300 shadow-sm dark:shadow-none hover:shadow-cyan-500/10 group"
+                  className="relative p-[1.5px] rounded-2xl sm:rounded-3xl bg-gradient-to-b from-cyan-500/50 via-sky-500/30 to-slate-200 dark:to-slate-800/60 hover:from-cyan-400 hover:via-sky-400 hover:to-slate-300 dark:hover:to-slate-700 transition-all duration-300 shadow-sm dark:shadow-none hover:shadow-cyan-500/10 group"
                 >
                   <div className="w-full h-full p-6 rounded-[calc(1rem-1.5px)] sm:rounded-[calc(1.5rem-1.5px)] bg-white dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200/80 dark:border-transparent">
                     <div className="flex items-center justify-between gap-4">
@@ -420,7 +377,7 @@ export function UniversalProjectDetail({
                         className={`text-xs px-2.5 py-1 border uppercase rounded-full font-mono font-semibold shrink-0 ${
                           item.role === "LED"
                             ? "bg-cyan-50 dark:bg-cyan-950/30 text-cyan-700 dark:text-cyan-400 border-cyan-200 dark:border-cyan-800"
-                            : "bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-800"
+                            : "bg-sky-50 dark:bg-sky-950/30 text-sky-700 dark:text-sky-400 border-sky-200 dark:border-sky-800"
                         }`}
                       >
                         {item.role}
@@ -447,7 +404,7 @@ export function UniversalProjectDetail({
               >
                 <div>
                   <div className="flex items-center gap-2.5 mb-5 pb-3.5 border-b border-slate-200 dark:border-slate-800/60">
-                    <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0">
+                    <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-700 dark:text-cyan-400 shrink-0">
                       <Compass className="w-4 h-4" />
                     </div>
                     <h3 className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
@@ -459,7 +416,7 @@ export function UniversalProjectDetail({
                   <div className="flex flex-col space-y-5">
                     {(project.specs || project.quickStats).map((stat, idx) => (
                       <div key={idx} className="flex flex-col">
-                        <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 font-mono break-words">
+                        <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 font-mono break-words">
                           {stat.label}
                         </span>
                         <span className="text-sm font-semibold text-slate-900 dark:text-slate-100 font-mono break-words">
@@ -471,10 +428,10 @@ export function UniversalProjectDetail({
                 </div>
 
                 <div className="flex items-center justify-between w-full mt-6 pt-6 border-t border-slate-200 dark:border-slate-800/60">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest whitespace-nowrap">
                     CURRENT STATUS
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-200 dark:border-cyan-800/50 text-[10px] font-mono text-cyan-700 dark:text-cyan-400 uppercase tracking-widest whitespace-nowrap shrink-0">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-200 dark:border-cyan-800/50 text-xs font-mono text-cyan-700 dark:text-cyan-400 uppercase tracking-widest whitespace-nowrap shrink-0">
                     <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse"></div>
                     {project.statusBadge}
                   </span>
@@ -488,11 +445,11 @@ export function UniversalProjectDetail({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: 0.08 }}
-              className="p-6 sm:p-7 rounded-3xl overflow-hidden bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-col justify-between hover:border-purple-500/50 dark:hover:border-purple-400/50 hover:shadow-purple-500/10 transition-all duration-300"
+              className="p-6 sm:p-7 rounded-3xl overflow-hidden bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none flex flex-col justify-between hover:border-sky-500/50 dark:hover:border-sky-400/50 hover:shadow-sky-500/10 transition-all duration-300"
             >
               <div>
                 <div className="flex items-center gap-2.5 mb-5 pb-3.5 border-b border-slate-200 dark:border-slate-800/60">
-                  <div className="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-600 dark:text-sky-400 shrink-0">
                     <Layers className="w-4 h-4" />
                   </div>
                   <h3 className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
@@ -527,7 +484,7 @@ export function UniversalProjectDetail({
                       lower.includes("hardware");
 
                     const badgeStyle = isSim
-                      ? "bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-800/50 hover:border-purple-400/60 hover:bg-purple-100/60 dark:hover:bg-purple-900/50"
+                      ? "bg-sky-50 dark:bg-sky-950/30 text-sky-700 dark:text-sky-400 border-sky-200 dark:border-sky-800/50 hover:border-sky-400/60 hover:bg-sky-100/60 dark:hover:bg-sky-900/50"
                       : isMfg
                       ? "bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800/50 hover:border-amber-400/60 hover:bg-amber-100/60 dark:hover:bg-amber-900/50"
                       : "bg-cyan-50 dark:bg-cyan-950/30 text-cyan-700 dark:text-cyan-400 border-cyan-200 dark:border-cyan-800/50 hover:border-cyan-400/60 hover:bg-cyan-100/60 dark:hover:bg-cyan-900/50";
@@ -551,7 +508,7 @@ export function UniversalProjectDetail({
                     href={project.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-mono font-semibold text-white bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 shadow-md shadow-cyan-600/20 hover:shadow-purple-500/35 transition-all transform hover:-translate-y-0.5"
+                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-mono font-semibold text-white bg-gradient-to-r from-cyan-600 to-sky-500 hover:from-cyan-500 hover:to-sky-500 shadow-md shadow-cyan-600/20 hover:shadow-sky-500/35 transition-all transform hover:-translate-y-0.5"
                   >
                     <span>{project.externalLabel || "Visit External Project"}</span>
                     <ExternalLink className="w-4 h-4" />
@@ -561,7 +518,7 @@ export function UniversalProjectDetail({
                     href={getAssetPath(portfolioData.personal.cvUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-mono font-semibold text-white bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 shadow-md shadow-cyan-600/20 hover:shadow-purple-500/35 transition-all transform hover:-translate-y-0.5"
+                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-mono font-semibold text-white bg-gradient-to-r from-cyan-600 to-sky-500 hover:from-cyan-500 hover:to-sky-500 shadow-md shadow-cyan-600/20 hover:shadow-sky-500/35 transition-all transform hover:-translate-y-0.5"
                   >
                     <span>View Full Technical CV</span>
                     <FileText className="w-4 h-4" />
@@ -587,7 +544,7 @@ export function UniversalProjectDetail({
             {/* Section Header */}
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-slate-200/80 dark:border-slate-800/80">
               <div>
-                <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold tracking-wider text-cyan-600 dark:text-cyan-400 uppercase mb-2">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold tracking-wider text-cyan-700 dark:text-cyan-400 uppercase mb-2">
                   <span className="flex items-center gap-1.5">
                     <Wind className="w-4 h-4" />
                     <span>AERODYNAMIC FLOW SIMULATION // ANSYS FLUENT 2025 R1</span>
@@ -609,9 +566,9 @@ export function UniversalProjectDetail({
 
               <div className="flex flex-col sm:items-end gap-1.5 shrink-0">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300">
-                  <span className="text-slate-400 dark:text-slate-500">Test Airspeed:</span>
-                  <span className="font-bold text-cyan-600 dark:text-cyan-400">20 m/s</span>
-                  <span className="text-[10px] text-slate-400">(~72 km/h)</span>
+                  <span className="text-slate-500 dark:text-slate-400">Test Airspeed:</span>
+                  <span className="font-bold text-cyan-700 dark:text-cyan-400">20 m/s</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">(~72 km/h)</span>
                 </div>
                 <span className="text-xs font-mono text-slate-500 hidden sm:inline">
                   Click any contour to inspect in cinematic lightbox
@@ -632,7 +589,7 @@ export function UniversalProjectDetail({
                   <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div className="flex-1">
-                  <span className="inline-block text-[11px] font-mono font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 mb-1">
+                  <span className="inline-block text-xs font-mono font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 mb-1">
                     ENGINEERING RESEARCH DISCLAIMER
                   </span>
                   <p className="text-sm sm:text-base font-semibold text-amber-950 dark:text-amber-100 leading-snug">
@@ -660,13 +617,13 @@ export function UniversalProjectDetail({
                         {item.aoa || "CFD SWEEP"}
                       </span>
                       {item.tag && (
-                        <span className="text-slate-500 dark:text-slate-400 truncate text-[11px]">
+                        <span className="text-slate-500 dark:text-slate-400 truncate text-xs">
                           · {item.tag}
                         </span>
                       )}
                     </div>
 
-                    <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap shrink-0">
+                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap shrink-0">
                       V∞ = 20 m/s
                     </span>
                   </div>
@@ -708,7 +665,7 @@ export function UniversalProjectDetail({
                         <button
                           type="button"
                           onClick={() => openCfdLightbox(idx)}
-                          className="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 font-semibold shrink-0 hover:underline inline-flex items-center gap-1"
+                          className="text-xs font-mono text-cyan-700 dark:text-cyan-400 font-semibold shrink-0 hover:underline inline-flex items-center gap-1"
                         >
                           <span>Expand</span>
                           <span>↗</span>
@@ -719,9 +676,9 @@ export function UniversalProjectDetail({
                       </p>
                     </div>
 
-                    <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-auto">
+                    <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mt-auto">
                       <span className="truncate">File: {item.fileName}</span>
-                      <span className="text-cyan-600 dark:text-cyan-400 shrink-0 font-medium ml-2">High-Fidelity Contour</span>
+                      <span className="text-cyan-700 dark:text-cyan-400 shrink-0 font-medium ml-2">High-Fidelity Contour</span>
                     </div>
                   </div>
                 </motion.div>
@@ -736,11 +693,11 @@ export function UniversalProjectDetail({
         {project.gallery && project.gallery.length > 0 && (
           <section className="mb-20 sm:mb-28 space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800/80">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-cyan-600 dark:text-cyan-400 uppercase">
+              <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-cyan-700 dark:text-cyan-400 uppercase">
                 <Sparkles className="w-4 h-4" />
                 <span>Technical Media Gallery ({project.gallery.length} Exhibits)</span>
               </div>
-              <span className="text-[11px] font-mono text-slate-500">
+              <span className="text-xs font-mono text-slate-500">
                 Click to expand in cinematic lightbox
               </span>
             </div>
@@ -826,7 +783,7 @@ export function UniversalProjectDetail({
                         className="p-3 sm:p-4 bg-slate-100/90 dark:bg-slate-950/90 border-t border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-800 dark:text-slate-300 flex items-center justify-between cursor-pointer"
                       >
                         <span className="truncate font-semibold">{media.caption}</span>
-                        <span className="text-[11px] text-cyan-600 dark:text-cyan-400 shrink-0 pl-2 font-semibold">
+                        <span className="text-xs text-cyan-700 dark:text-cyan-400 shrink-0 pl-2 font-semibold">
                           Expand ↗
                         </span>
                       </div>
@@ -841,21 +798,7 @@ export function UniversalProjectDetail({
         {/* ========================================================================= */}
         {/* 5. BOTTOM PAGINATION: Prev & Next Projects                                */}
         {/* ========================================================================= */}
-        <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs sm:text-sm">
-          <Link
-            href={`/projects/${prevProject.slug}`}
-            className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition-colors"
-          >
-            <span>← Previous: {prevProject.title}</span>
-          </Link>
-
-          <Link
-            href={`/projects/${nextProject.slug}`}
-            className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-cyan-500 transition-colors"
-          >
-            <span>Next: {nextProject.title} →</span>
-          </Link>
-        </div>
+        <ProjectPager prevProject={prevProject} nextProject={nextProject} />
       </main>
 
       {/* ========================================================================= */}
@@ -873,8 +816,8 @@ export function UniversalProjectDetail({
             <div className="flex items-center justify-between z-30 pb-4 border-b border-slate-800 text-xs font-mono text-slate-300">
               <div className="flex items-center gap-3">
                 <span className="text-cyan-400 font-bold">{project.title}</span>
-                <span className="text-slate-600 dark:text-slate-500">|</span>
-                <span className="text-slate-400">
+                <span className="text-slate-600 dark:text-slate-400">|</span>
+                <span className="text-slate-500 dark:text-slate-400">
                   {activeLightbox.items[activeLightbox.index].category || "Exhibit"} (
                   {activeLightbox.index + 1} of {activeLightbox.items.length})
                 </span>
@@ -1018,11 +961,11 @@ export function UniversalProjectDetail({
                     }`}
                   >
                     {g.type === "3d" ? (
-                      <div className="w-full h-full bg-slate-900 flex items-center justify-center text-cyan-400 text-[8px] font-mono">
+                      <div className="w-full h-full bg-slate-900 flex items-center justify-center text-cyan-400 text-xs font-mono">
                         3D
                       </div>
                     ) : g.type === "video" ? (
-                      <div className="w-full h-full bg-slate-900 flex items-center justify-center text-amber-400 text-[8px] font-mono">
+                      <div className="w-full h-full bg-slate-900 flex items-center justify-center text-amber-400 text-xs font-mono">
                         VID
                       </div>
                     ) : (

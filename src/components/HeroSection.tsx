@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   ArrowDown,
   FileText,
@@ -15,11 +16,13 @@ import { ModelViewer3D } from "./ModelViewer3D";
 
 export function HeroSection() {
   const { personal } = portfolioData;
+  const [bioExpanded, setBioExpanded] = useState(false);
+  const [leadBio, ...moreBio] = personal.bioParagraphs;
 
   return (
     <section
       id="about"
-      className="relative min-h-[85vh] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto w-full pt-32 pb-20 px-4 md:px-8 border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden transition-colors duration-500 ease-in-out"
+      className="relative min-h-[75vh] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto w-full pt-32 pb-20 px-4 md:px-8 border-b border-slate-200/80 dark:border-slate-800/80 overflow-hidden transition-colors duration-500 ease-in-out"
     >
       {/* Radial Masked Engineering Blueprint Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)] pointer-events-none" />
@@ -47,7 +50,7 @@ export function HeroSection() {
             <span>{personal.status}</span>
           </div>
 
-          <span className="text-[11px] sm:text-xs font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase">
+          <span className="text-xs sm:text-xs font-mono tracking-widest text-slate-500 dark:text-slate-400 uppercase">
             {personal.eyebrow}
           </span>
         </motion.div>
@@ -61,7 +64,7 @@ export function HeroSection() {
         >
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1]">
             Hi! I’m{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 dark:from-cyan-400 dark:via-indigo-400 dark:to-purple-500 drop-shadow-sm">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-sky-500 dark:from-cyan-300 dark:to-sky-400">
               Shaun
             </span>
           </h1>
@@ -71,9 +74,19 @@ export function HeroSection() {
           </h2>
 
           <div className="space-y-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed pt-2">
-            {personal.bioParagraphs.map((para, idx) => (
-              <p key={idx}>{para}</p>
-            ))}
+            <p>{leadBio}</p>
+            {bioExpanded &&
+              moreBio.map((para, idx) => <p key={idx}>{para}</p>)}
+            {moreBio.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setBioExpanded((v) => !v)}
+                aria-expanded={bioExpanded}
+                className="text-xs font-mono font-semibold text-cyan-700 dark:text-cyan-400 hover:underline"
+              >
+                {bioExpanded ? "Show less" : "Read more"}
+              </button>
+            )}
           </div>
         </motion.div>
 
@@ -98,17 +111,17 @@ export function HeroSection() {
           {/* Secondary Button: Telemetry Amber Hover State */}
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold font-mono text-slate-800 dark:text-slate-200 bg-white/70 dark:bg-slate-800/80 hover:bg-amber-500/10 hover:text-amber-600 dark:hover:text-amber-400 hover:border-amber-500/50 border border-slate-200 dark:border-slate-700 transition-all shadow-sm group"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold font-mono text-slate-800 dark:text-slate-200 bg-white/70 dark:bg-slate-800/80 hover:bg-cyan-500/10 hover:text-cyan-700 dark:hover:text-cyan-300 hover:border-cyan-500/50 border border-slate-200 dark:border-slate-700 transition-all shadow-sm group"
           >
             <span>Explore Projects</span>
-            <ArrowDown className="w-4 h-4 text-slate-500 dark:text-slate-400 group-hover:text-amber-400 group-hover:translate-y-0.5 transition-transform" />
+            <ArrowDown className="w-4 h-4 text-slate-500 dark:text-slate-400 group-hover:text-cyan-500 group-hover:translate-y-0.5 transition-transform" />
           </Link>
 
           {/* Social Links with Sharp Amber Hover Accents */}
           <div className="flex items-center gap-2 pl-1 sm:pl-2 text-slate-500 dark:text-slate-400 font-mono text-xs">
             <a
               href={`mailto:${personal.email}`}
-              className="p-2.5 rounded-full glass-card hover:text-amber-500 dark:hover:text-amber-400 hover:border-amber-500/50 hover:bg-amber-500/10 transition-colors border border-slate-200 dark:border-slate-800"
+              className="p-2.5 rounded-full glass-card hover:text-cyan-600 dark:hover:text-cyan-300 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-colors border border-slate-200 dark:border-slate-800"
               aria-label="Email Shaun"
               title={personal.email}
             >
@@ -118,7 +131,7 @@ export function HeroSection() {
               href={personal.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full glass-card hover:text-amber-500 dark:hover:text-amber-400 hover:border-amber-500/50 hover:bg-amber-500/10 transition-colors border border-slate-200 dark:border-slate-800"
+              className="p-2.5 rounded-full glass-card hover:text-cyan-600 dark:hover:text-cyan-300 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-colors border border-slate-200 dark:border-slate-800"
               aria-label="LinkedIn Profile"
               title="LinkedIn Profile"
             >
@@ -130,27 +143,21 @@ export function HeroSection() {
 
       {/* Right Column: Aerodynamic CAD Model HUD with "CFD Heatmap" Multi-Color Ambient Mesh Glow */}
       <div className="relative z-20 w-full">
-        {/* Dynamic Multi-Color CFD Thermal Mesh Glow (Cyan, Deep Purple, Thermal Rose) */}
+        {/* Single soft cyan glow behind the viewer */}
         <div className="absolute inset-0 -z-10 pointer-events-none flex items-center justify-center">
-          {/* Electric Cyan Shockwave */}
-          <div className="absolute -top-6 -left-6 w-3/4 h-3/4 rounded-full bg-cyan-500/20 dark:bg-cyan-500/25 blur-[90px]" />
-          {/* Deep Aerospace Purple Core */}
-          <div className="absolute -bottom-6 -right-6 w-3/4 h-3/4 rounded-full bg-purple-600/20 dark:bg-purple-600/25 blur-[100px]" />
-          {/* Intense Thermal Magenta / Amber Wave */}
-          <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-3/5 h-3/5 rounded-full bg-rose-500/15 dark:bg-rose-500/20 blur-[85px]" />
+          <div className="absolute w-3/4 h-3/4 rounded-full bg-cyan-500/20 dark:bg-cyan-500/20 blur-[100px]" />
         </div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.55, delay: 0.1, ease: "easeOut" }}
-          whileHover={{ scale: 1.01 }}
-          className="relative w-full rounded-3xl overflow-hidden bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/40 dark:hover:border-cyan-400/40 flex flex-col justify-between shadow-xl hover:shadow-cyan-500/15 transition-all"
+          className="relative w-full rounded-3xl overflow-hidden bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/40 dark:hover:border-cyan-400/40 flex flex-col justify-between shadow-xl transition-colors"
         >
           {/* HUD Top Bar */}
           <div className="p-3.5 sm:p-4 bg-slate-100/90 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-ping" />
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 dark:bg-cyan-400" />
               <span className="text-xs sm:text-sm font-mono font-bold text-slate-900 dark:text-cyan-300">
                 AERODYNAMIC CAD MODEL HUD
               </span>
@@ -165,6 +172,7 @@ export function HeroSection() {
             <ModelViewer3D
               src="/Assets/CFD_model_1.5m.glb"
               alt="Aerodynamic CFD model of BWB UAV"
+              poster="/Assets/TopVIEW.png"
               hudLabel="BWB CFD REFLEX SURFACE"
               height="100%"
             />
@@ -175,7 +183,7 @@ export function HeroSection() {
             <span className="truncate">Real CAD export of Dissertation UAV</span>
             <Link
               href="/projects/bwb-uav/"
-              className="flex items-center gap-1.5 font-semibold text-cyan-600 dark:text-cyan-400 hover:text-amber-500 dark:hover:text-amber-400 transition-colors shrink-0 pl-3 group"
+              className="flex items-center gap-1.5 font-semibold text-cyan-700 dark:text-cyan-400 hover:underline transition-colors shrink-0 pl-3 group"
             >
               <span>Explore Project</span>
               <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

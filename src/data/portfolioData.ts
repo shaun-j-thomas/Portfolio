@@ -104,13 +104,13 @@ export const portfolioData = {
       {
         school: "University of Strathclyde",
         degree: "BEng Aero-Mechanical Engineering",
-        period: "2025 – Present",
+        period: "2025 to Present",
         highlight: "Glasgow, Scotland · Final Year Honors",
       },
       {
         school: "VIT Chennai",
         degree: "BTech Mechanical Engineering",
-        period: "2023 – 2025",
+        period: "2023 to 2025",
         highlight: "Chennai, India · Core Engineering Foundations",
       },
     ],
@@ -240,7 +240,7 @@ export const portfolioData = {
 
   timeline: [
     {
-      period: "2026 – Present",
+      period: "2026 to Present",
       title: "BWB UAV Dissertation",
       roleOrDegree: "Aerodynamic & Flight Testing Researcher",
       organization: "University of Strathclyde",
@@ -263,7 +263,7 @@ export const portfolioData = {
       ],
     },
     {
-      period: "2025 – Present",
+      period: "2025 to Present",
       title: "Strath AIS",
       roleOrDegree: "Airframe Design Engineer",
       organization: "University of Strathclyde",
@@ -279,7 +279,7 @@ export const portfolioData = {
       tags: ["FEA Optimization", "Carbon Fiber", "Bulkheads", "Mach 1+", "IREC 2026"],
     },
     {
-      period: "2025 – Present",
+      period: "2025 to Present",
       title: "University of Strathclyde",
       roleOrDegree: "BEng (Hons) Aero-Mechanical Engineering",
       organization: "Faculty of Engineering",
@@ -294,7 +294,7 @@ export const portfolioData = {
       tags: ["Aerospace", "Flight Mechanics", "Structural Dynamics", "Glasgow"],
     },
     {
-      period: "2023 – 2025",
+      period: "2023 to 2025",
       title: "Team Ignition",
       roleOrDegree: "Airframe Lead",
       organization: "VIT Chennai",
@@ -310,7 +310,7 @@ export const portfolioData = {
       tags: ["Team Leadership", "GD&T", "CNC Machining", "Pyrotechnic Testing", "Pioneer Rocket"],
     },
     {
-      period: "2023 – 2025",
+      period: "2023 to 2025",
       title: "Vellore Institute of Technology (VIT)",
       roleOrDegree: "BTech Mechanical Engineering",
       organization: "School of Mechanical Engineering",
@@ -389,7 +389,7 @@ export const portfolioData = {
       category: "Autonomous Aerospace Vehicle",
       status: "In Progress",
       statusBadge: "Final Year Dissertation · In Progress",
-      dateRange: "August 2026 – Present",
+      dateRange: "August 2026 to Present",
       leadParagraph:
         "Investigating the trade-off between winglet cant angle, lateral-directional stability, and aerodynamic lift-to-drag efficiency on a tailless aircraft configuration.",
       overview:
@@ -472,7 +472,7 @@ export const portfolioData = {
       category: "Supersonic Rocketry Vehicle",
       status: "Achievement",
       statusBadge: "IREC 2026 · 8th Place Global Finish",
-      dateRange: "September 2025 – Present",
+      dateRange: "September 2025 to Present",
       leadParagraph:
         "Engineered the primary load-bearing recovery interface and structural bulkheads for a model rocket built to launch at IREC 2026 in the 30,000ft category.",
       overview:
@@ -562,7 +562,7 @@ export const portfolioData = {
       category: "High-Power Rocketry",
       status: "Completed",
       statusBadge: "Completed · VIT Chennai",
-      dateRange: "August 2023 – June 2025",
+      dateRange: "August 2023 to June 2025",
       leadParagraph:
         "Led a 4-person engineering team to design, manufacture, assemble, and test the Pioneer model rocket airframe with strict adherence to Design for Manufacture (DFM) principles.",
       overview:

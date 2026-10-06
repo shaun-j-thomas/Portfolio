@@ -10,9 +10,9 @@ import { getAssetPath } from "@/lib/utils";
 
 const navLinks = [
   { name: "About", href: "/#about" },
+  { name: "Projects", href: "/#projects" },
   { name: "Skills", href: "/#skills" },
   { name: "Journey", href: "/#journey" },
-  { name: "Projects", href: "/#projects" },
   { name: "Contact", href: "/#contact" },
 ];
 
@@ -58,7 +58,7 @@ export function Navbar() {
           href="/#about"
           className="flex items-center gap-2 text-xs md:text-sm font-semibold tracking-wider font-mono text-slate-900 dark:text-slate-100 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors pl-1 sm:pl-2 shrink-0 group"
         >
-          <div className="w-6 h-6 rounded-full bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 group-hover:scale-110 group-hover:border-cyan-500 transition-all shadow-sm shadow-cyan-500/20">
+          <div className="w-6 h-6 rounded-full bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-700 dark:text-cyan-400 group-hover:scale-110 group-hover:border-cyan-500 transition-all shadow-sm shadow-cyan-500/20">
             <Plane className="w-3.5 h-3.5 -rotate-45" />
           </div>
           <span className="hidden sm:inline font-bold">SHAUN J THOMAS</span>
@@ -157,7 +157,7 @@ export function Navbar() {
                 <FileDown className="w-4 h-4 text-cyan-500" />
                 <span>View CV (PDF)</span>
               </a>
-              <span className="text-[10px] text-slate-400 font-mono">Glasgow, UK</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">Glasgow, UK</span>
             </div>
           </motion.div>
         )}

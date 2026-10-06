@@ -131,10 +131,17 @@ export default function RootLayout({
         {/* Global Fixed Ambient Aerospace Background Layer */}
         <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-slate-50 dark:bg-slate-950">
           {/* Top-Left Aerospace Stress Purple Aura */}
-          <div className="absolute -top-24 -left-24 w-96 h-96 sm:w-[500px] sm:h-[500px] rounded-full bg-purple-900/10 dark:bg-purple-900/20 blur-[120px]" />
+          <div className="absolute -top-24 -left-24 w-96 h-96 sm:w-[500px] sm:h-[500px] rounded-full bg-sky-900/10 dark:bg-sky-900/20 blur-[120px]" />
           {/* Bottom-Right Telemetry Electric Cyan Aura */}
           <div className="absolute -bottom-24 -right-24 w-96 h-96 sm:w-[500px] sm:h-[500px] rounded-full bg-cyan-900/10 dark:bg-cyan-900/20 blur-[120px]" />
         </div>
+
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:px-4 focus:py-2 focus:rounded-full focus:bg-cyan-500 focus:text-slate-950 focus:font-mono focus:text-sm"
+        >
+          Skip to content
+        </a>
 
         <ThemeProvider
           attribute="class"

@@ -44,17 +44,40 @@ export function ModelViewer3D({
   autoRotate = true,
 }: ModelViewer3DProps) {
   const viewerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [isRotating, setIsRotating] = useState(autoRotate);
   const [scriptReady, setScriptReady] = useState(modelViewerScriptLoaded);
 
+  // Only fetch the model-viewer bundle once the viewer is near the viewport
   useEffect(() => {
     let isMounted = true;
-    loadModelViewer().then(() => {
-      if (isMounted) setScriptReady(true);
-    });
+    const el = containerRef.current;
+    const start = () =>
+      loadModelViewer().then(() => {
+        if (isMounted) setScriptReady(true);
+      });
+
+    if (!el || typeof IntersectionObserver === "undefined") {
+      start();
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          start();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(el);
     return () => {
       isMounted = false;
+      observer.disconnect();
     };
   }, []);
 
@@ -79,13 +102,14 @@ export function ModelViewer3D({
 
   return (
     <div
+      ref={containerRef}
       className="relative w-full rounded-2xl overflow-hidden bg-white/90 dark:bg-slate-900/90 border border-slate-200/90 dark:border-cyan-500/20 shadow-lg group flex flex-col"
       style={{ height }}
     >
       {/* HUD Header Bar */}
       <div className="flex items-center justify-between px-3.5 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-cyan-500/20 text-xs font-mono text-cyan-700 dark:text-cyan-400 z-20 shrink-0">
         <div className="flex items-center gap-1.5 font-bold tracking-wider truncate">
-          <Box className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 animate-pulse shrink-0" />
+          <Box className="w-3.5 h-3.5 text-cyan-700 dark:text-cyan-400 shrink-0" />
           <span className="truncate">{hudLabel}</span>
         </div>
 
@@ -93,7 +117,7 @@ export function ModelViewer3D({
           <button
             onClick={toggleRotate}
             type="button"
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-mono transition-all border ${
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono transition-all border ${
               isRotating
                 ? "bg-cyan-50 dark:bg-cyan-500/20 border-cyan-300 dark:border-cyan-400/40 text-cyan-700 dark:text-cyan-300 font-semibold"
                 : "bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 shadow-sm"
@@ -107,7 +131,7 @@ export function ModelViewer3D({
           <button
             onClick={handleReset}
             type="button"
-            className="flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-mono bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 hover:border-cyan-400 dark:hover:border-cyan-500/40 transition-all shadow-sm"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 hover:border-cyan-400 dark:hover:border-cyan-500/40 transition-all shadow-sm"
             title="Reset Camera Angle"
           >
             <RotateCcw className="w-3 h-3" />
@@ -159,15 +183,23 @@ export function ModelViewer3D({
           </model-viewer>
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 text-slate-500 dark:text-slate-400 font-mono text-xs">
-            <div className="w-6 h-6 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
-            <span>Initializing WebGL Scene...</span>
+            {poster ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={getAssetPath(poster)}
+                alt={alt}
+                className="absolute inset-0 w-full h-full object-contain p-4"
+              />
+            ) : null}
+            <div className="relative w-6 h-6 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+            <span className="relative">Loading 3D viewer...</span>
           </div>
         )}
       </div>
 
       {/* Interactive Orbit Hint */}
-      <div className="absolute bottom-2.5 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/85 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/90 dark:border-slate-700/60 text-[10px] font-mono text-slate-600 dark:text-slate-300 pointer-events-none shadow-sm">
-        <Compass className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />
+      <div className="absolute bottom-2.5 left-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/85 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/90 dark:border-slate-700/60 text-xs font-mono text-slate-600 dark:text-slate-300 pointer-events-none shadow-sm">
+        <Compass className="w-3 h-3 text-cyan-700 dark:text-cyan-400" />
         <span>Drag to orbit · Scroll to zoom</span>
       </div>
     </div>

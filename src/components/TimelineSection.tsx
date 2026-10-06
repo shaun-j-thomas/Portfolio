@@ -43,9 +43,9 @@ export function TimelineSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono font-semibold text-cyan-600 dark:text-cyan-400 mb-3"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono font-semibold text-cyan-700 dark:text-cyan-400 mb-3"
         >
-          <span>03 // CHRONOLOGICAL PATH</span>
+          <span>04 // CHRONOLOGICAL PATH</span>
         </motion.div>
 
         <motion.h2
@@ -73,7 +73,7 @@ export function TimelineSection() {
       {/* Vertical Timeline Structure */}
       <div className="relative pl-7 sm:pl-10">
         {/* Continuous Connecting Multi-Color CFD Gradient Line on the Left */}
-        <div className="absolute left-3 sm:left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-amber-500" />
+        <div className="absolute left-3 sm:left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-cyan-500 via-sky-500 to-amber-500" />
 
         <div className="space-y-8 sm:space-y-12">
           {timeline.map((item: TimelineItem, index: number) => {
@@ -90,13 +90,13 @@ export function TimelineSection() {
               >
                 {/* Circular Glowing Node on the left line */}
                 <div className="absolute -left-7 sm:-left-10 top-1.5 flex items-center justify-center">
-                  <div className="relative flex items-center justify-center w-6 sm:w-7 h-6 sm:h-7 rounded-full bg-white dark:bg-slate-900 border-2 border-cyan-500 dark:border-cyan-400 shadow-md shadow-cyan-500/30 group-hover:scale-125 group-hover:border-purple-400 transition-all duration-300">
-                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 group-hover:bg-purple-400 transition-colors" />
+                  <div className="relative flex items-center justify-center w-6 sm:w-7 h-6 sm:h-7 rounded-full bg-white dark:bg-slate-900 border-2 border-cyan-500 dark:border-cyan-400 shadow-md shadow-cyan-500/30 group-hover:scale-125 group-hover:border-sky-400 transition-all duration-300">
+                    <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 group-hover:bg-sky-400 transition-colors" />
                   </div>
                 </div>
 
                 {/* Timeline Content Card */}
-                <div className="p-6 sm:p-8 rounded-3xl overflow-hidden glass-card glass-card-hover border border-slate-200/80 dark:border-slate-800/80 hover:border-purple-500/40 dark:hover:border-purple-500/40 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300">
+                <div className="p-6 sm:p-8 rounded-3xl overflow-hidden glass-card glass-card-hover border border-slate-200/80 dark:border-slate-800/80 hover:border-sky-500/40 dark:hover:border-sky-500/40 hover:shadow-lg hover:shadow-sky-500/10 transition-all duration-300">
                   {/* Top Metadata Header */}
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                     <div className="flex items-center gap-2">
@@ -104,7 +104,7 @@ export function TimelineSection() {
                         <Calendar className="w-3.5 h-3.5" />
                         {item.period}
                       </span>
-                      <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">
+                      <span className="text-xs sm:text-xs font-mono text-slate-500 dark:text-slate-400 uppercase">
                         // {item.type}
                       </span>
                     </div>
@@ -122,15 +122,15 @@ export function TimelineSection() {
                     <h3 className="text-base sm:text-lg md:text-xl font-mono font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100">
                       {item.title}
                     </h3>
-                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-cyan-600 dark:text-cyan-400 mt-1">
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-cyan-700 dark:text-cyan-400 mt-1">
                       <Building2 className="w-4 h-4 shrink-0" />
                       <span>{item.organization}</span>
-                      <span className="text-slate-400">·</span>
+                      <span className="text-slate-500 dark:text-slate-400">·</span>
                       <span className="text-slate-600 dark:text-slate-300 font-medium">
                         {item.roleOrDegree}
                       </span>
                       {item.badge && (
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 uppercase tracking-wider">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 uppercase tracking-wider">
                           {item.badge}
                         </span>
                       )}
@@ -145,7 +145,7 @@ export function TimelineSection() {
                   {/* Bulleted Achievements */}
                   {item.achievements && item.achievements.length > 0 && (
                     <div className="space-y-2 mb-5 pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
-                      <div className="text-[11px] sm:text-xs font-mono font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                      <div className="text-xs sm:text-xs font-mono font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                         Key Milestones & Engineering Impact
                       </div>
                       {item.achievements.map((ach, aIdx) => (
@@ -162,7 +162,7 @@ export function TimelineSection() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-0.5 sm:py-1 rounded-md text-[10px] sm:text-[11px] font-mono text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60"
+                        className="px-2.5 py-0.5 sm:py-1 rounded-md text-xs sm:text-xs font-mono text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60"
                       >
                         {tag}
                       </span>

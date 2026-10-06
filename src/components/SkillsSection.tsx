@@ -96,9 +96,9 @@ export function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono font-semibold text-cyan-600 dark:text-cyan-400 mb-3"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono font-semibold text-cyan-700 dark:text-cyan-400 mb-3"
         >
-          <span>02 // CAPABILITIES & TOOLS</span>
+          <span>03 // CAPABILITIES & TOOLS</span>
         </motion.div>
 
         <motion.h2
@@ -140,26 +140,26 @@ export function SkillsSection() {
 
           const catColor = isSim
             ? {
-                iconBg: "bg-purple-500/10 border-purple-500/20 text-purple-600 dark:text-purple-400",
-                badge: "dark:bg-purple-950/30 dark:text-purple-400 dark:border-purple-800/50 bg-purple-500/10 text-purple-700 border-purple-500/30 hover:border-purple-400/60 hover:bg-purple-500/20 dark:hover:bg-purple-900/40",
-                iconText: "text-purple-600 dark:text-purple-400",
+                iconBg: "bg-sky-500/10 border-sky-500/20 text-sky-600 dark:text-sky-400",
+                badge: "dark:bg-sky-950/30 dark:text-sky-400 dark:border-sky-800/50 bg-sky-500/10 text-sky-700 border-sky-500/30 hover:border-sky-400/60 hover:bg-sky-500/20 dark:hover:bg-sky-900/40",
+                iconText: "text-sky-600 dark:text-sky-400",
               }
             : isMfg
             ? {
-                iconBg: "bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400",
+                iconBg: "bg-amber-500/10 border-amber-500/20 text-amber-700 dark:text-amber-400",
                 badge: "dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-800/50 bg-amber-500/10 text-amber-700 border-amber-500/30 hover:border-amber-400/60 hover:bg-amber-500/20 dark:hover:bg-amber-900/40",
-                iconText: "text-amber-600 dark:text-amber-400",
+                iconText: "text-amber-700 dark:text-amber-400",
               }
             : isLead
             ? {
-                iconBg: "bg-indigo-500/10 border-indigo-500/20 text-indigo-600 dark:text-indigo-400",
-                badge: "dark:bg-indigo-950/30 dark:text-indigo-400 dark:border-indigo-800/50 bg-indigo-500/10 text-indigo-700 border-indigo-500/30 hover:border-indigo-400/60 hover:bg-indigo-500/20 dark:hover:bg-indigo-900/40",
-                iconText: "text-indigo-600 dark:text-indigo-400",
+                iconBg: "bg-slate-500/10 border-slate-500/20 text-slate-600 dark:text-slate-400",
+                badge: "dark:bg-slate-950/30 dark:text-slate-400 dark:border-slate-800/50 bg-slate-500/10 text-slate-700 border-slate-500/30 hover:border-slate-400/60 hover:bg-slate-500/20 dark:hover:bg-slate-900/40",
+                iconText: "text-slate-600 dark:text-slate-400",
               }
             : {
-                iconBg: "bg-cyan-500/10 border-cyan-500/20 text-cyan-600 dark:text-cyan-400",
+                iconBg: "bg-cyan-500/10 border-cyan-500/20 text-cyan-700 dark:text-cyan-400",
                 badge: "dark:bg-cyan-950/30 dark:text-cyan-400 dark:border-cyan-800/50 bg-cyan-500/10 text-cyan-700 border-cyan-500/30 hover:border-cyan-400/60 hover:bg-cyan-500/20 dark:hover:bg-cyan-900/40",
-                iconText: "text-cyan-600 dark:text-cyan-400",
+                iconText: "text-cyan-700 dark:text-cyan-400",
               };
 
           return (
@@ -224,9 +224,9 @@ export function SkillsSection() {
             <span className="font-semibold text-slate-900 dark:text-white">
               {certifications[0]?.title}
             </span>
-            <span className="text-slate-400 hidden sm:inline">· {certifications[0]?.issuer}</span>
+            <span className="text-slate-500 dark:text-slate-400 hidden sm:inline">· {certifications[0]?.issuer}</span>
           </div>
-          <span className="text-amber-600 dark:text-amber-400 font-semibold flex items-center gap-1 group-hover:underline ml-1">
+          <span className="text-amber-700 dark:text-amber-400 font-semibold flex items-center gap-1 group-hover:underline ml-1">
             <span>Verify Credly</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </span>

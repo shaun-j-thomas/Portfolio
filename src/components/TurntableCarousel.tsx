@@ -187,7 +187,7 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
           <span className="text-slate-500">
             USE ARROWS OR CLICK SIDES TO ROTATE
           </span>
-          <span className="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-[10px] text-cyan-600 dark:text-cyan-400 font-bold">
+          <span className="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-xs text-cyan-700 dark:text-cyan-400 font-bold">
             {activeIndex + 1} / {totalProjects}
           </span>
         </div>
@@ -203,7 +203,7 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
         style={{ perspective: "1200px" }}
       >
         {/* Virtual Rotating Circular Base Pedestal */}
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[220px] rounded-[50%] bg-gradient-to-t from-cyan-500/10 via-purple-500/5 to-transparent border border-cyan-500/20 dark:border-cyan-400/20 blur-md pointer-events-none transform -rotate-x-70" />
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[220px] rounded-[50%] bg-gradient-to-t from-cyan-500/10 via-sky-500/5 to-transparent border border-cyan-500/20 dark:border-cyan-400/20 blur-md pointer-events-none transform -rotate-x-70" />
 
         {/* Ambient Ring Grid */}
         <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[160px] rounded-[50%] border-2 border-dashed border-cyan-500/30 dark:border-cyan-400/30 pointer-events-none opacity-60" />
@@ -216,15 +216,9 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
           {projects.map((project, index) => {
             const transform = getCardTransform(index);
 
-            // Badge color styling based on project category/index
+            // Single accent colour for all projects
             const badgeColor =
-              index === 0
-                ? "text-cyan-600 dark:text-cyan-400 border-cyan-500/30 bg-cyan-500/10"
-                : index === 1
-                ? "text-purple-600 dark:text-purple-400 border-purple-500/30 bg-purple-500/10"
-                : index === 2
-                ? "text-emerald-600 dark:text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
-                : "text-amber-600 dark:text-amber-400 border-amber-500/30 bg-amber-500/10";
+              "text-cyan-700 dark:text-cyan-400 border-cyan-500/30 bg-cyan-500/10";
 
             return (
               <motion.div
@@ -278,8 +272,13 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
                     )}
 
                     {/* 3D / Type Badge */}
-                    <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-200 flex items-center gap-1">
-                      {project.heroAsset.type === "3d" ? (
+                    <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 text-xs font-mono text-slate-200 flex items-center gap-1">
+                      {project.cardLabel ? (
+                        <>
+                          <Compass className="w-3 h-3 text-cyan-400" />
+                          <span>{project.cardLabel}</span>
+                        </>
+                      ) : project.heroAsset.type === "3d" ? (
                         <>
                           <Layers className="w-3 h-3 text-cyan-400" />
                           <span>3D CAD</span>
@@ -297,17 +296,17 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <div className="flex items-center gap-1.5 truncate">
                       <span
-                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider border ${badgeColor}`}
+                        className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider border ${badgeColor}`}
                       >
                         {project.category}
                       </span>
                       {project.statusBadge === "Under revision" && (
-                        <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 shrink-0">
+                        <span className="px-2 py-0.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-400 shrink-0">
                           Under revision
                         </span>
                       )}
                     </div>
-                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 shrink-0">
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400 shrink-0">
                       {project.year}
                     </span>
                   </div>
@@ -326,7 +325,7 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
                 {/* Card Bottom CTA Link */}
                 <div className="pt-3 sm:pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between gap-3">
                   <div className="flex flex-col min-w-0 pr-1">
-                    <span className="text-[10px] font-mono font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate">
+                    <span className="text-xs font-mono font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate">
                       {project.quickStats && project.quickStats.length > 0
                         ? project.quickStats[0].label
                         : "STATUS"}
@@ -334,8 +333,8 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
                     <span
                       className={`text-xs font-mono font-bold truncate ${
                         project.statusBadge === "Under revision"
-                          ? "text-amber-600 dark:text-amber-400"
-                          : "text-cyan-600 dark:text-cyan-400"
+                          ? "text-amber-700 dark:text-amber-400"
+                          : "text-cyan-700 dark:text-cyan-400"
                       }`}
                     >
                       {project.quickStats && project.quickStats.length > 0
@@ -412,7 +411,7 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
         {/* Active Project Direct Route Button */}
         <Link
           href={`/projects/${activeProject.slug}`}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-mono text-xs sm:text-sm font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-purple-500/30 transition-all transform hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-600 to-sky-500 hover:from-cyan-500 hover:to-sky-500 text-white font-mono text-xs sm:text-sm font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-sky-500/30 transition-all transform hover:-translate-y-0.5"
         >
           <span>Open Full Analysis: {activeProject.title}</span>
           <ArrowRight className="w-4 h-4" />

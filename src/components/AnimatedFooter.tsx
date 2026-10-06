@@ -26,14 +26,14 @@ export function AnimatedFooter() {
             <Link href="/#about" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               // 01. ABOUT
             </Link>
+            <Link href="/#projects" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+              // 02. PROJECTS
+            </Link>
             <Link href="/#skills" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
-              // 02. SKILLS
+              // 03. SKILLS
             </Link>
             <Link href="/#journey" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
-              // 03. JOURNEY
-            </Link>
-            <Link href="/#projects" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
-              // 04. PROJECTS
+              // 04. JOURNEY
             </Link>
             <Link href="/#contact" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
               // 05. CONTACT
@@ -86,10 +86,13 @@ export function AnimatedFooter() {
 
         {/* Notices & Disclaimer */}
         <div className="py-6 sm:py-8 text-center text-sm font-mono text-slate-500 dark:text-slate-400 space-y-1">
+          <p className="text-slate-700 dark:text-slate-300 font-semibold">
+            Currently: {personal.affiliation.degree}, {personal.affiliation.institution} · {personal.status}
+          </p>
           <p>
             // Site built with the help of AI · All projects and content shown are my own work - 2026 SHAUN JOHN THOMAS //
           </p>
-          <p className="text-xs text-slate-400/90 dark:text-slate-500">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             // Analytics notice: I use privacy-friendly analytics via GoatCounter to count page views without using cookies or tracking your personal data. //
           </p>
         </div>

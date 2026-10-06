@@ -26,10 +26,10 @@ export function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono font-semibold text-cyan-600 dark:text-cyan-400 mb-3"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono font-semibold text-cyan-700 dark:text-cyan-400 mb-3"
         >
           <Compass className="w-3.5 h-3.5" />
-          <span>04 // FEATURED ENGINEERING WORK</span>
+          <span>02 // FEATURED ENGINEERING WORK</span>
         </motion.div>
 
         <motion.h2
@@ -65,12 +65,12 @@ export function ProjectsSection() {
             onClick={() => setViewMode("turntable")}
             className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full transition-all ${
               viewMode === "turntable"
-                ? "bg-white dark:bg-slate-900 text-cyan-600 dark:text-cyan-400 font-bold shadow-sm"
+                ? "bg-white dark:bg-slate-900 text-cyan-700 dark:text-cyan-400 font-bold shadow-sm"
                 : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
             }`}
           >
             <RotateCw className="w-3.5 h-3.5" />
-            <span>3D Turntable</span>
+            <span>3D Showcase</span>
           </button>
 
           <button
@@ -78,7 +78,7 @@ export function ProjectsSection() {
             onClick={() => setViewMode("grid")}
             className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full transition-all ${
               viewMode === "grid"
-                ? "bg-white dark:bg-slate-900 text-cyan-600 dark:text-cyan-400 font-bold shadow-sm"
+                ? "bg-white dark:bg-slate-900 text-cyan-700 dark:text-cyan-400 font-bold shadow-sm"
                 : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
             }`}
           >
@@ -95,14 +95,7 @@ export function ProjectsSection() {
         /* Minimal Project Preview Cards Grid */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch">
           {projectsData.map((project: ProjectData, index: number) => {
-            const badgeColor =
-              index === 0
-                ? "text-cyan-600 dark:text-cyan-400"
-                : index === 1
-                ? "text-purple-600 dark:text-purple-400"
-                : index === 2
-                ? "text-emerald-600 dark:text-emerald-400"
-                : "text-amber-600 dark:text-amber-400";
+            const badgeColor = "text-cyan-700 dark:text-cyan-400";
 
             return (
               <motion.div
@@ -115,7 +108,7 @@ export function ProjectsSection() {
               >
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden glass-card glass-card-hover border border-slate-200/90 dark:border-slate-800/80 p-5 sm:p-6 flex flex-col justify-between group cursor-pointer transition-all duration-500 hover:border-cyan-500/50 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.2)]"
+                  className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden glass-card glass-card-hover border border-slate-200/90 dark:border-slate-800/80 p-5 sm:p-6 flex flex-col justify-between group cursor-pointer transition-all duration-500 hover:border-cyan-500/50"
                 >
                   <div>
                     {/* Thumbnail Image */}
@@ -126,25 +119,28 @@ export function ProjectsSection() {
                         )}
                         alt={project.title}
                         loading="lazy"
-                        className="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                        decoding="async"
+                        width={800}
+                        height={500}
+                        className="w-full h-full object-cover object-bottom opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                       />
                     </div>
 
                     {/* Category & Year */}
                     <div
-                      className={`flex items-center justify-between text-[11px] font-mono mb-2 ${badgeColor}`}
+                      className={`flex items-center justify-between text-xs font-mono mb-2 ${badgeColor}`}
                     >
                       <div className="flex items-center gap-1.5 truncate">
                         <span className="uppercase font-semibold tracking-wider truncate">
                           {project.category}
                         </span>
                         {project.statusBadge === "Under revision" && (
-                          <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 shrink-0">
+                          <span className="px-1.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-400 shrink-0">
                             Under revision
                           </span>
                         )}
                       </div>
-                      <span className="text-slate-400 text-[10px] shrink-0">
+                      <span className="text-slate-500 dark:text-slate-400 text-xs shrink-0">
                         {project.year}
                       </span>
                     </div>
@@ -161,7 +157,7 @@ export function ProjectsSection() {
                   </div>
 
                   {/* Bottom Action CTA */}
-                  <div className="pt-4 mt-4 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs font-mono font-semibold text-cyan-600 dark:text-cyan-400 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                  <div className="pt-4 mt-4 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between text-xs font-mono font-semibold text-cyan-700 dark:text-cyan-400 group-hover:underline transition-colors">
                     <span>Explore Study</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
