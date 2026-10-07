@@ -23,7 +23,9 @@ interface TurntableCarouselProps {
 }
 
 export function TurntableCarousel({ projects }: TurntableCarouselProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(() =>
+    Math.max(0, projects.findIndex((p) => p.slug === "bwb-uav"))
+  );
   const [isHovered, setIsHovered] = useState(false);
   const [direction, setDirection] = useState<"left" | "right">("right");
   const [dragStartX, setDragStartX] = useState<number | null>(null);
@@ -294,9 +296,9 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
 
                   {/* Category & Status */}
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <div className="flex items-center gap-1.5 truncate">
+                    <div className="flex items-center gap-1.5 min-w-0">
                       <span
-                        className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider border ${badgeColor}`}
+                        className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider border truncate min-w-0 ${badgeColor}`}
                       >
                         {project.category}
                       </span>
@@ -413,7 +415,7 @@ export function TurntableCarousel({ projects }: TurntableCarouselProps) {
           href={`/projects/${activeProject.slug}`}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-600 to-sky-500 hover:from-cyan-500 hover:to-sky-500 text-white font-mono text-xs sm:text-sm font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-sky-500/30 transition-all transform hover:-translate-y-0.5"
         >
-          <span>Open Full Analysis: {activeProject.title}</span>
+          <span>Read more</span>
           <ArrowRight className="w-4 h-4" />
         </Link>
       </div>

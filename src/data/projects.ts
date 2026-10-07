@@ -103,9 +103,9 @@ export const projectsData: ProjectData[] = [
       "2D CFD study of rear spoiler deployment angle on a supercar profile, ANSYS Fluent. Results under revision.",
     heroAsset: {
       type: "image",
-      src: "/Assets/og-image.jpg",
+      src: "/Assets/supercar-pathlines.jpg",
       caption: "Aerodynamic Analysis of a Supercar Rear Spoiler (Setup under revision)",
-      poster: "/Assets/og-image.jpg",
+      poster: "/Assets/supercar-pathlines.jpg",
     },
     progressTracker: {
       title: "CFD SIMULATION LIFECYCLE & REVISION ROADMAP",
@@ -219,7 +219,7 @@ export const projectsData: ProjectData[] = [
     title: "Blended Wing Body UAV",
     subtitle: "Aerodynamic Validation & Lateral Stability Optimization",
     year: "2026 to Present",
-    category: "Autonomous Aerospace Vehicle",
+    category: "Aerospace Vehicle",
     statusBadge: "ACTIVE RESEARCH",
     readTime: "7 min read",
     summary:
@@ -426,12 +426,12 @@ export const projectsData: ProjectData[] = [
     cardLabel: "REVIEW PAPER",
     readTime: "4 min read",
     summary:
-      "IEEE-format review comparing six propulsion families for commercial blended wing body aircraft on fuel burn, noise, integration, emissions and readiness.",
+      "Review comparing six propulsion families for commercial blended wing body aircraft on fuel burn, noise, integration, emissions and readiness.",
     heroAsset: {
       type: "image",
-      src: "/Assets/bwb-propulsion-review-thumb.jpg",
+      src: "/Assets/og-image.jpg",
       caption: "Blended wing body with podded engines above the aft centre body",
-      poster: "/Assets/bwb-propulsion-review-thumb.jpg",
+      poster: "/Assets/og-image.jpg",
     },
     content: [],
     techStack: [
@@ -441,9 +441,8 @@ export const projectsData: ProjectData[] = [
       "Open rotor",
       "Boundary layer ingestion",
       "Hydrogen",
-      "IEEE format",
     ],
-    quickStats: [{ label: "Format", value: "8-page IEEE review" }],
+    quickStats: [{ label: "Format", value: "8-page review" }],
     gallery: [],
   },
   {

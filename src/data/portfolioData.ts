@@ -386,7 +386,7 @@ export const portfolioData = {
       slug: "bwb-uav",
       title: "Blended Wing Body UAV",
       subtitle: "Aerodynamic Validation & Lateral Stability Optimization",
-      category: "Autonomous Aerospace Vehicle",
+      category: "Aerospace Vehicle",
       status: "In Progress",
       statusBadge: "Final Year Dissertation · In Progress",
       dateRange: "August 2026 to Present",

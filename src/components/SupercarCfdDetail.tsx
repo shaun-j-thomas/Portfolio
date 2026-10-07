@@ -37,7 +37,7 @@ export function SupercarCfdDetail({
         <ProjectHeader project={project} />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 space-y-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 space-y-12 pb-20 sm:pb-24">
         {/* Status Panel (Replaces KPI cards) */}
         <div className="rounded-2xl p-6 sm:p-8 bg-amber-500/10 dark:bg-amber-950/25 border border-amber-500/30 dark:border-amber-500/40 shadow-lg">
           <div className="flex items-start gap-4">

@@ -26,9 +26,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   if (params.slug === "bwb-propulsion-review") {
     const title = "Propulsion for Commercial Blended Wing Body Aircraft | Review Paper | Shaun John Thomas";
     const description =
-      "IEEE-format review of turbofans, open rotors, boundary layer ingestion, hybrid-electric systems and hydrogen for commercial blended wing body aircraft.";
+      "Review of turbofans, open rotors, boundary layer ingestion, hybrid-electric systems and hydrogen for commercial blended wing body aircraft.";
     const url = `https://shaun-j-thomas.github.io/Portfolio/projects/${params.slug}/`;
-    const ogImage = "https://shaun-j-thomas.github.io/Portfolio/Assets/bwb-propulsion-review-thumb.jpg";
+    const ogImage = "https://shaun-j-thomas.github.io/Portfolio/Assets/og-image.jpg";
     return {
       title,
       description,
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     const description =
       "2D computational fluid dynamics study in ANSYS Fluent investigating active rear spoiler deployment angles. Method and numerical setup under revision.";
     const url = `https://shaun-j-thomas.github.io/Portfolio/projects/${params.slug}/`;
-    const ogImage = "https://shaun-j-thomas.github.io/Portfolio/Assets/og-image.jpg";
+    const ogImage = "https://shaun-j-thomas.github.io/Portfolio/Assets/supercar-pathlines.jpg";
 
     return {
       title,
@@ -168,7 +168,7 @@ function ProjectDetailContent({ params }: ProjectPageProps) {
       headline: "Aerodynamic Analysis of a Supercar Rear Spoiler",
       description:
         "2D external flow computational fluid dynamics (CFD) investigation evaluating active rear spoiler deployment angles in ANSYS Fluent.",
-      image: "https://shaun-j-thomas.github.io/Portfolio/Assets/og-image.jpg",
+      image: "https://shaun-j-thomas.github.io/Portfolio/Assets/supercar-pathlines.jpg",
       datePublished: "2026-09-30",
       dateModified: "2026-10-02",
       author: {

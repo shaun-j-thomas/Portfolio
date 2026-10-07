@@ -27,13 +27,6 @@ const PAPER_PDF = "/Assets/Shaun_John_Thomas_BWB_Propulsion_Review.pdf";
 /* Content                                                                    */
 /* -------------------------------------------------------------------------- */
 
-const paperStats = [
-  { value: "6", label: "Propulsion families" },
-  { value: "5", label: "Assessment criteria" },
-  { value: "24", label: "Cited sources" },
-  { value: "8", label: "Pages, IEEE format" },
-];
-
 const keyFindings = [
   {
     figure: "2030s",
@@ -155,17 +148,7 @@ export function BwbPropulsionReviewDetail({
         </ProjectHeader>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 space-y-12">
-        {/* Paper stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-slate-200/90 dark:border-slate-800/80 bg-slate-200 dark:bg-slate-800 shadow-sm">
-          {paperStats.map((s) => (
-            <div key={s.label} className="p-4 sm:p-5 bg-white/90 dark:bg-slate-900/90">
-              <div className="text-2xl sm:text-3xl font-mono font-extrabold text-cyan-700 dark:text-cyan-400">{s.value}</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 space-y-12 pb-20 sm:pb-24">
         {/* 01 Overview */}
         <section className="p-6 sm:p-8 rounded-2xl glass-card border border-slate-200/90 dark:border-slate-800/80 shadow-sm space-y-5">
           <SectionHeader index="01" eyebrow="Abstract" title="Overview" />
@@ -312,7 +295,7 @@ export function BwbPropulsionReviewDetail({
               })}
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Fig. 2 in the paper. Data: Ansell and Haran, IEEE Electrification Magazine, vol. 8, no. 2, 2020.
+              Fig. 2 in the paper. Data: Ansell and Haran, 2020.
             </p>
           </figure>
         </section>
