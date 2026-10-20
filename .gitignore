@@ -34,3 +34,6 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# Locally archived, never published
+/archive/supercar-spoiler-cfd-withdrawn/

@@ -328,60 +328,6 @@ export const portfolioData = {
 
   projects: [
     {
-      id: "supercar-spoiler-cfd",
-      slug: "supercar-spoiler-cfd",
-      title: "Supercar Rear Spoiler Aerodynamics",
-      subtitle: "2D External Flow CFD Study of Spoiler Deployment Angles at 80 m/s",
-      category: "Automotive Aerodynamics & CFD",
-      status: "Under revision",
-      statusBadge: "Under revision",
-      dateRange: "2026",
-      leadParagraph:
-        "2D CFD study of rear spoiler deployment angle on a supercar profile, ANSYS Fluent. Results under revision.",
-      overview:
-        "2D CFD study of rear spoiler deployment angle on a supercar profile, ANSYS Fluent. Results under revision.",
-      quickStats: [],
-      methodology: [
-        {
-          step: "01",
-          title: "Setup Review & Domain Diagnosis",
-          role: "Led",
-          description:
-            "Analyzed first-round boundary conditions, identifying stationary ground wall effects and domain blockage constraints.",
-        },
-        {
-          step: "02",
-          title: "Moving Ground & Expanded Domain Setup",
-          role: "Led",
-          description:
-            "Implementing moving road boundary conditions at freestream speed (80.0 m/s) with enlarged farfield boundaries.",
-        },
-        {
-          step: "03",
-          title: "Mesh Independence Verification",
-          role: "Led",
-          description:
-            "Setting up systematic grid convergence index verification with explicit near-wall y+ tracking.",
-        },
-        {
-          step: "04",
-          title: "Isolated Force Reporting & Re-run",
-          role: "Led",
-          description:
-            "Configuring independent spoiler wall force reporting to evaluate aerodynamic forces across all configurations.",
-        },
-      ],
-      tags: [
-        "ANSYS Fluent",
-        "SST k-omega",
-        "Automotive Aerodynamics",
-        "Active Aerodynamics",
-      ],
-      featuredImage: "/Assets/og-image.jpg",
-      gallery: [],
-      links: {},
-    },
-    {
       id: "bwb-uav",
       slug: "bwb-uav",
       title: "Blended Wing Body UAV",

@@ -49,7 +49,7 @@ export function ProjectsSection() {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mt-3 font-normal"
         >
-          Explore interactive case studies across high-speed automotive CFD, UAV stability optimization, supersonic rocketry, and precision CAD design.
+          Explore interactive case studies across UAV stability optimization, propulsion research, supersonic rocketry, and precision CAD design.
         </motion.p>
 
         {/* View Mode Switcher Pill */}
