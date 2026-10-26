@@ -300,9 +300,18 @@ export function UniversalProjectDetail({
                     : "// VEHICLE & SYSTEM ARCHITECTURE"}
                 </span>
               </div>
-              <span className="text-xs text-slate-500 dark:text-slate-400 font-mono hidden sm:inline">
-                ASPECT 21:9 · REAL-TIME VIEWPORT
-              </span>
+              {project.showcaseUrl ? (
+                <Link
+                  href={project.showcaseUrl}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-cyan-500 px-3 py-1 font-semibold text-slate-950 hover:bg-cyan-400 transition-colors"
+                >
+                  LAUNCH INTERACTIVE SHOWCASE →
+                </Link>
+              ) : (
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-mono hidden sm:inline">
+                  ASPECT 21:9 · REAL-TIME VIEWPORT
+                </span>
+              )}
             </div>
 
             {/* Parallax Media Stage */}

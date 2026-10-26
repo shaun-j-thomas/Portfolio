@@ -88,6 +88,7 @@ export interface ProjectData {
   externalLabel?: string;
   /** Short label shown on the project card thumbnail (defaults to SIMULATION / 3D CAD). */
   cardLabel?: string;
+  showcaseUrl?: string;
 }
 
 export const projectsData: ProjectData[] = [
@@ -99,6 +100,7 @@ export const projectsData: ProjectData[] = [
     category: "Aerospace Vehicle",
     statusBadge: "ACTIVE RESEARCH",
     readTime: "7 min read",
+    showcaseUrl: "/bwb/",
     summary:
       "Investigating the interplay between winglet cant angles, lateral-directional stability derivatives (Cl_β, Cn_β), and induced drag penalties on a tailless Blended Wing Body aircraft configuration.",
     heroAsset: {
