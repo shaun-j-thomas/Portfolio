@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script>try{var t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("sjt-theme");if(t==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MH 45 Aerofoil CFD Sweep, Shaun John Thomas</title>
+<meta name="description" content="A 2D Fluent sweep of the MH 45 flying wing aerofoil, run as an HPC job array and checked against published XFOIL polars.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../assets/img/misc/favicon.png">
+<link rel="canonical" href="https://shaun-j-thomas.github.io/Portfolio/projects/mh45.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shaun-j-thomas.github.io/Portfolio/projects/mh45.html">
+<meta property="og:title" content="MH 45 Aerofoil CFD Sweep, Shaun John Thomas">
+<meta property="og:description" content="A 2D Fluent sweep of the MH 45 flying wing aerofoil, run as an HPC job array and checked against published XFOIL polars.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/mh45.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MH 45 Aerofoil CFD Sweep, Shaun John Thomas">
+<meta name="twitter:description" content="A 2D Fluent sweep of the MH 45 flying wing aerofoil, run as an HPC job array and checked against published XFOIL polars.">
+<meta name="twitter:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/mh45.jpg">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.hero .hero-copy h1{font-size:clamp(2.8rem,8.4vw,8rem)}
+.hero .crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.86rem;color:var(--ash);margin-bottom:18px;pointer-events:auto}
+.hero .crumbs a{text-decoration:none}.hero .crumbs a:hover{color:var(--powder)}
+.hero .hero-copy{bottom:clamp(24px,5vh,54px)}
+</style>
+</head>
+<body data-root="../" data-page="mh45">
+<a class="skip" href="#doc">Skip to the write-up</a>
+<div class="progress"></div>
+<header class="nav"></header>
+
+<main>
+<section class="hero" aria-label="Project summary">
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <div class="readout" aria-hidden="true">
+    <header><b>MH 45, live</b><span>Re 685,000</span></header>
+    <dl>
+      <dt>Angle of attack</dt><dd class="num" id="ro-a">5.0°</dd>
+      <dt>CL, panel method</dt><dd class="num" id="ro-cp">0.00</dd>
+      <dt>CL, Fluent</dt><dd class="num hot" id="ro-cf">0.00</dd>
+      <dt>L/D, Fluent</dt><dd class="num" id="ro-ld">0</dd>
+    </dl>
+    <svg viewBox="0 0 260 108" id="ro-chart"></svg>
+    <p class="state" id="ro-state"></p>
+    <p class="hint">Move the cursor up and down to pitch the section.</p>
+    <p class="hint touch">Swipe sideways across the flow to pitch it.</p>
+  </div>
+  <div class="hero-copy">
+    <p class="crumbs"><a href="../index.html#work" data-veil="All work">Work</a><span>/</span><span>03 of 05</span><span class="badge">Completed</span></p>
+    <h1 class="kin">MH 45 Aerofoil CFD Sweep</h1>
+    <div class="hero-row">
+      <p>A 2D Fluent sweep of the BWB's tip aerofoil, run in parallel on HPC and checked against published polars before any 3D work.</p>
+      <div class="p-meta" style="margin:0;pointer-events:auto"><div>Date<b>October 2026</b></div><div>Role<b>Solo</b></div><div>Read<b>4 min</b></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="stats" style="margin-top:24px">
+    <div><b class="num">685k</b>Reynolds number on 0.5 m chord</div>
+    <div><b class="num">11</b>angles, −4° to 16°, one HPC task each</div>
+    <div><b class="num">336k</b>cell 2D mesh</div>
+    <div><b class="num">−3%</b>lift slope against XFOIL</div>
+    <div><b class="num hot">74</b>max L/D, at 6°</div>
+  </div>
+</div>
+
+<div class="wrap doc" id="doc">
+  <aside class="toc" aria-label="On this page">
+    <h4>On this page</h4>
+    <ol>
+      <li><a href="#why">Why this run</a></li>
+      <li><a href="#setup">Setup</a></li>
+      <li><a href="#published">Checking the reference</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#compare">Comparison</a></li>
+      <li><a href="#shows">What it shows</a></li>
+      <li><a href="#carried">Into the dissertation</a></li>
+    </ol>
+    <a class="back" href="../index.html#work" data-veil="All work">← All projects</a>
+  </aside>
+
+  <div>
+    <section id="why">
+      <h2><span class="n">01 · Why this run</span>Practise the workflow where the answer is known</h2>
+      <p>Before running my 3D <a href="bwb.html" data-veil="Blended Wing Body UAV" style="color:var(--powder)">BWB cases</a> I practised the full workflow on the MH 45, the reflexed tip aerofoil of my UAV. Eleven angles of attack ran in parallel on Strathclyde's HPC cluster, and the results were compared with published XFOIL data at the same Reynolds number.</p>
+      <p class="pull">Lift matched within about <em>5%</em> through the linear range, and the comparison showed exactly where steady 2D RANS stops being reliable.</p>
+    </section>
+
+    <section id="setup">
+      <h2><span class="n">02 · Setup</span>One mesh, every angle</h2>
+      <figure><div class="frame plate"><img src="../assets/img/mh45/01_mh45_geometry.webp" alt="Outline of the reflexed MH 45 aerofoil with its camber line" loading="lazy"></div><figcaption><b>The MH 45 as meshed.</b> Its reflexed trailing edge keeps the pitching moment close to zero, which is what a tailless aircraft needs.</figcaption></figure>
+      <div class="specgrid">
+        <div>Aerofoil<b>MH 45 (Hepperle), 9.85% thick, 1.7% camber</b></div>
+        <div>Flow<b>20 m/s, sea level, Re 685,000</b></div>
+        <div>Sweep<b>α −4° to 16°, 2° steps</b></div>
+        <div>Mesh<b>2D, 336,000 cells, 10,068 surface faces</b></div>
+        <div>Solver<b>Steady, Transition SST (γ-Reθ), Tu 0.5%</b></div>
+        <div>Angle of attack<b>Inlet vector rotated, mesh fixed</b></div>
+        <div>Iterations<b>1,500 per case, last 300 averaged</b></div>
+        <div>HPC<b>ARCHIE-WeSt Slurm array, 10 cores per task, 8 at once, about 15 min each</b></div>
+      </div>
+    </section>
+
+    <section id="published">
+      <h2><span class="n">03 · Checking the reference</span>Reproduce the published polar first</h2>
+      <p>Airfoiltools.com publishes XFOIL polars for the MH 45 at Re 500,000 and 1,000,000 (Ncrit 9), but nothing at my Reynolds number. So I ran XFOIL with the same settings on my own coordinates and checked it against the published 500,000 polar first. It matched within 0.1% on drag and 0.7% on lift, and reproduced the published maximum L/D exactly (81.1 at 500,000 and 95.4 at 1,000,000). Only then did I run it at 685,000 to compare like for like with the CFD.</p>
+      <div class="tbl"><table class="t">
+        <thead><tr><th>α</th><th>Published CL</th><th>My XFOIL CL</th><th>Published CD</th><th>My XFOIL CD</th></tr></thead>
+        <tbody>
+          <tr><td>0°</td><td class="v">0.0977</td><td class="v">0.0983</td><td class="v">0.00593</td><td class="v">0.00593</td></tr>
+          <tr><td>5.75°</td><td class="v">0.7511</td><td class="v">0.7519</td><td class="v">0.00926</td><td class="v">0.00927</td></tr>
+          <tr><td>10°</td><td class="v">1.1596</td><td class="v">1.1581</td><td class="v">0.01762</td><td class="v">0.01761</td></tr>
+          <tr><td>13.25°</td><td class="v">1.2930</td><td class="v">1.2842</td><td class="v">0.03434</td><td class="v">0.03418</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.84rem">Against the published airfoiltools.com polar, Re 500,000, Ncrit 9.</p>
+    </section>
+
+    <section id="results">
+      <h2><span class="n">04 · Results</span>Read the polars yourself</h2>
+      <div class="widget polar" data-polar>
+        <header><h4>Fluent against XFOIL, Re 685,000</h4>
+          <div class="seg" role="group" aria-label="Plot"><button data-k="cl" aria-pressed="true">Lift curve</button><button data-k="cd">Drag polar</button><button data-k="ld">L/D</button><button data-k="cm">Moment</button></div></header>
+        <svg role="img" aria-label="Interactive polar plot of the Fluent and XFOIL results"></svg>
+        <div class="readline" data-o="read"></div>
+        <p class="muted" style="font-size:.82rem;margin-top:10px">Solid line and dots: ANSYS Fluent, Transition SST. Dashed: XFOIL, Ncrit 9. Hollow dots are unsteady after stall and show the average. Hover or tap the plot.</p>
+      </div>
+      <figure><div class="frame plate"><img src="../assets/img/mh45/00_summary_panel.webp" alt="Four plots comparing Fluent and XFOIL lift, drag, lift-to-drag and moment for the MH 45" loading="lazy"></div><figcaption><b>Summary panel.</b> Fluent against XFOIL at the same Reynolds number, with XFOIL at 500,000 and 1,000,000 for context.</figcaption></figure>
+      <figure><div class="frame plate"><img src="../assets/img/mh45/06_convergence.webp" alt="Lift history converging at 4 degrees and oscillating at 14 degrees" loading="lazy"></div><figcaption><b>Lift history.</b> At 4° the solution settles to five decimal places. At 14° the separated flow sheds and never settles, so a steady solver can only give an average.</figcaption></figure>
+      <a class="dl" href="../assets/img/mh45/mh45_results.csv" download>Download the results (CSV, 1 KB)</a>
+    </section>
+
+    <section id="compare">
+      <h2><span class="n">05 · Comparison</span>Numbers side by side</h2>
+      <div class="tbl"><table class="t">
+        <thead><tr><th>Quantity</th><th>Fluent</th><th>XFOIL (Re 685k)</th><th>Difference</th></tr></thead>
+        <tbody>
+          <tr><td>Lift slope, −2° to 6°</td><td class="v">0.112 /deg</td><td class="v">0.115 /deg</td><td class="v">−3%</td></tr>
+          <tr><td>Zero-lift angle</td><td class="v">−0.7°</td><td class="v">−0.6°</td><td class="v">0.1°</td></tr>
+          <tr><td>CL at 4°</td><td class="v">0.536</td><td class="v">0.567</td><td class="v">−5%</td></tr>
+          <tr><td>Minimum CD</td><td class="v">0.0056</td><td class="v">0.0052</td><td class="v">+7%</td></tr>
+          <tr><td>CD at 4°</td><td class="v">0.0077</td><td class="v">0.0069</td><td class="v">+11%</td></tr>
+          <tr><td>Maximum L/D</td><td class="v">74 at 6°</td><td class="v">88 at 5.5°</td><td class="v">−15%</td></tr>
+          <tr><td>Maximum CL</td><td class="v">1.14 at 10°</td><td class="v">1.33 at 14°</td><td class="v">−14%</td></tr>
+          <tr><td>Cm, −4° to 10°</td><td class="v">−0.002 to −0.008</td><td class="v">+0.002 to −0.011</td><td class="v">both near zero</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="shows">
+      <h2><span class="n">06 · What it shows</span>Where to trust it, and where not to</h2>
+      <ul class="list">
+        <li><b>Lift is right.</b> Slope and zero-lift angle agree within 3% and 0.1°, so the geometry, mesh and the way angle of attack is applied are all sound.</li>
+        <li><b>Drag is a little high.</b> Fluent sits 7% to 11% above XFOIL at low angles and further above as the angle rises. Some of this is expected: XFOIL often reads slightly low on drag, and the two methods model transition differently.</li>
+        <li><b>Stall is the limit of a steady 2D solver.</b> Past 10° the flow separates and sheds vortices, so steady RANS cannot converge to one answer. The averaged values are shown with their spread.</li>
+        <li><b>The moment behaves like a flying wing section.</b> Cm stays small and nearly constant through the working range, which is why this aerofoil suits a tailless aircraft.</li>
+      </ul>
+      <div class="figs">
+        <figure><div class="frame plate"><img src="../assets/img/mh45/04_lift_to_drag.webp" alt="Lift-to-drag ratio against angle of attack, both methods peaking near 6 degrees" loading="lazy"></div><figcaption><b>Lift-to-drag.</b> Both peak near 6°, Fluent about 15% lower.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/mh45/05_pitching_moment.webp" alt="Quarter-chord pitching moment staying close to zero" loading="lazy"></div><figcaption><b>Pitching moment.</b> Small and almost constant, as a reflexed section should be.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="carried">
+      <h2><span class="n">07 · Into the dissertation</span>What carried straight over</h2>
+      <p>The job array, inlet-rotation approach and coefficient post-processing all carried straight over to the 3D work. The run also showed that Transition SST matters at these Reynolds numbers and that results past stall need care, both of which shaped the later validation on the NASA Common Research Model.</p>
+      <a class="btn line" style="margin-top:22px" href="bwb.html#validation" data-veil="Blended Wing Body UAV">See the CRM validation <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <ul class="chips" style="margin-top:28px"><li>ANSYS DesignModeler</li><li>ANSYS Meshing</li><li>Fluent 2025</li><li>ARCHIE-WeSt HPC</li><li>Slurm job arrays</li><li>XFOIL</li><li>Python</li></ul>
+      <h3>Sources</h3>
+      <ol class="refs">
+        <li>Airfoil Tools. MH 45 9.85% (mh45-il), XFOIL polars at Re 500,000 and 1,000,000, Ncrit 9.</li>
+        <li>Hepperle, M. MH 45 coordinates and design notes for tailless model aircraft. mh-aerotools.de</li>
+        <li>Drela, M. XFOIL 6.99, subsonic aerofoil development system.</li>
+      </ol>
+      <p class="muted" style="font-size:.86rem">Wind tunnel data for the MH 45 exists in Selig et al., Summary of Low-Speed Airfoil Data, Vol. 1, but only up to Re 300,000 and not in digital form, so it was not used here.</p>
+    </section>
+  </div>
+</div>
+
+<nav class="next-prev" data-nextprev aria-label="More projects"></nav>
+<footer class="contact compact" id="contact">
+  <div class="wrap">
+    <h2 class="kin">Available after <em>June 2027</em></h2>
+    <div class="contact-row">
+      <a class="sl" href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com<svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></a>
+      <div class="hero-cta"><a class="btn hot" href="../assets/files/Shaun-John-Thomas-CV.pdf" target="_blank" rel="noopener">View CV</a><a class="btn line" href="../index.html#work" data-veil="All work">All projects</a></div>
+    </div>
+    <div class="foot"><nav aria-label="Projects" data-footnav></nav><span>© 2026 Shaun John Thomas</span></div>
+  </div>
+</footer>
+</main>
+<script src="../assets/site.js"></script>
+<script src="../assets/mh45.js"></script>
+<script src="../assets/hero.js"></script>
+<script src="../assets/project.js"></script>
+</body>
+</html>

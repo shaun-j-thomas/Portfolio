@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script>try{var t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("sjt-theme");if(t==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StrathAIS: Nevis, Shaun John Thomas</title>
+<meta name="description" content="Parachute recovery interface and bulkhead FEA for Nevis, StrathAIS's supersonic rocket at IREC 2026.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../assets/img/misc/favicon.png">
+<link rel="canonical" href="https://shaun-j-thomas.github.io/Portfolio/projects/strathais.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shaun-j-thomas.github.io/Portfolio/projects/strathais.html">
+<meta property="og:title" content="StrathAIS: Nevis, Shaun John Thomas">
+<meta property="og:description" content="Parachute recovery interface and bulkhead FEA for Nevis, StrathAIS's supersonic rocket at IREC 2026.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/strathais.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="StrathAIS: Nevis, Shaun John Thomas">
+<meta name="twitter:description" content="Parachute recovery interface and bulkhead FEA for Nevis, StrathAIS's supersonic rocket at IREC 2026.">
+<meta name="twitter:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/strathais.jpg">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-root="../" data-page="strathais">
+<a class="skip" href="#doc">Skip to the write-up</a>
+<div class="progress"></div>
+<header class="nav"></header>
+
+<main>
+<section class="p-hero" aria-label="Project summary">
+  <div class="bg photo"><img src="../assets/img/legacy/Nevis.webp" alt="The finished Nevis rocket on the workshop bench"></div>
+  <div class="wrap">
+    <p class="crumbs"><a href="../index.html#work" data-veil="All work">Work</a><span>/</span><span>04 of 05</span><span class="badge">Launched</span></p>
+    <h1 class="kin">StrathAIS: Nevis</h1>
+    <p class="sub">Airframe design engineer. The recovery interface and bulkhead that take the main parachute's opening shock, cut to half their mass through design changes checked with FEA.</p>
+    <div class="p-meta">
+      <div>Role<b>Airframe design engineer</b></div>
+      <div>Team<b>StrathAIS, University of Strathclyde</b></div>
+      <div>Dates<b>2025 to 2026</b></div>
+      <div>Read<b>5 min</b></div>
+    </div>
+    <div class="stats">
+      <div><b class="num">24,528 ft</b>apogee at Spaceport America</div>
+      <div><b>Mach 1+</b>peak speed</div>
+      <div><b class="num hot">50%+</b>bulkhead mass removed</div>
+      <div><b>2.2+</b>ultimate factor of safety kept</div>
+      <div><b>8th</b>place, IREC 2026, 30,000 ft category</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap doc" id="doc">
+  <aside class="toc" aria-label="On this page">
+    <h4>On this page</h4>
+    <ol>
+      <li><a href="#mission">Mission and requirements</a></li>
+      <li><a href="#interface">The recovery interface</a></li>
+      <li><a href="#fea">FEA and mass reduction</a></li>
+      <li><a href="#build">Composites</a></li>
+      <li><a href="#flight">Reviews and flight</a></li>
+      <li><a href="#role">What I owned</a></li>
+    </ol>
+    <a class="back" href="../index.html#work" data-veil="All work">← All projects</a>
+  </aside>
+  <div>
+    <section id="mission">
+      <h2><span class="n">01 · Mission and requirements</span>A violent load at the top of the flight</h2>
+      <p>Nevis competed in the 30,000 ft category at the Intercollegiate Rocket Engineering Competition in New Mexico. The main technical challenge on my side was a recovery junction able to absorb the shock of main parachute deployment, with proper margins against axial drag compression and gust-induced bending on the way up.</p>
+    </section>
+
+    <section id="interface">
+      <h2><span class="n">02 · The recovery interface</span>Shock cord to motor bay</h2>
+      <p>I designed the structural interface that connects the main parachute shock cord to the motor bay assembly in SolidWorks: the bulkhead geometry, the U-bolt pass-throughs and the bolt pattern that ties it into the airframe. Every load path from the cord has to reach the body tube without a single part becoming the weak link.</p>
+    </section>
+
+    <section id="fea">
+      <h2><span class="n">03 · FEA and mass reduction</span>Find the material doing nothing</h2>
+      <p>Using SolidWorks and ANSYS Mechanical, I ran iterative linear static stress simulations across the peak deployment load cases, up to 30 g deceleration spikes. The critical concentrations around the U-bolt pass-throughs and the fastener shear ring were mapped and reinforced.</p>
+      <p>The mass came off through design decisions as much as through the analysis. The low-stress zones were pocketed out of the CNC-milled 6061-T6 aluminium bulkhead, the bolt pattern was rebalanced so the load spread evenly, and each change went back through the FEA. Structural mass fell by over 50% while the ultimate factor of safety stayed above 2.2.</p>
+      <div class="cmp" data-mass="#mass" style="max-width:440px">
+        <img src="../assets/bulkhead-before.png" alt="Original recovery assembly, displacement plot">
+        <img class="after" src="../assets/bulkhead-after.png" alt="Optimised bulkhead, von Mises stress plot">
+        <span class="tag l">Original assembly</span><span class="tag r">Optimised bulkhead</span>
+        <div class="bar"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare original and optimised bulkhead">
+      </div>
+      <div class="readline"><div><b class="num hot" id="mass" aria-live="polite">−25%</b>bulkhead mass. Drag the handle left to finish the optimisation.</div></div>
+      <button class="load3d" data-load3d="../assets/files/Z_ASSEM.glb" data-alt="3D CAD of the recovery interface and bulkhead assembly"><span>Load the interactive 3D recovery assembly (14 MB)</span></button>
+      <figure><div class="frame plate"><img src="../assets/img/legacy/Optimization.webp" alt="FEA displacement on the original assembly and von Mises stress on the optimised bulkhead" loading="lazy"></div><figcaption><b>Before and after.</b> Displacement on the original assembly, von Mises stress on the pocketed bulkhead.</figcaption></figure>
+    </section>
+
+    <section id="build">
+      <h2><span class="n">04 · Composites</span>Hands on the layup</h2>
+      <p>The airframe tubes are glass and carbon fibre wet layups, and I worked on the layup with the rest of the team. That's me in the photo.</p>
+      <figure><div class="frame"><img src="../assets/img/legacy/FiberglassLayups.webp" alt="Shaun and teammates laying up glass fibre over a mandrel" loading="lazy"></div><figcaption><b>Wet layup</b> on the airframe tubes.</figcaption></figure>
+    </section>
+
+    <section id="flight">
+      <h2><span class="n">05 · Reviews and flight</span>PDR, CDR, then New Mexico</h2>
+      <p>I defended the airframe margins and manufacturing process through the Preliminary and Critical Design Reviews. At Spaceport America in June 2026, Nevis flew to 24,528 ft, passed Mach 1 and placed 8th.</p>
+      <p class="pull">24,528 ft, <em>Mach 1+</em>, recovered, and 8th at IREC 2026.</p>
+    </section>
+
+    <section id="role">
+      <h2><span class="n">06 · What I owned</span>Breakdown</h2>
+      <div class="cards">
+        <article><span class="role">Led</span><h4>Interface design</h4><p>Bulkhead geometry and airframe bolt pattern carrying the main parachute shock cord into the motor bay.</p></article>
+        <article><span class="role">Led</span><h4>Design changes and FEA</h4><p>Linear static FEA under axial compression, gust bending and deployment jerk loads, used to check each design change. Over 50% mass removed with margins kept.</p></article>
+        <article><span class="role c">Contributed</span><h4>Composite layup</h4><p>Hands-on glass and carbon fibre wet layup on the airframe tubes, with the team.</p></article>
+        <article><span class="role">Led</span><h4>PDR and CDR defence</h4><p>Defended airframe margins and processes, then flew supersonic to 24,528 ft.</p></article>
+      </div>
+      <ul class="chips" style="margin-top:26px"><li>ANSYS Mechanical</li><li>SolidWorks assemblies</li><li>Composite wet layup</li><li>CNC and DFM</li><li>Fastener shear analysis</li><li>Recovery shock loads</li></ul>
+      <a class="btn line" style="margin-top:26px" href="https://strathais.com/" target="_blank" rel="noopener">StrathAIS website <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+    </section>
+  </div>
+</div>
+
+<nav class="next-prev" data-nextprev aria-label="More projects"></nav>
+<footer class="contact compact" id="contact">
+  <div class="wrap">
+    <h2 class="kin">Available after <em>June 2027</em></h2>
+    <div class="contact-row">
+      <a class="sl" href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com<svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></a>
+      <div class="hero-cta"><a class="btn hot" href="../assets/files/Shaun-John-Thomas-CV.pdf" target="_blank" rel="noopener">View CV</a><a class="btn line" href="../index.html#work" data-veil="All work">All projects</a></div>
+    </div>
+    <div class="foot"><nav aria-label="Projects" data-footnav></nav><span>© 2026 Shaun John Thomas</span></div>
+  </div>
+</footer>
+</main>
+<script src="../assets/site.js"></script>
+<script src="../assets/project.js"></script>
+</body>
+</html>

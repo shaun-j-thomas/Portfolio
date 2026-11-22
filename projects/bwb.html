@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script>try{var t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("sjt-theme");if(t==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blended Wing Body UAV, Shaun John Thomas</title>
+<meta name="description" content="Winglet cant angle and yaw stability of a rudderless blended wing body UAV, with a Fluent sideslip method validated on the NASA Common Research Model.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../assets/img/misc/favicon.png">
+<link rel="canonical" href="https://shaun-j-thomas.github.io/Portfolio/projects/bwb.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shaun-j-thomas.github.io/Portfolio/projects/bwb.html">
+<meta property="og:title" content="Blended Wing Body UAV, Shaun John Thomas">
+<meta property="og:description" content="Winglet cant angle and yaw stability of a rudderless blended wing body UAV, with a Fluent sideslip method validated on the NASA Common Research Model.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/bwb.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blended Wing Body UAV, Shaun John Thomas">
+<meta name="twitter:description" content="Winglet cant angle and yaw stability of a rudderless blended wing body UAV, with a Fluent sideslip method validated on the NASA Common Research Model.">
+<meta name="twitter:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/bwb.jpg">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.2/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.183.2/examples/jsm/"}}</script>
+</head>
+<body data-root="../" data-page="bwb">
+<a class="skip" href="#doc">Skip to the write-up</a>
+<div class="progress"></div>
+<header class="nav"></header>
+
+<main>
+<section class="p-hero" aria-label="Project summary">
+  <div class="bg"><img src="../assets/img/bwb/01_bwb_hero_render.webp" alt="Render of the 1.5 m span rudderless blended wing body UAV. Wingtip fins are its only vertical surfaces."></div>
+  <div class="wrap">
+    <p class="crumbs"><a href="../index.html#work" data-veil="All work">Work</a><span>/</span><span>01 of 05</span><span class="badge live">Active research</span></p>
+    <h1 class="kin">Blended Wing Body UAV</h1>
+    <p class="sub">Winglet cant angle and yaw stability of a rudderless flying wing, with the CFD method validated against NASA wind tunnel data first.</p>
+    <div class="p-meta">
+      <div>Role<b>Sole researcher</b></div>
+      <div>Type<b>BEng dissertation, Strathclyde</b></div>
+      <div>Supervisor<b>Dr Umer Saleem</b></div>
+      <div>Dates<b>Sept 2026 to Apr 2027</b></div>
+      <div>Read<b>6 min</b></div>
+    </div>
+    <div class="stats">
+      <div><b class="num">3 kg</b>take-off mass</div>
+      <div><b class="num">1.5 m</b>wingspan</div>
+      <div><b class="num">20 m/s</b>cruise</div>
+      <div><b class="num">28°</b>leading-edge sweep</div>
+      <div><b class="num hot">11%</b>Cnβ gap to NASA tunnel<small>standard SST was 46% low</small></div>
+      <div><b class="num">1%</b>Clβ gap to tunnel</div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story" aria-label="The aircraft in 3D">
+  <div class="story-stage">
+    <canvas aria-hidden="true"></canvas>
+    <p class="story-load">Loading the 3D model…</p>
+    <img class="story-fallback" src="../assets/img/bwb/01_bwb_hero_render.webp" alt="">
+  </div>
+  <div class="story-chapters">
+    <article class="ch l"><div><span class="n">01 · The airframe</span><h2>One wing. No fuselage. No tail.</h2><p>The whole aircraft is a lifting surface. A deep centre body blends into swept outer wings, so there is no wing-fuselage junction to pay drag for, and plenty of internal volume.</p><b class="num">3 kg</b><small>design take-off mass</small></div></article>
+    <article class="ch l"><div><span class="n">02 · Planform</span><h2>1.5 m span, 28° of sweep.</h2><p>Sized in XFLR5 for 20 m/s cruise at an aspect ratio of 5. The same span as the Lehmkuehler tunnel model, which makes later comparison easier.</p><b class="num">1.5 m</b><small>wingspan, poppy line</small></div></article>
+    <article class="ch r"><div><span class="n">03 · Profile</span><h2>Stable without a tailplane.</h2><p>A Clark Y baseline would not trim. Reflexed sections, blending from an MH60 at the root to an MH 45 at the tip, give a positive static margin with no horizontal tail.</p><b>MH60 → MH 45</b><small>reflexed aerofoil blend</small></div></article>
+    <article class="ch l"><div><span class="n">04 · Wingtip fins</span><h2>The fins do the tail's job.</h2><p>No fin and no rudder, so the wingtip fins carry directional stability alone. Their cant angle trades side area against where the side force acts, and that sets CYβ, Clβ and Cnβ.</p><b>CYβ · Clβ · Cnβ</b><small>the derivatives the dissertation measures</small></div></article>
+    <article class="ch r"><div><span class="n">05 · Airflow</span><h2>Into the virtual wind tunnel.</h2><p>Before any BWB result counts, the Fluent sideslip method was validated on the NASA Common Research Model. Transition SST matched the tunnel Cnβ within 11%.</p><b class="num">11%</b><small>Cnβ gap to NASA tunnel data</small><em>Streamlines here are illustrative. The real CFD is below.</em></div></article>
+  </div>
+</section>
+
+<div class="wrap doc" id="doc">
+  <aside class="toc" aria-label="On this page">
+    <h4>On this page</h4>
+    <ol>
+      <li><a href="#problem">The problem</a></li>
+      <li><a href="#aim">Aim and objectives</a></li>
+      <li><a href="#aircraft">The aircraft</a></li>
+      <li><a href="#sizing">Sizing in XFLR5</a></li>
+      <li><a href="#validation">Validating the CFD</a></li>
+      <li><a href="#mesh">Mesh study</a></li>
+      <li><a href="#hpc">Running it at scale</a></li>
+      <li><a href="#lessons">What went wrong</a></li>
+      <li><a href="#progress">Progress and next steps</a></li>
+      <li><a href="#tools">Tools and reading</a></li>
+    </ol>
+    <a class="back" href="../index.html#work" data-veil="All work">← All projects</a>
+  </aside>
+
+  <div>
+    <section id="problem">
+      <h2><span class="n">01 · The problem</span>No fin, no rudder, very little yaw stability</h2>
+      <p>Blended wing bodies are more efficient than tube-and-wing layouts. The catch is stability. With no fuselage and no tail there is a short moment arm and very little vertical area, so directional stability is weak. The balance between the yawing moment derivative Cnβ and the rolling moment derivative Clβ decides whether the aircraft drifts towards Dutch roll or spiral divergence.</p>
+      <p>On a small rudderless BWB the wingtip fins do that job alone, and their cant angle is a trade. A more vertical fin gives more side area, which drives Cnβ and the side force derivative CYβ. Canting it changes the height and direction of that side force, which moves Clβ. Small UAV teams usually set the angle by eye or with an inviscid vortex lattice tool such as XFLR5, whose accuracy at low Reynolds number is uncertain.</p>
+
+      <div class="widget cant" data-cant>
+        <header><h4>The variable, drawn to scale</h4><small>Front view. Drag to cant the fins outward.</small></header>
+        <svg viewBox="-360 0 720 160" role="img" aria-label="Front view of the BWB with adjustable wingtip fin cant angle"></svg>
+        <input class="rng" type="range" min="0" max="60" step="5" value="15" aria-label="Fin cant angle in degrees">
+        <div class="ticks"><span>0°, upright</span><span>60°</span></div>
+        <div class="readline">
+          <div><b class="num hot" data-o="a">15°</b>cant angle</div>
+          <div><b class="num" data-o="s">97%</b>vertical side area left</div>
+          <div><b class="num" data-o="t">15°</b>fin force tilted off horizontal</div>
+        </div>
+        <p class="muted" style="font-size:.84rem;margin-top:12px">Geometry only, not a result. How these two effects net out in Cnβ, Clβ and CYβ is exactly what the CFD sweep will measure.</p>
+      </div>
+    </section>
+
+    <section id="aim">
+      <h2><span class="n">02 · Aim and objectives</span>Quantify it, with a method I can trust</h2>
+      <p>The aim is to quantify how wingtip fin cant angle changes the static lateral-directional stability derivatives (CYβ, Clβ and Cnβ) of a 1.5 m span, 3 kg rudderless BWB UAV cruising at 20 m/s.</p>
+      <ul class="list">
+        <li>Validate an ANSYS Fluent sideslip method against published wind tunnel data, on the NASA Common Research Model.</li>
+        <li>Find how cant angle changes Cnβ, Clβ and CYβ on the BWB, in both Fluent and XFLR5.</li>
+        <li>Compare the CFD with a scaled BWB wind tunnel model.</li>
+        <li>Judge when the faster vortex lattice tool is good enough, and when RANS CFD is needed.</li>
+      </ul>
+      <p class="pull">The closest studies used an inviscid panel method or XFLR5 alone. Neither gives <em>validated viscous predictions</em> at small UAV Reynolds numbers. That is the gap.</p>
+      <p class="muted">Horwitz (2021) studied cant angle with a panel method on an airliner-scale flying wing. Sheneshen and Kamal (2025) looked at BWB winglets in XFLR5, with no CFD or experimental check.</p>
+    </section>
+
+    <section id="aircraft">
+      <h2><span class="n">03 · The aircraft</span>Reflexed sections, twin pushers, swappable fins</h2>
+      <p>The baseline was sized in XFLR5 for a 3 kg take-off mass, 1.5 m span and 20 m/s cruise, with an aspect ratio of 5 and 28° of sweep. The sections blend from an MH60 at the root to an <a href="mh45.html" data-veil="MH 45 Aerofoil CFD Sweep" style="color:var(--powder)">MH 45 at the tip</a>. Both are reflexed, which lets the wing trim on its own with a positive static margin and no horizontal tail.</p>
+      <p>Propulsion is twin pusher propellers at the trailing edge of the centre body. I chose these over an electric ducted fan, and because they push from behind the wing the prop wash does not need modelling in the CFD. The planned build uses 3D-printed formers under a glass and carbon skin, with interchangeable fin mounts so every cant angle flies on the same airframe.</p>
+      <figure><div class="frame plate"><img src="../assets/img/bwb/03_bwb_layout_schematic.webp" alt="Schematic of the BWB with 28 degree sweep, elevons, twin pusher propellers and 1.5 m span" loading="lazy"></div><figcaption><b>Layout.</b> No fin and no rudder, so the wingtip fins are the only vertical surfaces.</figcaption></figure>
+      <div class="figs">
+        <figure><div class="frame plate"><img src="../assets/img/bwb/05_bwb_cad_top_view.webp" alt="SolidWorks top view of the swept BWB planform" loading="lazy"></div><figcaption><b>SolidWorks planform</b> with elevons, fin cuffs and the centre body.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/bwb/04_bwb_front_view.webp" alt="Front view of the BWB UAV showing the centre body and wingtip fins" loading="lazy" style="margin-block:14%"></div><figcaption><b>Front view</b> of the 3D model, showing the centre body blend and the fins.</figcaption></figure>
+      </div>
+      <button class="load3d" data-load3d="inline:bwb" data-alt="3D model of the BWB UAV"><span>Open the model in a free-orbit viewer: drag to rotate, scroll to zoom</span></button>
+    </section>
+
+    <section id="sizing">
+      <h2><span class="n">04 · Sizing in XFLR5</span>A Clark Y that would not trim</h2>
+      <p>Sizing followed a wing loading sequence, then vortex lattice sweeps from −5° to 13°. An early Clark Y baseline would not hold trim, which led to the switch to reflexed MH sections. Along the way I traced a trim failure to a control surface sweep run on a model with no control surfaces defined, and fixed a centre of gravity reference mismatch between the VLM and panel methods.</p>
+      <div class="figs">
+        <figure><div class="frame plate"><img src="../assets/img/bwb/06_xflr5_vlm_sizing.webp" alt="XFLR5 vortex lattice model of the BWB with streamlines and trim data" loading="lazy"></div><figcaption><b>XFLR5 vortex lattice model</b> at 20 m/s, used for sizing and trim.</figcaption></figure>
+        <figure><div class="frame"><img src="../assets/img/bwb/07_bwb_early_fluent_pathlines.webp" alt="Early Fluent pathlines over the BWB at zero angle of attack" loading="lazy"></div><figcaption><b>Preliminary.</b> An early Fluent test at 0° and 20 m/s, run before the method was validated.</figcaption></figure>
+      </div>
+      <figure><div style="border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px var(--line);background:#fff"><video class="clip" src="../assets/img/bwb/xflr5-spanwise-loading.mp4" muted loop playsinline controls preload="metadata" aria-label="XFLR5 front view of spanwise loading as angle of attack increases"></video></div><figcaption><b>XFLR5, front view.</b> Spanwise lift on the vortex lattice model as the operating point sweeps up in angle of attack.</figcaption></figure>
+    </section>
+
+    <section id="validation">
+      <h2><span class="n">05 · Validating the CFD</span>Trust the method before the answer</h2>
+      <p>Small changes in cant angle produce small changes in the derivatives, so a method that is off by 40% would make the study meaningless. Before running a single proper BWB case, I validated the method on an aircraft with published sideslip data.</p>
+      <p>No BWB dataset with public geometry and low-Reynolds sideslip data exists, so I used the NASA Common Research Model from the Second AIAA Stability and Control Prediction Workshop. Its blind 2.4% scale tunnel data was taken at Re = 200,000, close to my UAV. The model was not tripped, so its boundary layer is partly laminar, and that turned out to matter a great deal.</p>
+      <div class="specgrid">
+        <div>Case<b>NASA CRM, 2.4% scale, Langley 12-Foot tunnel</b></div>
+        <div>Conditions<b>Re 200,000, Mach 0.052, α 4°, β 0° to 8°</b></div>
+        <div>Domain<b>Cylinder, domed inlet, inflow rotated for sideslip</b></div>
+        <div>Mesh<b>Polyhedral, 25 to 28 prism layers, first cell 1.5 × 10⁻⁵ m</b></div>
+        <div>Models<b>k-ω SST, Spalart-Allmaras, Transition SST</b></div>
+        <div>Outputs<b>CYβ, Clβ, Cnβ per radian, β 0° to 4°</b></div>
+      </div>
+
+      <div class="widget" data-deriv='[{"n":"Wind tunnel","cy":-0.920,"cl":-0.199,"cn":0.185},{"n":"k-ω SST, medium","cy":-0.626,"cl":-0.174,"cn":0.100},{"n":"Spalart-Allmaras, coarse","cy":-0.663,"cl":-0.179,"cn":0.115},{"n":"Transition SST, coarse","cy":-0.785,"cl":-0.195,"cn":0.169},{"n":"Transition SST, medium","cy":-0.772,"cl":-0.197,"cn":0.165}]'>
+        <header><h4>Each model against the tunnel, <span data-o="k">Cnβ</span></h4>
+          <div class="seg" role="group" aria-label="Derivative"><button data-k="cn" aria-pressed="true">Cnβ, yaw</button><button data-k="cl">Clβ, roll</button><button data-k="cy">CYβ, side force</button></div></header>
+        <div class="bars"></div>
+        <p class="muted" style="font-size:.86rem;margin-top:14px" data-o="note"></p>
+      </div>
+
+      <p>All three models get the signs right, so each predicts a directionally stable aircraft with a stable dihedral effect. The magnitudes are a different story. Fully turbulent models under-predict Cnβ by 38% to 46%. Transition SST cuts that to about 11% and gets Clβ within 1%, because it can capture the laminar flow on the untripped tunnel model. The skin friction plots show it directly, and Transition SST became the solver for the BWB.</p>
+      <figure><div class="frame plate"><img src="../assets/img/bwb/08_crm_skin_friction_sst_vs_tsst.webp" alt="Skin friction contours on the NASA CRM comparing SST and Transition SST" loading="lazy"></div><figcaption><b>Skin friction on the CRM at β = 4°.</b> Fully turbulent SST (a, c) against Transition SST (b, d). The low-friction blue regions are laminar flow that only Transition SST captures.</figcaption></figure>
+      <figure><div class="frame plate"><img src="../assets/img/bwb/09_crm_derivatives_vs_tunnel.webp" alt="Bar charts of sideslip derivatives for each turbulence model against wind tunnel data" loading="lazy"></div><figcaption><b>Sideslip derivatives</b> for every model and mesh against the tunnel slope (grey).</figcaption></figure>
+      <figure><div class="frame plate"><img src="../assets/img/bwb/10_crm_sideslip_increments.webp" alt="Side force, roll and yaw moment against sideslip angle, CFD against tunnel" loading="lazy"></div><figcaption><b>Increments against sideslip.</b> CFD points against the tunnel line.</figcaption></figure>
+      <div class="tbl"><table class="t">
+        <thead><tr><th>Case</th><th>CYβ</th><th>Clβ</th><th>Cnβ</th></tr></thead>
+        <tbody>
+          <tr class="ref"><td>Wind tunnel</td><td class="v">−0.920</td><td class="v">−0.199</td><td class="v">0.185</td></tr>
+          <tr><td>k-ω SST, medium</td><td class="v">−0.626 (−32%)</td><td class="v">−0.174 (−13%)</td><td class="v">0.100 (−46%)</td></tr>
+          <tr><td>Spalart-Allmaras, coarse</td><td class="v">−0.663 (−28%)</td><td class="v">−0.179 (−10%)</td><td class="v">0.115 (−38%)</td></tr>
+          <tr><td>Transition SST, coarse</td><td class="v">−0.785 (−15%)</td><td class="v">−0.195 (−2%)</td><td class="v">0.169 (−9%)</td></tr>
+          <tr class="best"><td>Transition SST, medium</td><td class="v">−0.772 (−16%)</td><td class="v">−0.197 (−1%)</td><td class="v">0.165 (−11%)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="font-size:.84rem">Derivatives per radian, β = 0° to 4°, Cl and Cn on span basis. Error against the tunnel in brackets.</p>
+    </section>
+
+    <section id="mesh">
+      <h2><span class="n">06 · Mesh study and sensitivity</span>An honest result, not a perfect one</h2>
+      <div class="tbl"><table class="t">
+        <thead><tr><th>Mesh</th><th>Cells</th><th>Aircraft face size</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>Coarse</td><td class="v">12.7M</td><td class="v">4.3 mm</td><td>Model and inlet Tu comparisons</td></tr>
+          <tr class="best"><td>Medium</td><td class="v">23.0M</td><td class="v">2.9 mm</td><td>Main validation results</td></tr>
+          <tr><td>Fine</td><td class="v">43M</td><td class="v">finer</td><td>Three-level GCI, in progress</td></tr>
+        </tbody>
+      </table></div>
+      <p>A two-level grid convergence index between coarse and medium is below 3% for SST but reaches 14% on Cnβ for Transition SST, partly because its coefficients scatter by about ±0.5% between iterations. That puts the 11% tunnel gap inside the numerical uncertainty. The fine 43M-cell mesh has run, and a three-level study is being completed to tighten it.</p>
+      <p>Inlet turbulence intensity barely matters. Dropping it from 1% to 0.2% moved the derivatives by under 0.7%, while switching turbulence model moved Cnβ by about 67%.</p>
+      <div class="figs">
+        <figure><div class="frame plate"><img src="../assets/img/bwb/11_crm_wall_yplus_tsst.webp" alt="Wall y plus contour on the NASA CRM, mostly below one" loading="lazy"></div><figcaption><b>Wall y+</b> with Transition SST. Average 0.33, maximum 1.84, so the boundary layer is resolved to the wall.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/bwb/12_crm_tsst_convergence.webp" alt="Iteration histories of side force, roll and yaw coefficients" loading="lazy"></div><figcaption><b>Coefficient histories</b> at β = 4°. Settled by about 1,000 iterations, averaged over the last 300.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="hpc">
+      <h2><span class="n">07 · Running it at scale</span>Laptop to finished run without opening the GUI</h2>
+      <p>Every case runs on ARCHIE-WeSt, Strathclyde's HPC cluster, under a teaching allocation of 20 cores per job and two days of wall time. I wrote the Slurm batch scripts, Fluent journals and settings files, and chained the meshing and solver jobs so one starts as soon as the other ends. A single Transition SST run takes 12 to 24 hours on 20 cores.</p>
+      <p>Force and moment histories come back to Python scripts that join, average and compare them against the tunnel. Post-processing is scripted too: a generated Fluent journal renders every contour at 4K with fixed views and colour ranges, so SST and Transition SST images line up exactly.</p>
+      <div class="specgrid"><div>Per job<b>20 cores, 2 days wall time</b></div><div>Per Transition SST run<b>12 to 24 hours</b></div><div>Automation<b>Slurm, Fluent journals, Python</b></div></div>
+    </section>
+
+    <section id="lessons">
+      <h2><span class="n">08 · What went wrong</span>And what I learned from it</h2>
+      <ul class="list">
+        <li><b>Boundary conditions.</b> The first CRM results were 40% to 50% low. Comparing with the tunnel led me to the cause: only the dome was an inlet, so part of the outlet was drawing flow back in. I fixed it and reran every case.</li>
+        <li><b>One meshing workflow.</b> I moved from Ansys Meshing to Fluent Meshing part way through, then remeshed every level so the whole study comes from one consistent workflow.</li>
+        <li><b>Memory limits.</b> A 50M-cell fine mesh ran out of memory on a single node, so I rebuilt it at 43M cells to fit one node rather than split the job.</li>
+        <li><b>Being honest about the data.</b> Drag and pitching moment do not match the tunnel, most likely because the CFD has no support sting or tunnel walls. I say so, and draw conclusions from the sideslip derivatives only.</li>
+      </ul>
+    </section>
+
+    <section id="progress">
+      <h2><span class="n">09 · Progress</span>Step 03 of 06, CFD validation</h2>
+      <div class="route tracker" style="--n:6" data-max="0.4">
+        <i></i>
+        <article class="stop"><span class="st">Completed</span><h3>Size the aircraft</h3><p>XFLR5 sizing and trim. MH60 to MH 45 sections.</p></article>
+        <article class="stop"><span class="st">First draft done</span><h3>Review the literature</h3><p>Gap found for validated viscous results at UAV scale.</p></article>
+        <article class="stop next"><span class="st">Current stage</span><h3>Validate the CFD</h3><p>NASA CRM done. Three-level mesh study closing out.</p></article>
+        <article class="stop later"><span class="st">Spring 2027</span><h3>Cant angle sweep</h3><p>Fluent and XFLR5 across cant and sideslip angles.</p></article>
+        <article class="stop later"><span class="st">Spring 2027</span><h3>Wind tunnel test</h3><p>Smaller model with interchangeable fins.</p></article>
+        <article class="stop later"><span class="st">Stretch goal</span><h3>Build and fly</h3><p>Printed airframe, composite skin, instrumented flight.</p></article>
+      </div>
+      <h3>What comes next</h3>
+      <p>In spring 2027 the BWB is meshed with the same locked-in settings and swept through β = 0°, 2°, 4° and 8° for a set of cant angles, with matching XFLR5 runs. The setups and job scripts are fixed, so the runs can be automated over the winter break. A smaller BWB tunnel model with interchangeable fins is planned for the same semester. Building and flying the full-size aircraft is a stretch goal, only once the core work is done. The dissertation is due on 20 April 2027.</p>
+    </section>
+
+    <section id="tools">
+      <h2><span class="n">10 · Tools and reading</span>What it took</h2>
+      <ul class="chips" style="margin-top:22px"><li>ANSYS Fluent</li><li>Fluent Meshing</li><li>XFLR5</li><li>SolidWorks</li><li>ARCHIE-WeSt HPC</li><li>Slurm</li><li>Python</li><li>Excel</li></ul>
+      <div class="cards">
+        <article><span class="role">Led</span><h4>Viscous RANS setup</h4><p>Turbulence and transition model selection, polyhedral meshing with prism layers sized for y+ below 1.</p></article>
+        <article><span class="role">Led</span><h4>Verification and validation</h4><p>Grid convergence index study and comparison with blind wind tunnel data.</p></article>
+        <article><span class="role">Led</span><h4>Stability analysis</h4><p>Lateral-directional derivatives and their link to Dutch roll and spiral modes. Tailless trim with reflexed sections.</p></article>
+        <article><span class="role">Led</span><h4>HPC automation</h4><p>Batch workflows, Fluent journal scripting and Python post-processing.</p></article>
+      </div>
+      <h3>Background reading</h3>
+      <ol class="refs">
+        <li>Suewatanakul, S. et al. (2022). Conceptual design of a hybrid hydrogen fuel cell/battery blended-wing-body UAV. <i>Aerospace</i> 9(5), 275.</li>
+        <li>Lehmkuehler, K., Wong, K.C. and Verstraete, D. (2012). Design and test of a UAV blended wing body configuration. ICAS 2012.</li>
+        <li>Horwitz, J.M.T. (2021). Parametric design of the Flying-V winglets for improved lateral-directional stability and control. MSc thesis, TU Delft.</li>
+        <li>Sheneshen, A.M. and Kamal, A.M. (2025). Influence of winglets design parameters on aerodynamic and stability of a blended wing-body aircraft. <i>J. Phys. Conf. Ser.</i> 3070, 012004.</li>
+        <li>Mariani, R. et al. (2022). Wind tunnel test of a blended wing body unmanned aerial vehicle. ICAS 2022.</li>
+        <li>Simmons, B.M., Lofthouse, A.J. and Vicroy, D.D. (2026). Summary of the Second AIAA Stability and Control Prediction Workshop. AIAA SciTech 2026.</li>
+      </ol>
+      <a class="also" style="margin-top:40px" href="../assets/files/Shaun_John_Thomas_BWB_Propulsion_Review.pdf" target="_blank" rel="noopener">
+        <span class="also-tag">Related · my review paper</span>
+        <b>BWB Propulsion Review</b>
+        <span class="also-body">The airliner-scale side of blended wing bodies: six propulsion families compared on fuel burn, noise, integration, emissions and readiness.</span>
+        <span class="sl">Read the PDF ↗<svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></span>
+      </a>
+    </section>
+  </div>
+</div>
+
+<nav class="next-prev" data-nextprev aria-label="More projects"></nav>
+<footer class="contact compact" id="contact">
+  <div class="wrap">
+    <h2 class="kin">Available after <em>June 2027</em></h2>
+    <div class="contact-row">
+      <a class="sl" href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com<svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></a>
+      <div class="hero-cta"><a class="btn hot" href="../assets/files/Shaun-John-Thomas-CV.pdf" target="_blank" rel="noopener">View CV</a><a class="btn line" href="../index.html#work" data-veil="All work">All projects</a></div>
+    </div>
+    <div class="foot"><nav aria-label="Projects" data-footnav></nav><span>© 2026 Shaun John Thomas</span></div>
+  </div>
+</footer>
+</main>
+<script src="../assets/site.js"></script>
+<script src="../assets/project.js"></script>
+<script src="../assets/bwb3d.js" defer></script>
+</body>
+</html>

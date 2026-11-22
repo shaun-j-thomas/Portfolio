@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script>try{var t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("sjt-theme");if(t==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shaun John Thomas, aero-mechanical engineer</title>
+<meta name="description" content="Aero-mechanical engineering portfolio: blended wing body UAV, R2S rocket engine CFD and FEA, MH 45 aerofoil sweep, StrathAIS and Team Ignition rocketry.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="./assets/img/misc/favicon.png">
+<link rel="canonical" href="https://shaun-j-thomas.github.io/Portfolio/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shaun-j-thomas.github.io/Portfolio/">
+<meta property="og:title" content="Shaun John Thomas, aero-mechanical engineer">
+<meta property="og:description" content="Aero-mechanical engineering portfolio: blended wing body UAV, R2S rocket engine CFD and FEA, MH 45 aerofoil sweep, StrathAIS and Team Ignition rocketry.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shaun John Thomas, aero-mechanical engineer">
+<meta name="twitter:description" content="Aero-mechanical engineering portfolio: blended wing body UAV, R2S rocket engine CFD and FEA, MH 45 aerofoil sweep, StrathAIS and Team Ignition rocketry.">
+<meta name="twitter:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/home.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Shaun John Thomas","url":"https://shaun-j-thomas.github.io/Portfolio/","jobTitle":"Aero-Mechanical Engineering Student","affiliation":{"@type":"CollegeOrUniversity","name":"University of Strathclyde"},"address":{"@type":"PostalAddress","addressLocality":"Glasgow","addressCountry":"GB"},"email":"mailto:shaunjthomas.sjt@gmail.com","sameAs":["https://www.linkedin.com/in/shaun-john-thomas-0635652aa","https://github.com/shaun-j-thomas"],"knowsAbout":["Aerodynamics","CFD","FEA","UAV design","Rocketry","SolidWorks","ANSYS Fluent","ANSYS Mechanical"]}</script>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="preload" href="assets/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* landing-only pieces */
+.ig{display:grid;grid-template-columns:1fr 1fr;height:100%}
+.ig .photo{position:relative;overflow:hidden}
+.ig .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;transition:transform 1.2s var(--ease)}
+.pv:hover .ig .photo img{transform:scale(1.04)}
+.ig .rot{position:relative;background:#000;container-type:size;overflow:hidden}
+.ig .rot img{position:absolute;left:50%;top:50%;width:96cqh;max-width:none;transform:translate(-50%,-50%) rotate(-90deg)}
+:root[data-theme=light] .ig .rot{background:#fff}
+:root[data-theme=light] .ig .rot img{filter:invert(1)}
+.ig .st{position:absolute;left:58%;right:12px;display:flex;align-items:center;gap:8px;font-size:.74rem;color:var(--ash);opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s var(--ease),color .3s}
+.ig .st::before{content:"";width:9px;height:9px;border-radius:50%;border:1.5px solid var(--poppy);flex:none}
+.ig .st.on{opacity:1;transform:none;color:var(--bone)}
+.ig .st.on::before{background:var(--poppy)}
+.ig .sweep{position:absolute;left:50%;right:0;height:2px;background:var(--powder);box-shadow:0 0 16px 2px var(--powder);top:var(--sy,0%);opacity:0;transition:opacity .2s}
+.pv.live .ig .sweep{opacity:1}
+.massline{display:flex;align-items:baseline;gap:12px;margin-top:20px}
+.massline b{font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800;font-variation-settings:"wdth" 125;line-height:.9;color:var(--poppy);letter-spacing:-.03em}
+.massline span{color:var(--ash);font-size:.86rem;max-width:22ch;line-height:1.35}
+</style>
+</head>
+<body data-root="./" data-page="home">
+<a class="skip" href="#work">Skip to projects</a>
+<header class="nav"></header>
+
+<main id="top">
+
+<!-- 1. HERO -->
+<section class="hero" id="hero" aria-label="Introduction">
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <div class="readout" aria-hidden="true">
+    <header><b>MH 45, live</b><span>Re 685,000</span></header>
+    <dl>
+      <dt>Angle of attack</dt><dd class="num" id="ro-a">5.0°</dd>
+      <dt>CL, panel method</dt><dd class="num" id="ro-cp">0.00</dd>
+      <dt>CL, my Fluent run</dt><dd class="num hot" id="ro-cf">0.00</dd>
+      <dt>L/D, Fluent</dt><dd class="num" id="ro-ld">0</dd>
+    </dl>
+    <svg viewBox="0 0 260 108" id="ro-chart"></svg>
+    <p class="state" id="ro-state"></p>
+    <p class="hint">Move the cursor up and down to pitch it. The poppy tick is where XFOIL puts transition.</p>
+    <p class="hint touch">Swipe sideways across the flow to pitch it.</p>
+  </div>
+  <div class="hero-copy">
+    <h1 class="kin"><span>Shaun John</span><span>Thomas</span></h1>
+    <div class="hero-row">
+      <p>Aero-mechanical engineer at Strathclyde. I size aircraft and engines, simulate them, check the simulation against real data, then build them.</p>
+      <div class="hero-cta">
+        <a class="btn hot" href="#work">See the work <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M3 9l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <a class="btn line" href="assets/files/Shaun-John-Thomas-CV.pdf" target="_blank" rel="noopener">View CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 2. WORK -->
+<section class="block" id="work" aria-label="Selected work">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow"><span class="idx">Work</span><span>Five projects, 2023 to now</span></p>
+        <h2 class="kin" style="margin-top:14px">Designed, simulated, checked, built</h2>
+      </div>
+      <p class="lede" style="margin-top:0;max-width:44ch">Each preview is the short version. Open one for the full write-up, figures and the numbers behind it.</p>
+    </div>
+    <nav class="index-strip" aria-label="Jump to a project">
+      <a href="#pv-bwb"><span>01</span>BWB UAV</a><a href="#pv-r2s"><span>02</span>R2S engine</a><a href="#pv-mh45"><span>03</span>MH 45 sweep</a><a href="#pv-strathais"><span>04</span>StrathAIS</a><a href="#pv-ignition"><span>05</span>Team Ignition</a>
+    </nav>
+
+    <div class="previews">
+
+      <!-- 01 BWB -->
+      <a class="pv reveal" id="pv-bwb" href="projects/bwb.html" data-veil="Blended Wing Body UAV">
+        <div class="pv-media" data-peek>
+          <img class="layer" src="assets/img/bwb/01_bwb_hero_render.webp" alt="Render of the 1.5 m rudderless blended wing body UAV" data-cap="The aircraft, 1.5 m span, no rudder">
+          <img class="layer contain" src="assets/img/bwb/02_cant_angle_diagram.webp" alt="Front view of wingtip fins at several cant angles" data-cap="The variable: wingtip fin cant angle">
+          <img class="layer contain" src="assets/img/bwb/06_xflr5_vlm_sizing.webp" alt="XFLR5 vortex lattice model used for sizing" data-cap="Sized and trimmed in XFLR5">
+          <img class="layer contain" src="assets/img/bwb/08_crm_skin_friction_sst_vs_tsst.webp" alt="Skin friction on the NASA CRM, SST against Transition SST" data-cap="Validated on the NASA CRM first">
+          <img class="layer contain" src="assets/img/bwb/09_crm_derivatives_vs_tunnel.webp" alt="Sideslip derivatives against wind tunnel data" data-cap="Transition SST within 11% of the tunnel">
+          <div class="scan"></div><div class="meter"></div>
+          <span class="cap">The aircraft, 1.5 m span, no rudder</span><span class="hintchip">Move across to scrub</span>
+        </div>
+        <div class="pv-body">
+          <p class="eyebrow"><span class="idx">01</span><span>Dissertation, 2026 to 2027</span><span class="badge live">Active research</span></p>
+          <h3 class="kin">Blended Wing Body UAV</h3>
+          <p class="brief">With no fin and no rudder, the wingtip fins are the only thing keeping this tailless UAV pointing straight. I'm measuring how their <strong>cant angle</strong> sets yaw and roll stability, using a Fluent method I first <strong>validated against NASA wind tunnel data</strong>.</p>
+          <div class="pv-stats">
+            <div><b class="num hot">11%</b>Cnβ gap to the tunnel, down from 46% with standard SST</div>
+            <div><b class="num">23M</b>cell mesh, y+ below 0.5, run on HPC</div>
+            <div><b>03 / 06</b>stages done, cant angle sweep next</div>
+          </div>
+          <ul class="chips"><li>ANSYS Fluent</li><li>Fluent Meshing</li><li>XFLR5</li><li>ARCHIE-WeSt HPC</li><li>Python</li></ul>
+          <span class="sl pv-go">Read the case study<svg class="arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 02 R2S -->
+      <a class="pv reveal" id="pv-r2s" href="projects/r2s.html" data-veil="R2S Combustion Chamber V3">
+        <div class="pv-media" data-hovercmp style="background:var(--plate)">
+          <img class="layer contain" src="assets/img/r2s/01_engine_cutaway_hero.webp" alt="Cutaway of the regeneratively cooled combustion chamber">
+          <img class="layer contain after" src="assets/img/r2s/22_cfd_wall_temperature_cutaway.webp" alt="Fluent wall temperature on the chamber cutaway, regen cooling only">
+          <span class="tag l">Printed chamber</span><span class="tag r">Wall temperature, regen only</span>
+          <div class="bar"></div>
+        </div>
+        <div class="pv-body">
+          <p class="eyebrow"><span class="idx">02</span><span>Race 2 Space, 2026 to now</span><span class="badge live">In progress</span></p>
+          <h3 class="kin">R2S Combustion Chamber V3</h3>
+          <p class="brief">Conjugate heat transfer CFD and structural FEA of a <strong>3D-printed aluminium</strong>, regen-cooled N₂O/IPA engine. The thermal model showed the fuel alone <strong>cannot keep the throat from melting</strong>, which moved the design to film cooling.</p>
+          <div class="pv-stats">
+            <div><b class="num hot">888 °C</b>peak wall, regen only. AlSi10Mg melts near 570 °C</div>
+            <div><b class="num">0.014%</b>energy balance at convergence</div>
+            <div><b class="num">0.1%</b>FEA hoop stress against hand calculation</div>
+          </div>
+          <ul class="chips"><li>ANSYS Fluent</li><li>ANSYS Mechanical</li><li>Conjugate heat transfer</li><li>NASA CEA</li><li>Python</li></ul>
+          <span class="sl pv-go">Read the case study<svg class="arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 03 MH45 -->
+      <a class="pv reveal" id="pv-mh45" href="projects/mh45.html" data-veil="MH 45 Aerofoil CFD Sweep">
+        <div class="pv-media">
+          <div class="pv-chart" id="pv-chart"><svg viewBox="0 0 520 320" role="img" aria-label="Lift coefficient against angle of attack, Fluent against XFOIL"></svg></div>
+          <span class="hintchip">Hover the curve</span>
+        </div>
+        <div class="pv-body">
+          <p class="eyebrow"><span class="idx">03</span><span>HPC practice run, October 2026</span><span class="badge">Completed</span></p>
+          <h3 class="kin">MH 45 Aerofoil CFD Sweep</h3>
+          <p class="brief">Before the 3D dissertation runs, I practised the whole workflow on the BWB's tip aerofoil. <strong>Eleven angles ran in parallel</strong> as an HPC job array, then I checked every coefficient against <strong>published XFOIL polars</strong>, and found where steady 2D RANS stops being trustworthy.</p>
+          <div class="pv-stats">
+            <div><b class="num">−3%</b>lift slope difference to XFOIL</div>
+            <div><b class="num">11</b>cases, one Slurm array task each</div>
+            <div><b class="num hot">10°</b>where steady RANS stops converging</div>
+          </div>
+          <ul class="chips"><li>ANSYS Fluent</li><li>Transition SST</li><li>XFOIL</li><li>Slurm</li><li>Python</li></ul>
+          <span class="sl pv-go">Read the case study<svg class="arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 04 StrathAIS -->
+      <a class="pv reveal" id="pv-strathais" href="projects/strathais.html" data-veil="StrathAIS: Nevis">
+        <div class="pv-media" data-hovercmp data-mass style="background:#fff">
+          <img class="layer contain" src="assets/bulkhead-before.png" alt="Original recovery assembly, displacement plot" style="background:#fff">
+          <img class="layer contain after" src="assets/bulkhead-after.png" alt="Optimised bulkhead, von Mises stress plot" style="background:#fff">
+          <span class="tag l">Original assembly</span><span class="tag r">Optimised bulkhead</span>
+          <div class="bar"></div>
+        </div>
+        <div class="pv-body">
+          <p class="eyebrow"><span class="idx">04</span><span>StrathAIS, IREC 2026</span><span class="badge">Launched</span></p>
+          <h3 class="kin">StrathAIS: Nevis</h3>
+          <p class="brief">Airframe design engineer on Strathclyde's supersonic rocket. I designed the interface that carries the <strong>main parachute opening load</strong> into the motor bay, then used FEA to cut away the material that was doing nothing.</p>
+          <div class="massline" aria-live="polite"><b class="num" data-massout>−25%</b><span>bulkhead mass. Sweep across the image to finish the optimisation.</span></div>
+          <div class="pv-stats">
+            <div><b class="num">24,528 ft</b>apogee at Spaceport America</div>
+            <div><b>Mach 1+</b>peak speed</div>
+            <div><b class="hot">8th</b>place at IREC 2026</div>
+          </div>
+          <span class="sl pv-go">Read the case study<svg class="arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 05 Team Ignition -->
+      <a class="pv reveal" id="pv-ignition" href="projects/ignition.html" data-veil="Team Ignition: Pioneer">
+        <div class="pv-media" data-stations>
+          <div class="ig">
+            <div class="photo"><img src="assets/img/legacy/Pioneer1.webp" alt="The assembled Pioneer rocket on the pad"></div>
+            <div class="rot"><img src="assets/img/legacy/Pioneer.webp" alt="Wireframe drawing of the Pioneer airframe"></div>
+          </div>
+          <div class="sweep"></div>
+          <span class="st" style="top:28%">Recovery bay</span>
+          <span class="st" style="top:52%">Avionics bay</span>
+          <span class="st" style="top:59%">Bulkheads and couplers</span>
+          <span class="st" style="top:83%">Motor mount</span>
+          <span class="cap">Built, then drawn. Hover to inspect</span>
+        </div>
+        <div class="pv-body">
+          <p class="eyebrow"><span class="idx">05</span><span>VIT Chennai, 2023 to 2025</span><span class="badge">Completed</span></p>
+          <h3 class="kin">Team Ignition: Pioneer</h3>
+          <p class="brief">I <strong>led four engineers</strong> on the airframe of a 10,000 ft high-power rocket: tolerances for CNC parts, bulkhead design, ground ejection tests, and a <strong>root-cause fix</strong> after an avionics connector let go under heat.</p>
+          <div class="pv-stats">
+            <div><b class="num">10,000 ft</b>target altitude</div>
+            <div><b class="num">4</b>engineers in my subteam</div>
+            <div><b class="hot">Lead</b>airframe, PDR and CDR</div>
+          </div>
+          <ul class="chips"><li>SolidWorks</li><li>GD&amp;T</li><li>ANSYS Mechanical</li><li>Composites</li><li>Failure analysis</li></ul>
+          <span class="sl pv-go">Read the case study<svg class="arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <a class="also reveal" href="assets/files/Shaun_John_Thomas_BWB_Propulsion_Review.pdf" target="_blank" rel="noopener">
+      <span class="also-tag">Also written · 2026 · Review paper</span>
+      <b>BWB Propulsion Review</b>
+      <span class="also-body">Which engines suit a 200 to 300 seat blended wing body airliner? Six propulsion families compared on fuel burn, noise, integration, emissions and readiness. Podded high-bypass turbofans above the aft centre body come out as the only realistic option for the 2030s.</span>
+      <span class="sl">Read the paper (PDF)<svg class="arr" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 14L14 4M7 4h7v7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="block" id="about" aria-label="About">
+  <div class="wrap about">
+    <div>
+      <p class="eyebrow"><span class="idx">About</span><span>Glasgow, Scotland</span></p>
+      <h2 class="kin" style="margin-top:14px">Why before how</h2>
+      <div class="bio">
+        <p class="big">I'm a final-year BEng Aero-Mechanical Engineering student at the University of Strathclyde, working across aerodynamics, structural design and manufacture.</p>
+        <p>I like learning the reasoning behind every process, whatever the field, and working out how to fix what's broken. If I had to name what I enjoy most, it's design optimisation and aircraft development.</p>
+        <p>This portfolio is a snapshot of that so far: the design work, problem-solving and manufacturing behind what I've built, on my own and as part of the large team efforts behind two rockets.</p>
+      </div>
+    </div>
+    <aside class="about-side">
+      <a class="focus" href="projects/bwb.html" data-veil="Blended Wing Body UAV">
+        <small>Current focus</small>
+        <b>Tailless blended wing body UAV</b>
+        <span>Final-year dissertation on how wingtip fin cant angle sets yaw and roll stability, with the CFD validated against NASA tunnel data.</span>
+        <em>Read the case study →</em>
+      </a>
+      <h3>Education</h3>
+      <article class="edu">
+        <time>2025 to now</time>
+        <b>University of Strathclyde</b>
+        <span>BEng (Hons) Aero-Mechanical Engineering, final year</span>
+        <small>Glasgow, Scotland. Dissertation on tailless BWB stability. StrathAIS rocketry team.</small>
+      </article>
+      <article class="edu">
+        <time>2023 to 2025</time>
+        <b>VIT Chennai <i class="badge">Transferred to Strathclyde</i></b>
+        <span>BTech Mechanical Engineering</span>
+        <small>Chennai, India. Thermodynamics, solid mechanics and CAD. Airframe lead at Team Ignition.</small>
+      </article>
+      <article class="edu">
+        <time>2009 to 2023</time>
+        <b>The Indian High School</b>
+        <span>Oud Mehta, Dubai</span>
+        <small>Where I grew up.</small>
+      </article>
+    </aside>
+  </div>
+</section>
+
+<!-- 3. SKILLS LOOP -->
+<section class="block" id="skills" aria-label="Skills">
+  <div class="wrap">
+    <h2 class="kin">Tools, in the order I use them</h2>
+    <p class="lede">Every project here went round the same loop. Pick a stage to see the tools and where I used them.</p>
+    <div class="loop">
+      <div class="ring">
+        <svg viewBox="-200 -200 400 400" id="ring" role="group" aria-label="Design loop stages"></svg>
+        <div class="core"><b id="core-n">Simulate</b><span>stage <span id="core-i">3</span> of 5, then round again</span></div>
+      </div>
+      <div class="stage-detail" aria-live="polite">
+        <h3 id="sd-h"></h3>
+        <ul class="tools" id="sd-t"></ul>
+        <div class="proof"><small>Where I used it</small><p id="sd-p"></p></div>
+      </div>
+    </div>
+
+    <div class="skillhead">
+      <h3>Every tool, in detail</h3>
+      <a class="cert" href="https://www.credly.com/badges/f33cd5e5-7aea-4096-9106-cdddca4f05ad/public_url" target="_blank" rel="noopener">
+        <img src="assets/img/misc/cswa-badge.webp" alt="Certified SolidWorks Associate badge" width="64" height="64">
+        <span><b>Certified SolidWorks Associate (CSWA)</b><small>Dassault Systèmes · verify on Credly ↗</small></span>
+      </a>
+    </div>
+    <div class="skillgrid">
+      <section>
+        <h4>CAD and geometry</h4>
+        <dl>
+          <dt>SolidWorks</dt><dd>Parametric modelling, large assemblies, sheet metal and weldments.</dd>
+          <dt>Onshape</dt><dd>Collaborative cloud CAD, branching and revision tracking.</dd>
+          <dt>GD&amp;T</dt><dd>ASME Y14.5 tolerancing for CNC fit and precision.</dd>
+          <dt>Assembly checks</dt><dd>Interface fits, tolerance stack-ups and collision checks.</dd>
+        </dl>
+      </section>
+      <section>
+        <h4>Analysis and simulation</h4>
+        <dl>
+          <dt>ANSYS Fluent</dt><dd>External aerodynamics, transition modelling, conjugate heat transfer.</dd>
+          <dt>Fluent Meshing</dt><dd>Polyhedral meshes with prism layers sized for y+ below 1.</dd>
+          <dt>ANSYS Mechanical</dt><dd>Structural stress, deployment loads, mass reduction, thermal studies.</dd>
+          <dt>XFLR5 and XFOIL</dt><dd>Vortex lattice polars, static margin, stability derivatives, aerofoil polars.</dd>
+          <dt>HPC and Python</dt><dd>Slurm job arrays on ARCHIE-WeSt, Fluent journals, scripted post-processing.</dd>
+          <dt>MATLAB and Simulink</dt><dd>Flight dynamics modelling and data processing.</dd>
+          <dt>OpenFOAM</dt><dd>Open-source CFD workflows.</dd>
+          <dt>NASA CEA</dt><dd>Combustion gas properties for rocket engine design.</dd>
+        </dl>
+      </section>
+      <section>
+        <h4>Manufacture and test</h4>
+        <dl>
+          <dt>3D printing</dt><dd>Prototypes and core formers in PLA, PETG and nylon-CF.</dd>
+          <dt>Composite wet layup</dt><dd>Carbon and glass layups, vacuum bagging, reinforcement schedules.</dd>
+          <dt>CNC machining</dt><dd>Centring rings, motor mounts and bulkheads.</dd>
+          <dt>Integration and test</dt><dd>Bench assembly, ejection testing and harness routing.</dd>
+        </dl>
+      </section>
+      <section>
+        <h4>Leadership</h4>
+        <dl>
+          <dt>Technical leadership</dt><dd>Led a four-person airframe subteam through design, build and test.</dd>
+          <dt>PDR and CDR</dt><dd>Defended margins and manufacturing plans in front of review panels.</dd>
+          <dt>Cross-team trade-offs</dt><dd>Negotiated space and mass with avionics, recovery and propulsion.</dd>
+          <dt>Root-cause diagnosis</dt><dd>Failure analysis and design fixes that stuck.</dd>
+        </dl>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 4. JOURNEY -->
+<section class="block" id="journey" aria-label="Journey">
+  <div class="wrap">
+    <h2 class="kin">Dubai to Glasgow</h2>
+    <div class="route" id="route" style="--n:7">
+      <i></i>
+      <article class="stop" id="stop-dubai"><time>2009 to 2023</time><h3>Dubai</h3><p>Grew up in Dubai and went to The Indian High School, Oud Mehta.</p></article>
+      <article class="stop"><time>2023</time><h3>VIT Chennai</h3><p>BTech Mechanical Engineering. Became airframe lead at Team Ignition.</p><a href="projects/ignition.html" data-veil="Team Ignition: Pioneer">Pioneer →</a></article>
+      <article class="stop"><time>2025</time><h3>University of Strathclyde</h3><p>Transferred into BEng Aero-Mechanical Engineering. Joined StrathAIS.</p></article>
+      <article class="stop"><time>June 2026</time><h3>Spaceport America</h3><p>Nevis flies at IREC: 24,528 ft, past Mach 1, 8th place.</p><a href="projects/strathais.html" data-veil="StrathAIS: Nevis">Nevis →</a></article>
+      <article class="stop"><time>2026</time><h3>Race 2 Space</h3><p>Thermal CFD and FEA on a printed rocket engine chamber.</p><a href="projects/r2s.html" data-veil="R2S Combustion Chamber V3">R2S →</a></article>
+      <article class="stop"><time>Sept 2026 to Apr 2027</time><h3>BWB dissertation</h3><p>MH 45 practice sweep, then CFD validated on the NASA CRM.</p><a href="projects/bwb.html" data-veil="Blended Wing Body UAV">BWB →</a></article>
+      <article class="stop next"><time>After June 2027</time><h3>Available</h3><p>Graduate roles in aerodynamics, structures or mechanical design.</p><a href="#contact">Get in touch →</a></article>
+    </div>
+  </div>
+</section>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <h2 class="kin">Available after <em>June 2027</em></h2>
+    <div class="contact-row">
+      <a class="sl" href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com<svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></a>
+      <div class="hero-cta"><a class="btn hot" href="assets/files/Shaun-John-Thomas-CV.pdf" target="_blank" rel="noopener">View CV</a><a class="btn line" href="https://www.linkedin.com/in/shaun-john-thomas-0635652aa" target="_blank" rel="noopener">LinkedIn</a><a class="btn line" href="https://github.com/shaun-j-thomas" target="_blank" rel="noopener">GitHub</a></div>
+    </div>
+    <div class="foot"><nav aria-label="Projects" data-footnav></nav><span>© 2026 Shaun John Thomas</span></div>
+  </div>
+</footer>
+</main>
+
+
+<script src="assets/site.js"></script>
+<script src="assets/mh45.js"></script>
+<script src="assets/hero.js"></script>
+<script src="assets/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script>try{var t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("sjt-theme");if(t==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R2S Combustion Chamber V3, Shaun John Thomas</title>
+<meta name="description" content="Regen-cooled thermal CFD and structural FEA of a 3D-printed AlSi10Mg N2O/IPA rocket engine for Race 2 Space.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../assets/img/misc/favicon.png">
+<link rel="canonical" href="https://shaun-j-thomas.github.io/Portfolio/projects/r2s.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shaun-j-thomas.github.io/Portfolio/projects/r2s.html">
+<meta property="og:title" content="R2S Combustion Chamber V3, Shaun John Thomas">
+<meta property="og:description" content="Regen-cooled thermal CFD and structural FEA of a 3D-printed AlSi10Mg N2O/IPA rocket engine for Race 2 Space.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/r2s.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="R2S Combustion Chamber V3, Shaun John Thomas">
+<meta name="twitter:description" content="Regen-cooled thermal CFD and structural FEA of a 3D-printed AlSi10Mg N2O/IPA rocket engine for Race 2 Space.">
+<meta name="twitter:image" content="https://shaun-j-thomas.github.io/Portfolio/assets/img/og/r2s.jpg">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-root="../" data-page="r2s">
+<a class="skip" href="#doc">Skip to the write-up</a>
+<div class="progress"></div>
+<header class="nav"></header>
+
+<main>
+<section class="p-hero split" aria-label="Project summary">
+  <div class="wrap">
+    <div>
+      <p class="crumbs"><a href="../index.html#work" data-veil="All work">Work</a><span>/</span><span>02 of 05</span><span class="badge live">In progress</span></p>
+      <h1 class="kin" style="font-size:clamp(2.4rem,4.6vw,4.6rem)">R2S Combustion Chamber V3</h1>
+      <p class="sub">Regen-cooled thermal CFD and structural FEA of a 3D-printed N₂O/IPA rocket engine, for the UK's national student propulsion competition.</p>
+      <div class="p-meta">
+        <div>Competition<b>Race 2 Space</b></div>
+        <div>Category<b>Liquid rocket propulsion</b></div>
+        <div>Dates<b>2026 to now</b></div>
+        <div>Read<b>7 min</b></div>
+      </div>
+    </div>
+    <div class="shot"><img src="../assets/img/r2s/01_engine_cutaway_hero.webp" alt="Cutaway of Combustion Chamber V3 showing the 2 mm printed liner, outer jacket and the IPA coolant in the channels"></div>
+    <div class="stats">
+      <div><b class="num hot">888 °C</b>peak wall, regen cooling only<small>AlSi10Mg melts near 570 °C</small></div>
+      <div><b class="num">0.014%</b>energy balance at convergence</div>
+      <div><b class="num">40 MPa</b>average wall stress</div>
+      <div><b class="num">0.09 mm</b>maximum deflection</div>
+      <div><b class="num">0.1%</b>FEA hoop stress against hand calculation</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap doc" id="doc">
+  <aside class="toc" aria-label="On this page">
+    <h4>On this page</h4>
+    <ol>
+      <li><a href="#question">The engine and the question</a></li>
+      <li><a href="#bartz">Hot gas as a boundary condition</a></li>
+      <li><a href="#cfd">The thermal CFD model</a></li>
+      <li><a href="#result">What the CFD showed</a></li>
+      <li><a href="#fea">Structural FEA</a></li>
+      <li><a href="#check">Checking the answer</a></li>
+      <li><a href="#temp">Effect of wall temperature</a></li>
+      <li><a href="#progress">Progress and next steps</a></li>
+      <li><a href="#learned">What I learned</a></li>
+    </ol>
+    <a class="back" href="../index.html#work" data-veil="All work">← All projects</a>
+  </aside>
+
+  <div>
+    <section id="question">
+      <h2><span class="n">01 · The engine and the question</span>Can the fuel keep the wall cool, and will the wall hold?</h2>
+      <p>Race 2 Space is the UK national student propulsion competition, where university teams design, build and hot-fire their own rocket engines. Ours burns nitrous oxide with isopropyl alcohol at 30 bar and an O/F ratio of 3. The chamber is 3D printed in AlSi10Mg with 35 regenerative cooling channels, so all of the fuel flows around the wall before it reaches the injector.</p>
+      <p>AlSi10Mg is light and easy to print, but it loses most of its strength above about 200 to 250 °C and melts near 570 °C. The combustion gas is at 2,564 K. I wanted two answers before anything was printed: can the fuel alone keep the wall cool enough, and will the wall hold the pressure?</p>
+      <div class="specgrid">
+        <div>Propellants<b>Nitrous oxide / IPA</b></div>
+        <div>Chamber pressure<b>30 bar</b></div>
+        <div>O/F ratio<b>3.0</b></div>
+        <div>Total mass flow<b>2.30 kg/s (fuel 0.575)</b></div>
+        <div>Chamber temperature (CEA)<b>2,564 K</b></div>
+        <div>Throat diameter<b>38.9 mm</b></div>
+        <div>Contraction / expansion<b>5.0 / 4.3</b></div>
+        <div>Cooling<b>35 channels, counter-flow</b></div>
+        <div>Wall<b>2.0 mm AlSi10Mg, printed</b></div>
+        <div>Channels<b>about 6.2 × 1.7 mm</b></div>
+      </div>
+      <figure><div class="frame plate"><img src="../assets/img/r2s/02_engine_exterior.webp" alt="Exterior of the chamber and nozzle" loading="lazy"></div><figcaption><b>Combustion Chamber V3.</b> Flow runs from the injector flange (left) to the nozzle exit (right).</figcaption></figure>
+    </section>
+
+    <section id="bartz">
+      <h2><span class="n">02 · Hot gas as a boundary condition</span>Bartz instead of burning spray</h2>
+      <p>Simulating the burning N₂O/IPA spray would be a research project in itself, and its heat flux would be no more reliable than a correlation. So I replaced the hot gas with the Bartz equation. Chamber temperature, c* and gamma came from NASA CEA, I extracted the gas-side contour from the CAD, and worked out the Mach number at each station from the local area ratio. Bartz then gives the gas-side heat transfer coefficient and the adiabatic wall temperature all along the engine.</p>
+      <p>Fluent cannot run Bartz directly, so I fitted both quantities as functions of local radius, one curve each side of the throat, and entered them as named expressions. Applying them as a convection condition rather than a fixed heat flux lets Fluent find the wall temperature itself, so a hotter wall takes in less heat, as it would in reality.</p>
+      <p class="pull">At the throat this matters: a 200 °C wall would take about <em>22.8 MW/m²</em>, the wall the CFD predicted takes about 15.2.</p>
+      <figure><div class="frame plate"><img src="../assets/img/r2s/05_bartz_boundary_condition.webp" alt="Gas-side contour, heat transfer coefficient and adiabatic wall temperature along the engine" loading="lazy"></div><figcaption><b>Bartz boundary condition</b> from the Fluent expressions used in the converged run. Heating peaks at about 11 kW/m²K at the throat. A later CEA rerun with transport properties dropped the throat coefficient by 8%, but barely moved the total heat load.</figcaption></figure>
+    </section>
+
+    <section id="cfd">
+      <h2><span class="n">03 · The thermal CFD model</span>One channel in thirty-five</h2>
+      <p>This is conjugate heat transfer. Heat enters the printed wall, conducts through 2 mm of metal and leaves with the IPA in the channels. Since the 35 channels are identical, I modelled a single 10.29° slice with periodic sides, cut through the ribs so both cut faces are solid metal. The coolant body, one channel plus its share of the nozzle-end manifold, was made by filling the cavity inside the slice. Coolant enters at the nozzle end and flows against the gas towards the injector.</p>
+      <p>The mesh has 5.24 million cells, with ten inflation layers and a 0.01 mm first cell to keep y+ near 1 for k-ω SST. IPA properties vary with temperature, because its viscosity falls about four times as it heats, which changes the cooling a lot.</p>
+      <figure><div class="frame plate"><img src="../assets/img/r2s/04_cfd_sector_metal_and_coolant.webp" alt="The metal slice and the coolant body pulled apart" loading="lazy"></div><figcaption><b>The 1/35 analysis sector.</b> Metal (grey) and coolant body (blue) pulled apart.</figcaption></figure>
+      <div class="figs">
+        <figure><div class="frame plate"><img src="../assets/img/r2s/03_coolant_channels.webp" alt="The coolant volume repeated around the engine" loading="lazy"></div><figcaption><b>The 35 channels.</b> Fuel enters the manifold ring at the nozzle end and runs to the injector.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/r2s/06_cfd_convergence.webp" alt="Monitored wall temperature, coolant outlet temperature and heat load" loading="lazy"></div><figcaption><b>Convergence.</b> Wall temperature, coolant outlet temperature and heat load over 755 iterations.</figcaption></figure>
+      </div>
+      <div class="callout-box"><b>Not just residuals.</b> The run was only called converged once the wall and coolant temperatures had been flat for over 200 iterations and the energy balance closed: 12,217.6 W enters through the hot wall, all of it crosses the metal-to-coolant interface and leaves with the fuel, with an imbalance of 0.014%.</div>
+    </section>
+
+    <section id="result">
+      <h2><span class="n">04 · What the CFD showed</span>Regenerative cooling alone does not survive</h2>
+      <p>Each channel takes 12.2 kW, about 428 kW for the whole engine, against a 440 kW hand estimate. The gas-side wall peaks at 888 °C just before the throat, well past the melting point. The coolant-side wall reaches at least 429 °C, so the IPA would boil at the wall, and the fuel leaves the channels at 232 °C, just short of its critical point.</p>
+      <div class="widget" data-limits>
+        <header><h4>Predicted temperatures against their limits</h4><small>Regen cooling only, °C</small></header>
+        <div class="bars limits">
+          <div class="row"><span>Max gas-side wall</span><div class="track"><div class="band" style="left:20%;width:5%" title="Useful strength 200 to 250 °C"></div><div class="fill hot" data-w="88.8"></div><div class="lim" style="left:57%" data-l="melts ~570"></div></div><div class="val">888</div></div>
+          <div class="row"><span>Max coolant-side wall</span><div class="track"><div class="band" style="left:20%;width:5%"></div><div class="fill hot" data-w="42.9"></div><div class="lim" style="left:22.25%" data-l="IPA boils ~220"></div></div><div class="val" title="Lower bound until the facet maximum on the interface is compared">≥429</div></div>
+          <div class="row"><span>Coolant outlet</span><div class="track"><div class="band" style="left:20%;width:5%"></div><div class="fill hot" data-w="23.2"></div><div class="lim" style="left:23.5%" data-l="critical 235"></div></div><div class="val">232</div></div>
+        </div>
+        <p class="muted" style="font-size:.84rem;margin-top:16px">Hatched band: 200 to 250 °C, where the alloy keeps useful strength. Every temperature that matters sits at or above its limit.</p>
+      </div>
+      <p>Both failures come from the same place. There is more heat than slow-moving IPA, at about 1 to 2 m/s, can carry away through a wall with a low temperature limit. Bartz tends to overpredict, possibly by up to two times, but even halved the throat would still sit at several hundred degrees. This is the result that moved the design towards film cooling.</p>
+      <div class="cmp">
+        <img src="../assets/img/r2s/23_cfd_throat_section_temperature.webp" alt="Temperature in a section through the throat">
+        <img class="after" src="../assets/img/r2s/24_cfd_throat_channels_closeup.webp" alt="Close-up of the throat channels and wall temperature">
+        <span class="tag l">Throat section</span><span class="tag r">Channels, close up</span>
+        <div class="bar"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare throat section with channel close-up">
+      </div>
+      <div class="figs">
+        <figure><div class="frame plate"><img src="../assets/img/r2s/22_cfd_wall_temperature_cutaway.webp" alt="Fluent wall temperature on a cutaway of the chamber" loading="lazy"></div><figcaption><b>Wall temperature</b> on a cutaway. The hot band sits just upstream of the throat.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/r2s/26_cfd_throat_wall_and_coolant.webp" alt="Temperature through the throat wall and coolant" loading="lazy"></div><figcaption><b>Through the throat wall</b> into the coolant.</figcaption></figure>
+      </div>
+      <figure><div class="frame plate"><img src="../assets/img/r2s/25_cfd_channel_midplane_temperature.webp" alt="Temperature on the channel midplane along the engine" loading="lazy"></div><figcaption><b>Channel midplane</b> along the full length, nozzle to injector.</figcaption></figure>
+    </section>
+
+    <section id="fea">
+      <h2><span class="n">05 · Structural FEA</span>The wall holds, one corner needs a fillet</h2>
+      <p>Separately, I checked whether the wall holds the pressure in steady running. The coolant pushes in at 42 bar, while the gas pressure falls from 29.7 bar in the chamber to 1.2 bar at the exit. The model uses the same 1/35 slice with frictionless symmetry on the cut faces, fixed at the injector end, and a swept quadratic hex mesh: five elements through the 2 mm liner and 0.2 mm refinement at the throat.</p>
+      <p>The liner is squeezed inward and the jacket pulled outward, and both stay well within yield. Average von Mises stress is 40 MPa and the nozzle exit moves 0.09 mm. Using a room-temperature yield strength of 145 MPa, the safety factors are 5.2 in the chamber liner, 2.1 in the nozzle liner and 2.4 in the jacket.</p>
+      <figure><div class="frame plate"><img src="../assets/img/r2s/11_fea_von_mises.webp" alt="Von Mises stress on the whole model at true scale" loading="lazy"></div><figcaption><b>Von Mises stress</b>, true scale. Nozzle exit on the left, injector on the right.</figcaption></figure>
+      <div class="figs">
+        <figure><div class="frame plate"><img src="../assets/img/r2s/13_fea_hoop_stress.webp" alt="Hoop stress, liner in compression and jacket in tension" loading="lazy"></div><figcaption><b>Hoop stress.</b> The liner is in compression because coolant pressure exceeds gas pressure. The jacket is in tension.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/r2s/14_fea_total_deformation.webp" alt="Total deformation, maximum 0.09 mm" loading="lazy"></div><figcaption><b>Total deformation.</b> Maximum 0.09 mm at the nozzle exit.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/r2s/09_fea_mesh_throat.webp" alt="Swept hex mesh at the throat" loading="lazy"></div><figcaption><b>Mesh at the throat.</b> The darker band is the 0.2 mm zone.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/r2s/08_fea_hot_gas_pressure.webp" alt="Gas pressure applied along the inner wall" loading="lazy"></div><figcaption><b>Hot-gas pressure load</b>, 2.97 MPa in the chamber to 0.12 MPa at the exit.</figcaption></figure>
+      </div>
+      <div class="pull">The one high value, <em>161 MPa</em>, is above yield on paper, but it keeps rising as the mesh is refined. That makes it a singularity, and the fix is a fillet, not a thicker wall.</div>
+      <figure><div class="frame plate"><img src="../assets/img/r2s/12_fea_von_mises_corner_closeup.webp" alt="Close-up of the 161 MPa peak at a sharp inside corner" loading="lazy"></div><figcaption><b>The singular corner</b> in the coolant pocket at the nozzle exit.</figcaption></figure>
+    </section>
+
+    <section id="check">
+      <h2><span class="n">06 · Checking the answer</span>Ten minutes of hand calculation</h2>
+      <p>I ran five meshes from 64,000 to 513,000 nodes. Hoop stresses changed by less than 0.2%, and the peak at the 0.4 mm mesh I used was within 1.7% of the finest. A thin-wall force balance on half the ring matched the FEA hoop stress in the chamber to within 0.1% for both liner and jacket, and the nozzle liner to within 0.8%. The nozzle jacket differs by 14%, and the throat more, where the wall stops behaving like a thin cylinder.</p>
+      <div class="figs">
+        <figure><div class="frame plate"><img src="../assets/img/r2s/15_fea_mesh_convergence.webp" alt="Mesh convergence of hoop stress and the corner peak" loading="lazy"></div><figcaption><b>Mesh convergence.</b> Only the singular corner peak moves with mesh size.</figcaption></figure>
+        <figure><div class="frame plate"><img src="../assets/img/r2s/16_hoop_stress_validation.webp" alt="FEA hoop stress against thin-wall hand calculation" loading="lazy"></div><figcaption><b>FEA against hand calculation.</b> Filled markers FEA, hollow markers thin-wall theory.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="temp">
+      <h2><span class="n">07 · Effect of wall temperature</span>Hotter wall, softer alloy</h2>
+      <p>Because the CFD showed the wall running hot, I repeated the structural run with temperature-dependent AlSi10Mg properties at four uniform wall temperatures.</p>
+      <div class="widget" data-tempstudy="../assets/img/r2s/">
+        <header><h4>Total deformation at <span data-o="t">295 K</span></h4><small>Colour scale changes between cases</small></header>
+        <div class="ts">
+          <div class="frame"><img src="../assets/img/r2s/18_deformation_295K.webp" alt="Total deformation at 295 K"></div>
+          <div class="readline" style="margin:0;display:grid;gap:14px">
+            <div><b class="num" data-o="c">22 °C</b>wall temperature</div>
+            <div><b class="num" data-o="d">0.09 mm</b>maximum deformation</div>
+            <div><b class="num" data-o="sf">2.03</b>safety factor on yield</div>
+          </div>
+        </div>
+        <input class="rng" type="range" min="0" max="3" step="1" value="0" aria-label="Wall temperature case" style="margin-top:14px">
+        <div class="ticks"><span>295 K</span><span>400 K</span><span>500 K</span><span>600 K</span></div>
+      </div>
+      <p>The injector face is held only axially, so the wall is free to grow outward. Thermal expansion grows the deformation from 0.09 mm to 2.86 mm, but the stress stays the same, because a uniformly heated wall that can expand freely picks up no thermal stress. The safety factor falls from 2.03 to 1.09 at 600 K (327 °C) purely because the alloy softens. That is still far below the 888 °C the regen-only CFD predicted, which points to the same conclusion: the wall has to run much cooler.</p>
+      <p class="muted">This study uses one uniform temperature. In the real engine the liner is much hotter than the jacket, and that difference would add thermal stress. Mapping the CFD temperatures into the FEA is the next step.</p>
+      <figure><div class="frame plate"><img src="../assets/img/r2s/17_temperature_study.webp" alt="Deformation and safety factor against wall temperature" loading="lazy"></div><figcaption><b>Temperature study</b>, deformation and safety factor against uniform wall temperature.</figcaption></figure>
+    </section>
+
+    <section id="progress">
+      <h2><span class="n">08 · Progress</span>Step 04 of 05, film cooling</h2>
+      <div class="route tracker" style="--n:5" data-max="0.75">
+        <i></i>
+        <article class="stop"><span class="st">Completed</span><h3>Hot-gas boundary condition</h3><p>CEA and Bartz as Fluent expressions.</p></article>
+        <article class="stop"><span class="st">Completed</span><h3>Regen-only thermal CFD</h3><p>1/35 sector, 0.014% energy balance.</p></article>
+        <article class="stop"><span class="st">Completed</span><h3>Structural FEA</h3><p>Five meshes and a hand-calculation check.</p></article>
+        <article class="stop next"><span class="st">Current stage</span><h3>Film cooling study</h3><p>Find the film fraction that keeps the throat below about 250 °C.</p></article>
+        <article class="stop later"><span class="st">Upcoming</span><h3>Hot fire at Race 2 Space</h3><p>Manufacture and test at the competition.</p></article>
+      </div>
+      <h3>What comes next</h3>
+      <ul class="list">
+        <li><b>Film cooling.</b> Lower the adiabatic wall temperature downstream of the injector to find the film fraction that keeps the throat below about 250 °C.</li>
+        <li><b>Throat options.</b> A copper alloy or ablative insert, faster coolant at the throat through narrower channels, or a lower chamber pressure.</li>
+        <li><b>Firmer inputs.</b> Sourced IPA property data, the real coolant feed pressure and a CFD mesh sensitivity study.</li>
+        <li><b>A fillet</b> at the exit pocket to remove the stress singularity.</li>
+        <li><b>Thermal stress from the CFD.</b> Map the CFD wall temperatures into the structural model to capture stress from the temperature difference through the wall.</li>
+      </ul>
+    </section>
+
+    <section id="learned">
+      <h2><span class="n">09 · What I learned</span>Residuals are not convergence</h2>
+      <p>This was my first conjugate heat transfer simulation. The biggest lesson was not to call a run converged because the residuals looked good: the energy balance and flat monitors are what told me the answer could be trusted. I also learned that a simple correlation can be the right boundary condition when the aim is a design decision rather than a precise number, as long as you know which way it errs. And checking the FEA against a hand calculation took ten minutes and gave me more confidence than another mesh would have.</p>
+      <div class="cards">
+        <article><span class="role">Led</span><h4>Bartz hot-gas boundary condition</h4><p>CEA output and the CAD contour turned into h and adiabatic wall temperature profiles, fitted as Fluent expressions so the wall temperature is solved, not assumed.</p></article>
+        <article><span class="role">Led</span><h4>Conjugate heat transfer CFD</h4><p>1/35 periodic sector, 5.24M cells, temperature-dependent IPA. Showed regen cooling alone would melt the throat.</p></article>
+        <article><span class="role">Led</span><h4>Structural FEA</h4><p>Pressure-loaded printed wall with a swept hex mesh. Found it well within yield and traced the only high stress to a sharp corner.</p></article>
+        <article><span class="role">Led</span><h4>Verification and validation</h4><p>Five-mesh convergence, thin-wall hand check within 0.1% in the chamber, and a temperature study of alloy softening.</p></article>
+      </div>
+      <ul class="chips" style="margin-top:26px"><li>ANSYS Fluent</li><li>ANSYS Mechanical</li><li>ANSYS Meshing</li><li>Workbench design points</li><li>NASA CEA</li><li>Python</li><li>SolidWorks</li><li>Excel</li></ul>
+    </section>
+  </div>
+</div>
+
+<nav class="next-prev" data-nextprev aria-label="More projects"></nav>
+<footer class="contact compact" id="contact">
+  <div class="wrap">
+    <h2 class="kin">Available after <em>June 2027</em></h2>
+    <div class="contact-row">
+      <a class="sl" href="mailto:shaunjthomas.sjt@gmail.com">shaunjthomas.sjt@gmail.com<svg class="u" viewBox="0 0 100 10" preserveAspectRatio="none"><path pathLength="1" d="M0 6 C 20 6, 28 1, 45 4 S 80 9, 100 3"/></svg></a>
+      <div class="hero-cta"><a class="btn hot" href="../assets/files/Shaun-John-Thomas-CV.pdf" target="_blank" rel="noopener">View CV</a><a class="btn line" href="../index.html#work" data-veil="All work">All projects</a></div>
+    </div>
+    <div class="foot"><nav aria-label="Projects" data-footnav></nav><span>© 2026 Shaun John Thomas</span></div>
+  </div>
+</footer>
+</main>
+<script src="../assets/site.js"></script>
+<script src="../assets/project.js"></script>
+</body>
+</html>
